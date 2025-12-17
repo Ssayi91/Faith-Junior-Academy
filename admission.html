@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admissions | FAITH Junior Academy - CBC Education</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --secondary: #f59e0b;
+      --tertiary: #10b981;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --accent: #8b5cf6;
+      --cbc-blue: #2563eb;
+      --cbc-green: #059669;
+      --cbc-orange: #ea580c;
+      --cbc-purple: #7c3aed;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Abstract Background Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--primary);
+      top: -300px;
+      right: -200px;
+      animation: float 40s infinite ease-in-out;
+    }
+    
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      bottom: -200px;
+      left: -150px;
+      animation: float 35s infinite ease-in-out reverse;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--tertiary);
+      top: 40%;
+      right: 20%;
+      animation: float 30s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(20px) rotate(240deg); }
+    }
+    
+    /* Header - Breaking Traditional Layout */
+    header {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 40px rgba(30, 64, 175, 0.15);
+      border: 2px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    header.scrolled {
+      top: 1rem;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      z-index: 1001;
+    }
+    
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transform: rotate(-5deg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+    
+    .logo-text h1 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.2rem;
+    }
+    
+    .logo-text p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--dark);
+      opacity: 0.7;
+    }
+    
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    
+    .nav-item {
+      position: relative;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      border-radius: 3px;
+    }
+    
+    .nav-item:hover {
+      color: var(--primary);
+    }
+    
+    .nav-item:hover::before {
+      width: 100%;
+    }
+    
+    .nav-cta {
+      background: linear-gradient(135deg, var(--cbc-green), var(--cbc-blue));
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.4);
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0.5rem;
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100vh;
+      background: white;
+      z-index: 1000;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .mobile-nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 2px solid transparent;
+    }
+    
+    .mobile-nav-link:hover {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(139, 92, 246, 0.05));
+      border-color: rgba(30, 64, 175, 0.1);
+      transform: translateX(-5px);
+    }
+    
+    .mobile-nav-link i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      width: 24px;
+    }
+    
+    .mobile-nav-cta {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--cbc-green), var(--cbc-blue));
+      color: white;
+      padding: 1.2rem 2rem;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(5, 150, 105, 0.3);
+    }
+    
+    .mobile-nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(5, 150, 105, 0.4);
+    }
+    
+    /* Page Header */
+    .page-header {
+      min-height: 70vh;
+      padding: 12rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+    }
+    
+    .page-header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    
+    .admission-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      animation: bounce 2s infinite;
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+      position: relative;
+    }
+    
+    .admission-badge::after {
+      content: '2024/2025 INTAKE';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--cbc-orange);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .page-title {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .page-title span {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .page-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+      z-index: -1;
+      border-radius: 10px;
+    }
+    
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+    
+    /* Admissions Overview */
+    .admissions-overview {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 6px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 3px;
+    }
+    
+    .section-title p {
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .overview-card {
+      background: white;
+      border-radius: 25px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      transform-style: preserve-3d;
+    }
+    
+    .overview-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .overview-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+    }
+    
+    .overview-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      transform: rotate(-5deg);
+      transition: transform 0.3s ease;
+    }
+    
+    .overview-card:hover .overview-icon {
+      transform: rotate(0deg);
+    }
+    
+    .overview-card:nth-child(1) .overview-icon {
+      background: linear-gradient(135deg, var(--cbc-blue), #60a5fa);
+    }
+    
+    .overview-card:nth-child(2) .overview-icon {
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+    }
+    
+    .overview-card:nth-child(3) .overview-icon {
+      background: linear-gradient(135deg, var(--cbc-orange), #fb923c);
+    }
+    
+    .overview-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .overview-card p {
+      color: #64748b;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Application Process */
+    .process-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+    
+    .process-timeline {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--cbc-blue), var(--cbc-green), var(--cbc-orange), var(--cbc-purple));
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+    }
+    
+    .process-step {
+      position: relative;
+      margin-bottom: 4rem;
+      width: 45%;
+    }
+    
+    .process-step:nth-child(odd) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+    
+    .process-step:nth-child(even) {
+      margin-left: auto;
+      margin-right: 0;
+    }
+    
+    .step-content {
+      background: white;
+      border-radius: 25px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: all 0.4s ease;
+      border: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .step-content:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .step-number {
+      position: absolute;
+      top: -25px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 900;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+      z-index: 2;
+    }
+    
+    .process-step:nth-child(odd) .step-number {
+      right: -30px;
+    }
+    
+    .process-step:nth-child(even) .step-number {
+      left: -30px;
+    }
+    
+    .step-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .step-content p {
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+    
+    .step-details {
+      background: rgba(37, 99, 235, 0.05);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .step-details h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--cbc-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .step-details ul {
+      list-style: none;
+    }
+    
+    .step-details li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      color: #64748b;
+    }
+    
+    .step-details li i {
+      color: var(--cbc-green);
+      margin-top: 0.3rem;
+      flex-shrink: 0;
+    }
+    
+    /* Requirements Section */
+    .requirements-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .requirements-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .requirement-tab {
+      padding: 1rem 2rem;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .requirement-tab:hover {
+      border-color: var(--cbc-blue);
+      color: var(--cbc-blue);
+    }
+    
+    .requirement-tab.active {
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+    
+    .requirement-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .requirement-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .requirement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .requirement-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    
+    .requirement-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+      border-color: var(--cbc-blue);
+    }
+    
+    .requirement-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .requirement-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .requirement-header h3 {
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+    
+    .requirement-list {
+      list-style: none;
+    }
+    
+    .requirement-list li {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #64748b;
+    }
+    
+    .requirement-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--cbc-green);
+      font-weight: 900;
+    }
+    
+    .requirement-note {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(245, 158, 11, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid var(--cbc-orange);
+    }
+    
+    .requirement-note p {
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    /* Fees & Payment */
+    .fees-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+    
+    .fees-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .fees-card {
+      background: white;
+      border-radius: 25px;
+      padding: 3rem;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3rem;
+    }
+    
+    .fees-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .fees-header::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 2px;
+    }
+    
+    .fees-header h3 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    
+    .fees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .fee-item {
+      background: rgba(37, 99, 235, 0.05);
+      border-radius: 15px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .fee-item:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-5px);
+    }
+    
+    .fee-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .fee-amount {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--cbc-blue);
+      margin-bottom: 0.5rem;
+    }
+    
+    .fee-desc {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    .payment-options {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+    
+    .payment-options h4 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .payment-method {
+      background: rgba(5, 150, 105, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .payment-method:hover {
+      background: rgba(5, 150, 105, 0.1);
+      transform: translateY(-5px);
+    }
+    
+    .payment-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+    
+    .payment-method h5 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .payment-method p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    /* Important Dates */
+    .dates-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .dates-calendar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .date-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    
+    .date-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .date-card.past {
+      opacity: 0.7;
+    }
+    
+    .date-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(135deg, var(--cbc-orange), #fb923c);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    
+    .date-month {
+      font-size: 1rem;
+      color: var(--cbc-blue);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .date-day {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    
+    .date-content h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .date-content p {
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Application Form */
+    .application-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+    
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .form-card {
+      background: white;
+      border-radius: 30px;
+      padding: 4rem;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green), var(--cbc-orange));
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .form-header h3 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    
+    .form-header p {
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+    
+    .form-group {
+      margin-bottom: 2rem;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .form-label i {
+      color: var(--cbc-blue);
+    }
+    
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--cbc-blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .upload-area {
+      border: 2px dashed #e2e8f0;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .upload-area:hover {
+      border-color: var(--cbc-blue);
+      background: rgba(37, 99, 235, 0.02);
+    }
+    
+    .upload-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+    
+    .upload-text h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .upload-text p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .form-check input {
+      margin-top: 0.3rem;
+    }
+    
+    .form-check label {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    .form-check a {
+      color: var(--cbc-blue);
+      text-decoration: none;
+    }
+    
+    .form-check a:hover {
+      text-decoration: underline;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+    }
+    
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-content {
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 30px;
+      padding: 5rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(37, 99, 235, 0.3);
+    }
+    
+    .cta-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
+      animation: rotate 40s infinite linear;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .cta-content h3 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .cta-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      position: relative;
+    }
+    
+    .cta-btns {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      color: var(--cbc-blue);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-btn.secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo .logo-icon {
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+    }
+    
+    .footer-column h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+      border-radius: 3px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--secondary);
+      transform: translateY(-5px) rotate(5deg);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+    
+    /* Success Message */
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 400px;
+      transform: translateX(120%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .success-message.show {
+      transform: translateX(0);
+    }
+    
+    .success-message i {
+      font-size: 1.5rem;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .page-title {
+        font-size: 3.5rem;
+      }
+      
+      .process-timeline::before {
+        left: 30px;
+      }
+      
+      .process-step {
+        width: calc(100% - 80px);
+        margin-left: 80px;
+      }
+      
+      .process-step:nth-child(odd) .step-number,
+      .process-step:nth-child(even) .step-number {
+        left: -40px;
+        right: auto;
+      }
+      
+      .cta-content h3 {
+        font-size: 2.5rem;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        top: 1rem;
+        width: 95%;
+        padding: 1rem;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .page-header {
+        padding-top: 8rem;
+        min-height: 60vh;
+      }
+      
+      .page-title {
+        font-size: 2.8rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+      
+      .cta-content {
+        padding: 3rem 2rem;
+      }
+      
+      .cta-content h3 {
+        font-size: 2rem;
+      }
+      
+      .form-card {
+        padding: 2rem;
+      }
+      
+      .cta-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .page-title {
+        font-size: 2.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .mobile-nav {
+        width: 280px;
+      }
+      
+      .overview-card,
+      .requirement-card,
+      .date-card,
+      .fee-item,
+      .payment-method {
+        padding: 1.5rem;
+      }
+      
+      .form-card {
+        padding: 1.5rem;
+      }
+      
+      .fees-card {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  
+  <!-- Success Message -->
+  <div class="success-message" id="successMessage">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Application Submitted!</h4>
+      <p style="opacity: 0.9; font-size: 0.9rem;">We'll contact you within 24 hours.</p>
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header id="header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="logo-text">
+        <h1>FAITH Junior Academy</h1>
+        <p>EDUCATION REDEFINED</p>
+      </div>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="programs.html" class="nav-item">Programs</a>
+      <a href="admission.html" class="nav-item">Admission</a>
+      <a href="#fees" class="nav-item">Fees</a>
+      <a href="#apply" class="nav-cta">
+        <i class="fas fa-paper-plane"></i>
+        Apply Now
+      </a>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+  
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="about.html" class="mobile-nav-link">
+        <i class="fas fa-info-circle"></i>
+        <span>About Us</span>
+      </a>
+      <a href="programs.html" class="mobile-nav-link">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Programs</span>
+      </a>
+      <a href="admission.html" class="mobile-nav-link">
+        <i class="fas fa-list-ol"></i>
+        <span>Admission </span>
+      </a>
+      <a href="#requirements" class="mobile-nav-link">
+        <i class="fas fa-file-alt"></i>
+        <span>Requirements</span>
+      </a>
+      <a href="#fees" class="mobile-nav-link">
+        <i class="fas fa-money-bill-wave"></i>
+        <span>Fees & Payment</span>
+      </a>
+      <a href="#dates" class="mobile-nav-link">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Important Dates</span>
+      </a>
+    </div>
+    
+    <a href="#apply" class="mobile-nav-cta">
+      <i class="fas fa-paper-plane"></i>
+      Apply Now
+    </a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div class="admission-badge">
+          <i class="fas fa-door-open"></i> ADMISSIONS OPEN
+        </div>
+        
+        <h1 class="page-title">
+          Join the <span>FAITH Junior</span> Family
+        </h1>
+        
+        <p class="page-subtitle">
+          Begin your child's transformative educational journey with Kenya's premier CBC institution. Our admissions process is designed to identify curious minds and nurture their unique potential.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admissions Overview -->
+  <section class="admissions-overview">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose FAITH Junior Academy?</h2>
+        <p>Discover what makes our CBC implementation exceptional</p>
+      </div>
+      
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="overview-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>Holistic CBC Implementation</h3>
+          <p>We go beyond the curriculum to develop all 7 core competencies through innovative teaching methods, project-based learning, and real-world applications.</p>
+        </div>
+        
+        <div class="overview-card">
+          <div class="overview-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Proven Academic Excellence</h3>
+          <p>Our learners consistently demonstrate outstanding performance in both academic achievement and competency development, preparing them for future success.</p>
+        </div>
+        
+        <div class="overview-card">
+          <div class="overview-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h3>Strong Parent Partnership</h3>
+          <p>We believe education is a collaborative effort. Regular workshops, progress updates, and parent involvement ensure your child receives consistent support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Process -->
+  <section class="process-section" id="process">
+    <div class="container">
+      <div class="section-title">
+        <h2>Admission Process</h2>
+        <p>A simple 5-step journey to joining our learning community</p>
+      </div>
+      
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">1</div>
+            <h3>Initial Inquiry</h3>
+            <p>Begin by submitting an online inquiry form or contacting our admissions office. We'll provide detailed information about our programs, fees, and availability.</p>
+            
+            <div class="step-details">
+              <h4><i class="fas fa-info-circle"></i> What to Expect</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> School prospectus and fee structure</li>
+                <li><i class="fas fa-check"></i> Information about CBC implementation</li>
+                <li><i class="fas fa-check"></i> Available class slots and waiting lists</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">2</div>
+            <h3>School Tour & Assessment</h3>
+            <p>Schedule a personalized tour of our campus. For PP2 and above, we conduct a simple, child-friendly assessment to understand your child's learning style.</p>
+            
+            <div class="step-details">
+              <h4><i class="fas fa-clipboard-check"></i> Assessment Focus</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> Social interaction skills (for all ages)</li>
+                <li><i class="fas fa-check"></i> Basic literacy/numeracy readiness (PP2+)</li>
+                <li><i class="fas fa-check"></i> Learning style and interests</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">3</div>
+            <h3>Application Submission</h3>
+            <p>Complete the official application form and submit all required documents. This can be done online through our portal or in person at our admissions office.</p>
+            
+            <div class="step-details">
+              <h4><i class="fas fa-file-upload"></i> Required Documents</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> Birth certificate (copy)</li>
+                <li><i class="fas fa-check"></i> Previous school reports (if applicable)</li>
+                <li><i class="fas fa-check"></i> Immunization records</li>
+                <li><i class="fas fa-check"></i> 4 passport photos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">4</div>
+            <h3>Admission Interview</h3>
+            <p>Parents and child meet with our admissions committee. This is a friendly conversation to ensure our educational approach aligns with your family's values and expectations.</p>
+            
+            <div class="step-details">
+              <h4><i class="fas fa-comments"></i> Discussion Topics</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> Educational philosophy alignment</li>
+                <li><i class="fas fa-check"></i> Parental involvement expectations</li>
+                <li><i class="fas fa-check"></i> Child's interests and needs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">5</div>
+            <h3>Enrollment & Orientation</h3>
+            <p>Upon acceptance, complete the enrollment process including fee payment. Attend our comprehensive orientation program for new students and parents.</p>
+            
+            <div class="step-details">
+              <h4><i class="fas fa-school"></i> Orientation Program</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> Meet teachers and classmates</li>
+                <li><i class="fas fa-check"></i> Tour of classrooms and facilities</li>
+                <li><i class="fas fa-check"></i> CBC parent workshop</li>
+                <li><i class="fas fa-check"></i> Uniform fitting and book collection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements Section -->
+  <section class="requirements-section" id="requirements">
+    <div class="container">
+      <div class="section-title">
+        <h2>Admission Requirements</h2>
+        <p>Everything you need to prepare for a successful application</p>
+      </div>
+      
+      <div class="requirements-tabs">
+        <div class="requirement-tab active" data-requirement="age">
+          <i class="fas fa-birthday-cake"></i>
+          Age Requirements
+        </div>
+        <div class="requirement-tab" data-requirement="documents">
+          <i class="fas fa-file-alt"></i>
+          Required Documents
+        </div>
+        <div class="requirement-tab" data-requirement="assessment">
+          <i class="fas fa-clipboard-list"></i>
+          Assessment Criteria
+        </div>
+      </div>
+      
+      <!-- Age Requirements -->
+      <div class="requirement-content active" id="age-content">
+        <div class="requirement-grid">
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Pre-Primary 1</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Child must be 4 years old by 1st January of admission year</li>
+              <li>Basic self-help skills (toileting, feeding)</li>
+              <li>Ability to interact with peers in a group setting</li>
+              <li>No prior formal education required</li>
+            </ul>
+            <div class="requirement-note">
+              <p><strong>Note:</strong> Children turning 4 between January and March may be considered on case-by-case basis.</p>
+            </div>
+          </div>
+          
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3>Pre-Primary 2</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Child must be 5 years old by 1st January of admission year</li>
+              <li>Completion of PP1 or equivalent preparation</li>
+              <li>Basic letter and number recognition</li>
+              <li>Ability to follow simple instructions</li>
+            </ul>
+            <div class="requirement-note">
+              <p><strong>Note:</strong> Transfer students from other systems will be assessed for readiness.</p>
+            </div>
+          </div>
+          
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-tree"></i>
+              </div>
+              <h3>Grades 1-3</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Age-appropriate placement based on CBC progression</li>
+              <li>Successful completion of previous grade level</li>
+              <li>School reports from previous institution</li>
+              <li>Assessment of competency development</li>
+            </ul>
+            <div class="requirement-note">
+              <p><strong>Note:</strong> We accept transfers from both CBC and 8-4-4 systems with appropriate bridging.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Document Requirements -->
+      <div class="requirement-content" id="documents-content">
+        <div class="requirement-grid">
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-id-card"></i>
+              </div>
+              <h3>Identification Documents</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Copy of child's birth certificate</li>
+              <li>Copy of child's immunization card</li>
+              <li>4 recent passport-sized photographs</li>
+              <li>Copies of parents' national IDs</li>
+              <li>Transfer letter (for Grade 1-3 applicants)</li>
+            </ul>
+          </div>
+          
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-file-signature"></i>
+              </div>
+              <h3>Academic Records</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Completed application form (online or physical)</li>
+              <li>Previous school reports (if applicable)</li>
+              <li>Recommendation letter from previous school (Grade 1-3)</li>
+              <li>CBC assessment portfolio (if transferring within CBC)</li>
+            </ul>
+          </div>
+          
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-file-contract"></i>
+              </div>
+              <h3>Medical & Consent Forms</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Medical form completed by pediatrician</li>
+              <li>Consent for emergency medical treatment</li>
+              <li>Media release consent form</li>
+              <li>Transportation consent (if using school transport)</li>
+              <li>Parental agreement to school policies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Assessment Criteria -->
+      <div class="requirement-content" id="assessment-content">
+        <div class="requirement-grid">
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-child"></i>
+              </div>
+              <h3>Social & Emotional</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Ability to separate from parents</li>
+              <li>Basic conflict resolution skills</li>
+              <li>Emotional regulation and expression</li>
+              <li>Cooperation in group activities</li>
+              <li>Following classroom routines</li>
+            </ul>
+          </div>
+          
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h3>Cognitive Readiness</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Age-appropriate attention span</li>
+              <li>Curiosity and question-asking</li>
+              <li>Problem-solving approaches</li>
+              <li>Memory and recall abilities</li>
+              <li>Following multi-step instructions</li>
+            </ul>
+          </div>
+          
+          <div class="requirement-card">
+            <div class="requirement-header">
+              <div class="requirement-icon">
+                <i class="fas fa-language"></i>
+              </div>
+              <h3>Language & Communication</h3>
+            </div>
+            <ul class="requirement-list">
+              <li>Verbal communication skills</li>
+              <li>Listening comprehension</li>
+              <li>Basic vocabulary in English/Kiswahili</li>
+              <li>Expressing needs and ideas</li>
+              <li>Non-verbal communication understanding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fees & Payment Section -->
+  <section class="fees-section" id="fees">
+    <div class="container">
+      <div class="section-title">
+        <h2>Fee Structure & Payment</h2>
+        <p>Transparent pricing with multiple payment options for your convenience</p>
+      </div>
+      
+      <div class="fees-container">
+        <div class="fees-card">
+          <div class="fees-header">
+            <h3>2024/2025 Academic Year Fees</h3>
+            <p>All fees are per term (3 terms per year) and inclusive of CBC learning materials</p>
+          </div>
+          
+          <div class="fees-grid">
+            <div class="fee-item">
+              <h4>Pre-Primary 1</h4>
+              <div class="fee-amount">KES 45,000</div>
+              <p class="fee-desc">Per term, includes all learning materials, CBC portfolio, and basic stationery</p>
+            </div>
+            
+            <div class="fee-item">
+              <h4>Pre-Primary 2</h4>
+              <div class="fee-amount">KES 48,000</div>
+              <p class="fee-desc">Per term, includes enhanced CBC materials, project supplies, and digital resources</p>
+            </div>
+            
+            <div class="fee-item">
+              <h4>Grade 1</h4>
+              <div class="fee-amount">KES 52,000</div>
+              <p class="fee-desc">Per term, includes all textbooks, workbooks, CBC assessment tools, and technology access</p>
+            </div>
+            
+            <div class="fee-item">
+              <h4>Grade 2 & 3</h4>
+              <div class="fee-amount">KES 55,000</div>
+              <p class="fee-desc">Per term, includes specialized CBC materials, science kits, and enrichment programs</p>
+            </div>
+          </div>
+          
+          <div class="payment-options">
+            <h4><i class="fas fa-credit-card"></i> Payment Options</h4>
+            <div class="payment-grid">
+              <div class="payment-method">
+                <div class="payment-icon">
+                  <i class="fas fa-university"></i>
+                </div>
+                <h5>Bank Transfer</h5>
+                <p>Direct deposit to our school account. Details provided upon enrollment.</p>
+              </div>
+              
+              <div class="payment-method">
+                <div class="payment-icon">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h5>Mobile Money</h5>
+                <p>Pay via M-Pesa, Airtel Money, or T-Kash for instant confirmation.</p>
+              </div>
+              
+              <div class="payment-method">
+                <div class="payment-icon">
+                  <i class="fas fa-credit-card"></i>
+                </div>
+                <h5>Credit/Debit Card</h5>
+                <p>Secure online payments through our parent portal.</p>
+              </div>
+              
+              <div class="payment-method">
+                <div class="payment-icon">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h5>Payment Plans</h5>
+                <p>Flexible monthly installments available upon request and approval.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Important Dates -->
+  <section class="dates-section" id="dates">
+    <div class="container">
+      <div class="section-title">
+        <h2>Important Dates & Deadlines</h2>
+        <p>Stay informed about key dates for the 2024/2025 academic year</p>
+      </div>
+      
+      <div class="dates-calendar">
+        <div class="date-card">
+          <div class="date-badge">Current</div>
+          <div class="date-month">
+            <i class="fas fa-calendar"></i> March 2024
+          </div>
+          <div class="date-day">15</div>
+          <div class="date-content">
+            <h4>Admissions Open</h4>
+            <p>Online applications open for all classes. Early applications receive priority consideration.</p>
+          </div>
+        </div>
+        
+        <div class="date-card">
+          <div class="date-badge">Upcoming</div>
+          <div class="date-month">
+            <i class="fas fa-calendar"></i> May 2024
+          </div>
+          <div class="date-day">31</div>
+          <div class="date-content">
+            <h4>Early Application Deadline</h4>
+            <p>Submit applications by this date for early decision notification and fee discounts.</p>
+          </div>
+        </div>
+        
+        <div class="date-card">
+          <div class="date-month">
+            <i class="fas fa-calendar"></i> July 2024
+          </div>
+          <div class="date-day">15</div>
+          <div class="date-content">
+            <h4>Assessment Days</h4>
+            <p>Scheduled assessments for PP2 and Grade applicants. Parents receive feedback within 48 hours.</p>
+          </div>
+        </div>
+        
+        <div class="date-card">
+          <div class="date-month">
+            <i class="fas fa-calendar"></i> August 2024
+          </div>
+          <div class="date-day">31</div>
+          <div class="date-content">
+            <h4>Final Application Deadline</h4>
+            <p>All applications must be submitted by this date for the 2024/2025 academic year.</p>
+          </div>
+        </div>
+        
+        <div class="date-card">
+          <div class="date-month">
+            <i class="fas fa-calendar"></i> September 2024
+          </div>
+          <div class="date-day">20-21</div>
+          <div class="date-content">
+            <h4>New Parent Orientation</h4>
+            <p>Mandatory orientation for parents of newly admitted students. Learn about CBC implementation.</p>
+          </div>
+        </div>
+        
+        <div class="date-card">
+          <div class="date-month">
+            <i class="fas fa-calendar"></i> January 2025
+          </div>
+          <div class="date-day">6</div>
+          <div class="date-content">
+            <h4>First Day of School</h4>
+            <p>2024/2025 academic year begins. All students report in full school uniform.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form -->
+  <section class="application-section" id="apply">
+    <div class="container">
+      <div class="section-title">
+        <h2>Start Your Application</h2>
+        <p>Complete the form below to begin your child's journey with FAITH Junior Academy</p>
+      </div>
+      
+      <div class="form-container">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>Admission Application Form</h3>
+            <p>Fill in all required fields accurately. We'll contact you within 48 hours.</p>
+          </div>
+          
+          <form id="admissionForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="childName">
+                  <i class="fas fa-child"></i> Child's Full Name
+                </label>
+                <input type="text" id="childName" class="form-input" placeholder="Enter child's full name" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="childDOB">
+                  <i class="fas fa-birthday-cake"></i> Date of Birth
+                </label>
+                <input type="date" id="childDOB" class="form-input" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="gradeApplying">
+                  <i class="fas fa-graduation-cap"></i> Grade Applying For
+                </label>
+                <select id="gradeApplying" class="form-select" required>
+                  <option value="">Select grade level</option>
+                  <option value="pp1">Pre-Primary 1 (Age 4)</option>
+                  <option value="pp2">Pre-Primary 2 (Age 5)</option>
+                  <option value="grade1">Grade 1 (Age 6)</option>
+                  <option value="grade2">Grade 2 (Age 7)</option>
+                  <option value="grade3">Grade 3 (Age 8)</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="currentSchool">
+                  <i class="fas fa-school"></i> Current School (if any)
+                </label>
+                <input type="text" id="currentSchool" class="form-input" placeholder="Name of current/pre-school">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="parentName">
+                  <i class="fas fa-user"></i> Parent/Guardian Name
+                </label>
+                <input type="text" id="parentName" class="form-input" placeholder="Full name of parent/guardian" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="parentEmail">
+                  <i class="fas fa-envelope"></i> Email Address
+                </label>
+                <input type="email" id="parentEmail" class="form-input" placeholder="Your email address" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="parentPhone">
+                  <i class="fas fa-phone"></i> Phone Number
+                </label>
+                <input type="tel" id="parentPhone" class="form-input" placeholder="0712 345 678" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="preferredContact">
+                  <i class="fas fa-comments"></i> Preferred Contact Method
+                </label>
+                <select id="preferredContact" class="form-select">
+                  <option value="phone">Phone Call</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="email">Email</option>
+                  <option value="sms">SMS</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="hearAboutUs">
+                <i class="fas fa-bullhorn"></i> How did you hear about us?
+              </label>
+              <select id="hearAboutUs" class="form-select">
+                <option value="">Select option</option>
+                <option value="friend">Friend/Family Recommendation</option>
+                <option value="social">Social Media</option>
+                <option value="website">School Website</option>
+                <option value="event">School Event/Open Day</option>
+                <option value="advertisement">Advertisement</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-question-circle"></i> Why are you interested in FAITH Junior Academy?
+              </label>
+              <textarea id="interestReason" class="form-textarea" placeholder="Tell us what appeals to you about our school and CBC approach..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-upload"></i> Document Upload (Optional)
+              </label>
+              <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="upload-text">
+                  <h4>Upload Supporting Documents</h4>
+                  <p>Click or drag birth certificate, previous reports, etc. (Max 10MB total)</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" id="agreeTerms" required>
+                <label for="agreeTerms">
+                  I have read and agree to the <a href="#">Admissions Policy</a> and understand that submission of this form does not guarantee admission.
+                </label>
+              </div>
+              
+              <div class="form-check">
+                <input type="checkbox" id="newsletter">
+                <label for="newsletter">
+                  I would like to receive updates about school events, CBC workshops, and educational resources.
+                </label>
+              </div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitApplication">
+              <i class="fas fa-paper-plane"></i>
+              Submit Application
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h3>Have Questions About Admissions?</h3>
+        <p>Our admissions team is ready to guide you through the process and answer all your questions about CBC, fees, and our educational approach.</p>
+        
+        <div class="cta-btns">
+          <a href="tel:+254712345678" class="cta-btn">
+            <i class="fas fa-phone"></i>
+            Call Admissions: +254 712 345 678
+          </a>
+          <a href="mailto:admissions@faithjunior.ac.ke" class="cta-btn secondary">
+            <i class="fas fa-envelope"></i>
+            Email Admissions Team
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 style="color: white; margin-top: 1rem;">FAITH Junior Academy</h1>
+          </div>
+          <p style="color: rgba(255,255,255,0.8); margin-top: 1.5rem;">
+            Admissions Open for 2024/2025 Academic Year. KICD Approved CBC Center.
+          </p>
+          
+          <div class="social-grid">
+            <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Admissions Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#process"><i class="fas fa-chevron-right"></i> Admission Process</a></li>
+            <li><a href="#requirements"><i class="fas fa-chevron-right"></i> Requirements</a></li>
+            <li><a href="#fees"><i class="fas fa-chevron-right"></i> Fee Structure</a></li>
+            <li><a href="#dates"><i class="fas fa-chevron-right"></i> Important Dates</a></li>
+            <li><a href="#apply"><i class="fas fa-chevron-right"></i> Apply Online</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>School Information</h4>
+          <ul class="footer-links">
+            <li><a href="programs.html"><i class="fas fa-chevron-right"></i> CBC Programs</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Our School</a></li>
+            <li><a href="about.html#environment"><i class="fas fa-chevron-right"></i> Learning Facilities</a></li>
+            <li><a href="index.html#values"><i class="fas fa-chevron-right"></i> School Values</a></li>
+            <li><a href="index.html#programs"><i class="fas fa-chevron-right"></i> Enrichment Programs</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact Admissions</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, Nairobi</a></li>
+            <li><a href="tel:+254712345678"><i class="fas fa-phone"></i> +254 712 345 678</a></li>
+            <li><a href="tel:+254733987654"><i class="fas fa-phone"></i> +254 733 987 654</a></li>
+            <li><a href="mailto:admissions@faithjunior.ac.ke"><i class="fas fa-envelope"></i> admissions@faithjunior.ac.ke</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2024 FAITH Junior Academy. All rights reserved. | KICD Approved CBC Implementation Center | Admissions Open</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    
+    function openMobileMenu() {
+      mobileNav.classList.add('active');
+      mobileNavOverlay.classList.add('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.style.overflow = 'auto';
+    }
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      if (mobileNav.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+    
+    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Requirement tabs functionality
+    const requirementTabs = document.querySelectorAll('.requirement-tab');
+    const requirementContents = document.querySelectorAll('.requirement-content');
+    
+    requirementTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const requirement = this.getAttribute('data-requirement');
+        
+        // Update active tab
+        requirementTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Show corresponding content
+        requirementContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.id === `${requirement}-content`) {
+            content.classList.add('active');
+          }
+        });
+        
+        // Close mobile menu if open
+        if (mobileNav.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || targetId.includes('index.html')) return;
+        
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          // Close mobile menu if open
+          if (mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+          }
+          
+          // Scroll to target
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Form submission
+    const admissionForm = document.getElementById('admissionForm');
+    const submitBtn = document.getElementById('submitApplication');
+    
+    admissionForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const childName = document.getElementById('childName').value;
+      const parentName = document.getElementById('parentName').value;
+      const parentEmail = document.getElementById('parentEmail').value;
+      const parentPhone = document.getElementById('parentPhone').value;
+      const grade = document.getElementById('gradeApplying').value;
+      
+      if (childName && parentName && parentEmail && parentPhone && grade) {
+        // Disable submit button
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Application...';
+        
+        // Simulate form processing
+        setTimeout(() => {
+          // Show success message
+          const successMessage = document.getElementById('successMessage');
+          successMessage.querySelector('h4').innerHTML = 'Application Submitted Successfully!';
+          successMessage.querySelector('p').innerHTML = `Thank you ${parentName}! We'll contact you within 24 hours regarding ${childName}'s admission to ${getGradeName(grade)}.`;
+          
+          successMessage.classList.add('show');
+          
+          // Reset form
+          admissionForm.reset();
+          
+          // Re-enable submit button
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+          
+          // Remove success message after 5 seconds
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 5000);
+        }, 2000);
+      } else {
+        alert('Please fill in all required fields before submitting.');
+      }
+    });
+    
+    // Helper function to get grade name
+    function getGradeName(gradeCode) {
+      const grades = {
+        'pp1': 'Pre-Primary 1',
+        'pp2': 'Pre-Primary 2',
+        'grade1': 'Grade 1',
+        'grade2': 'Grade 2',
+        'grade3': 'Grade 3'
+      };
+      return grades[gradeCode] || gradeCode;
+    }
+    
+    // Upload area interaction
+    const uploadArea = document.getElementById('uploadArea');
+    
+    uploadArea.addEventListener('click', function() {
+      // In a real application, this would trigger a file input
+      // For demo purposes, we'll just show a message
+      const originalHTML = uploadArea.innerHTML;
+      uploadArea.innerHTML = `
+        <div class="upload-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="upload-text">
+          <h4>Files Ready for Upload</h4>
+          <p>Click submit to complete your application with attached documents</p>
+        </div>
+      `;
+      
+      // Revert after 3 seconds
+      setTimeout(() => {
+        uploadArea.innerHTML = originalHTML;
+      }, 3000);
+    });
+    
+    // Animate cards on scroll
+    const cards = document.querySelectorAll('.overview-card, .requirement-card, .fee-item, .payment-method, .date-card, .step-content');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      observer.observe(card);
+    });
+    
+    // Animate process steps with delay
+    const processSteps = document.querySelectorAll('.process-step');
+    
+    const processObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }, index * 200);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    processSteps.forEach(step => {
+      step.style.opacity = '0';
+      step.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      processObserver.observe(step);
+    });
+    
+    // Date card hover effect
+    document.querySelectorAll('.date-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        if (!this.classList.contains('past')) {
+          this.style.transform = 'translateY(-10px)';
+        }
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        if (!this.classList.contains('past')) {
+          this.style.transform = 'translateY(0)';
+        }
+      });
+    });
+    
+    // Auto-fill date fields with reasonable defaults for demo
+    document.getElementById('childDOB').value = '2019-06-15'; // For PP1 demo
+    
+    // Update date based on selected grade
+    document.getElementById('gradeApplying').addEventListener('change', function() {
+      const grade = this.value;
+      let dob = '';
+      
+      switch(grade) {
+        case 'pp1': dob = '2019-06-15'; break;
+        case 'pp2': dob = '2018-06-15'; break;
+        case 'grade1': dob = '2017-06-15'; break;
+        case 'grade2': dob = '2016-06-15'; break;
+        case 'grade3': dob = '2015-06-15'; break;
+      }
+      
+      if (dob) {
+        document.getElementById('childDOB').value = dob;
+      }
+    });
+  </script>
+</body>
+</html>
