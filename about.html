@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | FAITH Junior Academy - Excellence in Education</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --secondary: #f59e0b;
+      --tertiary: #10b981;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --accent: #8b5cf6;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Abstract Background Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--primary);
+      top: -300px;
+      right: -200px;
+      animation: float 40s infinite ease-in-out;
+    }
+    
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      bottom: -200px;
+      left: -150px;
+      animation: float 35s infinite ease-in-out reverse;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--tertiary);
+      top: 40%;
+      right: 20%;
+      animation: float 30s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(20px) rotate(240deg); }
+    }
+    
+    /* Header - Breaking Traditional Layout */
+    header {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 40px rgba(30, 64, 175, 0.15);
+      border: 2px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    header.scrolled {
+      top: 1rem;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      z-index: 1001;
+    }
+    
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transform: rotate(-5deg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+    
+    .logo-text h1 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.2rem;
+    }
+    
+    .logo-text p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--dark);
+      opacity: 0.7;
+    }
+    
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    
+    .nav-item {
+      position: relative;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      border-radius: 3px;
+    }
+    
+    .nav-item:hover {
+      color: var(--primary);
+    }
+    
+    .nav-item:hover::before {
+      width: 100%;
+    }
+    
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0.5rem;
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100vh;
+      background: white;
+      z-index: 1000;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .mobile-nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 2px solid transparent;
+    }
+    
+    .mobile-nav-link:hover {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(139, 92, 246, 0.05));
+      border-color: rgba(30, 64, 175, 0.1);
+      transform: translateX(-5px);
+    }
+    
+    .mobile-nav-link i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      width: 24px;
+    }
+    
+    .mobile-nav-cta {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 1.2rem 2rem;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(30, 64, 175, 0.3);
+    }
+    
+    .mobile-nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+    }
+    
+    /* Page Header */
+    .page-header {
+      min-height: 70vh;
+      padding: 12rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    
+    .page-header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    
+    .page-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--secondary), #fbbf24);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      animation: bounce 2s infinite;
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .page-title {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .page-title span {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .page-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
+      z-index: -1;
+      border-radius: 10px;
+    }
+    
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+    
+    /* Mission & Vision Section */
+    .mission-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 3px;
+    }
+    
+    .section-title p {
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .mission-vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    
+    .mission-card, .vision-card {
+      background: white;
+      border-radius: 25px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transform-style: preserve-3d;
+    }
+    
+    .mission-card:hover, .vision-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+    }
+    
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    
+    .vision-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+    }
+    
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      transform: rotate(-5deg);
+      transition: transform 0.3s ease;
+    }
+    
+    .mission-card:hover .card-icon,
+    .vision-card:hover .card-icon {
+      transform: rotate(0deg);
+    }
+    
+    .mission-card .card-icon {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+    
+    .vision-card .card-icon {
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+    }
+    
+    .mission-card h3, .vision-card h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+    
+    .mission-card p, .vision-card p {
+      font-size: 1.1rem;
+      color: #64748b;
+    }
+    
+    /* NEW: Journey Path Design - More Unique */
+    .journey-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .journey-path {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: auto;
+    }
+    
+    /* Path Line with Gradient */
+    .path-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--secondary), var(--tertiary), var(--accent));
+      border-radius: 4px;
+      z-index: 1;
+    }
+    
+    /* Path Dots */
+    .path-dot {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border: 6px solid var(--primary);
+      border-radius: 50%;
+      z-index: 2;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 8px rgba(30, 64, 175, 0.1);
+    }
+    
+    .journey-items {
+      position: relative;
+      z-index: 3;
+    }
+    
+    .journey-item {
+      display: flex;
+      margin-bottom: 6rem;
+      position: relative;
+    }
+    
+    .journey-item:nth-child(odd) {
+      flex-direction: row;
+    }
+    
+    .journey-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    
+    .journey-content {
+      width: 45%;
+      background: white;
+      border-radius: 25px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+    }
+    
+    .journey-item:nth-child(odd) .journey-content {
+      margin-right: auto;
+      text-align: right;
+    }
+    
+    .journey-item:nth-child(even) .journey-content {
+      margin-left: auto;
+      text-align: left;
+    }
+    
+    .journey-content:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .journey-year {
+      position: absolute;
+      top: -25px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .journey-item:nth-child(odd) .journey-year {
+      right: -30px;
+    }
+    
+    .journey-item:nth-child(even) .journey-year {
+      left: -30px;
+    }
+    
+    .journey-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--secondary), #fbbf24);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      transform: rotate(-5deg);
+      transition: transform 0.3s ease;
+    }
+    
+    .journey-item:nth-child(odd) .journey-icon {
+      margin-left: auto;
+    }
+    
+    .journey-content:hover .journey-icon {
+      transform: rotate(0deg);
+    }
+    
+    .journey-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .journey-content p {
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Educational Philosophy */
+    .philosophy-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      perspective: 1000px;
+    }
+    
+    .philosophy-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transform-style: preserve-3d;
+    }
+    
+    .philosophy-card:hover {
+      transform: translateY(-15px) rotateX(5deg);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .philosophy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
+    .philosophy-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--tertiary), #34d399);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      transform: rotate(-5deg);
+      transition: transform 0.3s ease;
+    }
+    
+    .philosophy-card:hover .philosophy-icon {
+      transform: rotate(0deg);
+    }
+    
+    .philosophy-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .philosophy-card p {
+      color: #64748b;
+      font-size: 1rem;
+    }
+    
+    /* Stats Section - Now with animated counters */
+    .stats-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      text-align: center;
+    }
+    
+    .stat-item {
+      position: relative;
+      padding: 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stat-number {
+      font-size: 4.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .stat-label {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .stat-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+    
+    /* NEW: Learning Environment Section */
+    .environment-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .environment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .environment-card {
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    
+    .environment-card:nth-child(odd) {
+      transform: rotate(-1deg);
+    }
+    
+    .environment-card:nth-child(even) {
+      transform: rotate(1deg);
+    }
+    
+    .environment-card:hover {
+      transform: rotate(0deg) translateY(-20px);
+    }
+    
+    .environment-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .environment-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+    }
+    
+    .environment-label {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      background: linear-gradient(135deg, var(--secondary), #fbbf24);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      z-index: 1;
+    }
+    
+    .environment-content {
+      padding: 2.5rem;
+      background: white;
+      position: relative;
+    }
+    
+    .environment-content h4 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .environment-features {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    
+    .environment-features li {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #64748b;
+    }
+    
+    .environment-features i {
+      color: var(--tertiary);
+      font-size: 1.2rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-content {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 30px;
+      padding: 5rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(30, 64, 175, 0.3);
+    }
+    
+    .cta-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
+      animation: rotate 40s infinite linear;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .cta-content h3 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .cta-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      position: relative;
+    }
+    
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      color: var(--primary);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo .logo-icon {
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+    }
+    
+    .footer-column h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+      border-radius: 3px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--secondary);
+      transform: translateY(-5px) rotate(5deg);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+    
+    /* Success Message */
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--tertiary), #34d399);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 400px;
+      transform: translateX(120%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .success-message.show {
+      transform: translateX(0);
+    }
+    
+    .success-message i {
+      font-size: 1.5rem;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .page-title {
+        font-size: 3.5rem;
+      }
+      
+      .cta-content h3 {
+        font-size: 2.5rem;
+      }
+      
+      .journey-path {
+        padding-left: 20px;
+      }
+      
+      .path-line {
+        left: 30px;
+      }
+      
+      .path-dot {
+        left: 30px;
+      }
+      
+      .journey-item {
+        flex-direction: row !important;
+        margin-bottom: 4rem;
+      }
+      
+      .journey-content {
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+        text-align: left !important;
+      }
+      
+      .journey-year {
+        left: -80px !important;
+        right: auto !important;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      
+      .journey-icon {
+        margin-left: 0 !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        top: 1rem;
+        width: 95%;
+        padding: 1rem;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .page-header {
+        padding-top: 8rem;
+        min-height: 60vh;
+      }
+      
+      .page-title {
+        font-size: 2.8rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+      
+      .cta-content {
+        padding: 3rem 2rem;
+      }
+      
+      .cta-content h3 {
+        font-size: 2rem;
+      }
+      
+      .mission-card, .vision-card {
+        padding: 2rem;
+      }
+      
+      .environment-card {
+        margin-bottom: 2rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      
+      .stat-number {
+        font-size: 3.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .page-title {
+        font-size: 2.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .mobile-nav {
+        width: 280px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .mission-card, .vision-card, .philosophy-card, .environment-card {
+        padding: 1.5rem;
+      }
+      
+      .journey-content {
+        padding: 1.5rem;
+        width: calc(100% - 60px);
+        margin-left: 60px !important;
+      }
+      
+      .journey-year {
+        left: -60px !important;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  
+  <!-- Success Message -->
+  <div class="success-message" id="successMessage">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Thank You!</h4>
+      <p style="opacity: 0.9; font-size: 0.9rem;">Your inquiry has been received successfully.</p>
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header id="header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="logo-text">
+        <h1>FAITH Junior Academy</h1>
+        <p>EDUCATION REDEFINED</p>
+      </div>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="#journey" class="nav-item">Our Journey</a>
+      <a href="#philosophy" class="nav-item">Philosophy</a>
+      <a href="#environment" class="nav-item">Learning Spaces</a>
+      <a href="index.html#inquiry" class="nav-cta">
+        <i class="fas fa-paper-plane"></i>
+        Apply Now
+      </a>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+  
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#mission" class="mobile-nav-link">
+        <i class="fas fa-bullseye"></i>
+        <span>Mission & Vision</span>
+      </a>
+      <a href="#journey" class="mobile-nav-link">
+        <i class="fas fa-history"></i>
+        <span>Our Journey</span>
+      </a>
+      <a href="#philosophy" class="mobile-nav-link">
+        <i class="fas fa-brain"></i>
+        <span>Educational Philosophy</span>
+      </a>
+      <a href="#environment" class="mobile-nav-link">
+        <i class="fas fa-school"></i>
+        <span>Learning Spaces</span>
+      </a>
+      <a href="index.html#inquiry" class="mobile-nav-link">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Schedule a Tour</span>
+      </a>
+    </div>
+    
+    <a href="index.html#inquiry" class="mobile-nav-cta">
+      <i class="fas fa-paper-plane"></i>
+      Apply Now
+    </a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div class="page-badge">
+          <i class="fas fa-star"></i> EDUCATION REDEFINED
+        </div>
+        
+        <h1 class="page-title">
+          About <span>FAITH Junior</span> Academy
+        </h1>
+        
+        <p class="page-subtitle">
+          Founded on the belief that every child deserves an education that prepares them not just for exams, but for life. We're a community of innovative educators dedicated to nurturing curious minds and compassionate hearts.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision Section -->
+  <section class="mission-section" id="mission">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Purpose & Promise</h2>
+        <p>The guiding principles that shape every decision and interaction at FAITH Junior Academy</p>
+      </div>
+      
+      <div class="mission-vision-grid">
+        <div class="mission-card">
+          <div class="card-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To provide an innovative, inclusive learning environment where students develop intellectual curiosity, creative thinking, and strong character. We empower each child to discover their unique potential and become compassionate, globally-minded citizens who lead with integrity and purpose.</p>
+        </div>
+        
+        <div class="vision-card">
+          <div class="card-icon">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3>Our Vision</h3>
+          <p>To be recognized as a leading educational institution that transforms traditional learning paradigms, creating a generation of innovative problem-solvers who will shape a more equitable and sustainable future through knowledge, empathy, and courageous leadership.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Journey - New Unique Design -->
+  <section class="journey-section" id="journey">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Journey of Innovation</h2>
+        <p>A path of continuous growth, learning, and transformation</p>
+      </div>
+      
+      <div class="journey-path">
+        <div class="path-line"></div>
+        
+        <!-- Path Dots -->
+        <div class="path-dot" style="top: 5%;"></div>
+        <div class="path-dot" style="top: 25%;"></div>
+        <div class="path-dot" style="top: 45%;"></div>
+        <div class="path-dot" style="top: 65%;"></div>
+        <div class="path-dot" style="top: 85%;"></div>
+        
+        <div class="journey-items">
+          <div class="journey-item">
+            <div class="journey-content">
+              <div class="journey-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>The Seed of an Idea</h3>
+              <p>A group of visionary educators observed that traditional schooling was failing to prepare children for the complexities of the 21st century. They envisioned a learning environment that would nurture creativity, critical thinking, and character in equal measure.</p>
+              <div class="journey-year">
+                <i class="fas fa-calendar"></i> 2015
+              </div>
+            </div>
+          </div>
+          
+          <div class="journey-item">
+            <div class="journey-content">
+              <div class="journey-icon">
+                <i class="fas fa-home"></i>
+              </div>
+              <h3>Building Our Home</h3>
+              <p>We acquired and transformed a 5-acre property into an innovative learning campus. Every space was intentionally designed—from flexible classrooms to outdoor learning zones—to foster collaboration, creativity, and connection with nature.</p>
+              <div class="journey-year">
+                <i class="fas fa-calendar"></i> 2017
+              </div>
+            </div>
+          </div>
+          
+          <div class="journey-item">
+            <div class="journey-content">
+              <div class="journey-icon">
+                <i class="fas fa-door-open"></i>
+              </div>
+              <h3>Opening Our Doors</h3>
+              <p>Welcomed our first cohort of 85 curious minds from preschool to Grade 3. Launched our pioneering curriculum that seamlessly integrated STEM, arts, and character education from day one.</p>
+              <div class="journey-year">
+                <i class="fas fa-calendar"></i> 2018
+              </div>
+            </div>
+          </div>
+          
+          <div class="journey-item">
+            <div class="journey-content">
+              <div class="journey-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h3>Pioneering New Approaches</h3>
+              <p>Developed our hybrid learning model before it became a global necessity. Created the "Creative Studios" program that allows students to pursue passion projects alongside core academics, fostering intrinsic motivation.</p>
+              <div class="journey-year">
+                <i class="fas fa-calendar"></i> 2020
+              </div>
+            </div>
+          </div>
+          
+          <div class="journey-item">
+            <div class="journey-content">
+              <div class="journey-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <h3>Recognition & Expansion</h3>
+              <p>Awarded "Most Innovative Learning Environment" by the National Education Board. Expanded to include Grades 1-6 and grew our community to 350+ learners from diverse cultural and socioeconomic backgrounds.</p>
+              <div class="journey-year">
+                <i class="fas fa-calendar"></i> 2023
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Philosophy -->
+  <section class="philosophy-section" id="philosophy">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Educational Philosophy</h2>
+        <p>Seven principles that guide our approach to teaching and learning</p>
+      </div>
+      
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-child"></i>
+          </div>
+          <h4>Child-Centered Learning</h4>
+          <p>We believe education should adapt to the child, not the child to education. Our curriculum is flexible enough to honor each student's unique pace, interests, and learning style.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h4>Learning Through Relationships</h4>
+          <p>Strong, positive relationships between students, teachers, and families create the foundation for optimal learning and development.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h4>Inquiry-Based Approach</h4>
+          <p>We foster curiosity by encouraging questions, exploration, and discovery. Students learn to think critically by investigating real-world problems.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <h4>Global Citizenship</h4>
+          <p>Education should prepare students to understand and contribute to an interconnected world. We integrate global perspectives across all subjects.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h4>Whole Child Development</h4>
+          <p>Academic achievement is one component of education. We equally prioritize social-emotional learning, physical health, creativity, and character development.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h4>Sustainable Mindset</h4>
+          <p>We teach students to consider the long-term impact of their choices and actions, fostering responsibility toward people and the planet.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h4>Community Partnership</h4>
+          <p>Learning extends beyond classroom walls. We actively partner with local organizations, experts, and families to create authentic learning experiences.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h4>Future-Ready Skills</h4>
+          <p>We prioritize skills that will matter most in the future: creativity, collaboration, adaptability, digital literacy, and complex problem-solving.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: Learning Environment Section -->
+  <section class="environment-section" id="environment">
+    <div class="container">
+      <div class="section-title">
+        <h2>Innovative Learning Spaces</h2>
+        <p>Environments designed to inspire curiosity, collaboration, and creativity</p>
+      </div>
+      
+      <div class="environment-grid">
+        <div class="environment-card">
+          <div class="environment-image" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
+            <div class="environment-label">Flexible Classrooms</div>
+          </div>
+          <div class="environment-content">
+            <h4>Adaptable Learning Zones</h4>
+            <p>Our classrooms transform to support different learning modes—from collaborative group work to individual focused study.</p>
+            
+            <ul class="environment-features">
+              <li><i class="fas fa-check-circle"></i> Movable furniture & partitions</li>
+              <li><i class="fas fa-check-circle"></i> Multiple technology integration points</li>
+              <li><i class="fas fa-check-circle"></i> Natural light optimization</li>
+              <li><i class="fas fa-check-circle"></i> Quiet nooks for focused work</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="environment-card">
+          <div class="environment-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
+            <div class="environment-label">Outdoor Learning</div>
+          </div>
+          <div class="environment-content">
+            <h4>Nature as Classroom</h4>
+            <p>Our 5-acre campus includes gardens, outdoor theaters, and natural play spaces that extend learning beyond four walls.</p>
+            
+            <ul class="environment-features">
+              <li><i class="fas fa-check-circle"></i> Organic vegetable gardens</li>
+              <li><i class="fas fa-check-circle"></i> Outdoor amphitheater</li>
+              <li><i class="fas fa-check-circle"></i> Natural exploration trails</li>
+              <li><i class="fas fa-check-circle"></i> Weather-protected outdoor classrooms</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="environment-card">
+          <div class="environment-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
+            <div class="environment-label">Maker Spaces</div>
+          </div>
+          <div class="environment-content">
+            <h4>Creation & Innovation Labs</h4>
+            <p>Dedicated spaces where students can design, build, and create using traditional tools and cutting-edge technology.</p>
+            
+            <ul class="environment-features">
+              <li><i class="fas fa-check-circle"></i> 3D printers & laser cutters</li>
+              <li><i class="fas fa-check-circle"></i> Woodworking & craft stations</li>
+              <li><i class="fas fa-check-circle"></i> Robotics & electronics labs</li>
+              <li><i class="fas fa-check-circle"></i> Digital media production studio</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>By The Numbers</h2>
+        <p>Measuring our impact and community growth</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-count="350">0</div>
+          <div class="stat-label">Students Enrolled</div>
+          <div class="stat-desc">From 25+ different cultural backgrounds</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-number" data-count="98">0</div>
+          <div class="stat-label">Parent Satisfaction</div>
+          <div class="stat-desc">Based on annual family surveys</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-number">15:1</div>
+          <div class="stat-label">Student-Teacher Ratio</div>
+          <div class="stat-desc">Personalized attention for every child</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-number" data-count="40">0</div>
+          <div class="stat-label">Enrichment Programs</div>
+          <div class="stat-desc">From robotics to gardening to debate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h3>Experience Education Reimagined</h3>
+        <p>Join us for a personalized tour of our campus, meet our educators, and see firsthand how FAITH Junior Academy is transforming the educational experience.</p>
+        <a href="index.html#inquiry" class="cta-btn">
+          <i class="fas fa-calendar-check"></i>
+          Schedule Your Visit Today
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 style="color: white; margin-top: 1rem;">FAITH Junior Academy</h1>
+          </div>
+          <p style="color: rgba(255,255,255,0.8); margin-top: 1.5rem;">
+            Redefining education through innovation, compassion, and excellence since 2015.
+          </p>
+          
+          <div class="social-grid">
+            <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#mission"><i class="fas fa-chevron-right"></i> Mission & Vision</a></li>
+            <li><a href="#journey"><i class="fas fa-chevron-right"></i> Our Journey</a></li>
+            <li><a href="#philosophy"><i class="fas fa-chevron-right"></i> Educational Philosophy</a></li>
+            <li><a href="#environment"><i class="fas fa-chevron-right"></i> Learning Spaces</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Programs</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#programs"><i class="fas fa-chevron-right"></i> Discovery Lab (Ages 2-5)</a></li>
+            <li><a href="index.html#programs"><i class="fas fa-chevron-right"></i> Innovators Academy (Grades 1-6)</a></li>
+            <li><a href="index.html#programs"><i class="fas fa-chevron-right"></i> Creative Studios</a></li>
+            <li><a href="index.html#programs"><i class="fas fa-chevron-right"></i> Summer Programs</a></li>
+            <li><a href="index.html#programs"><i class="fas fa-chevron-right"></i> After-School Enrichment</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive</a></li>
+            <li><a href="tel:+254712345678"><i class="fas fa-phone"></i> +254 712 345 678</a></li>
+            <li><a href="mailto:admissions@faithjunior.ac.ke"><i class="fas fa-envelope"></i> admissions@faithjunior.ac.ke</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2024 FAITH Junior Academy. All rights reserved. | Education Reimagined</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    
+    function openMobileMenu() {
+      mobileNav.classList.add('active');
+      mobileNavOverlay.classList.add('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.style.overflow = 'auto';
+    }
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      if (mobileNav.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+    
+    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || targetId.includes('index.html')) return;
+        
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          // Close mobile menu if open
+          if (mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+          }
+          
+          // Scroll to target
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Animate cards on scroll
+    const cards = document.querySelectorAll('.mission-card, .vision-card, .philosophy-card, .environment-card, .journey-content');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      observer.observe(card);
+    });
+    
+    // Animate journey items with delay
+    const journeyItems = document.querySelectorAll('.journey-item');
+    
+    const journeyObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }, index * 200);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    journeyItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      journeyObserver.observe(item);
+    });
+    
+    // Animated counter for stats
+    function animateCounter() {
+      const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+      
+      statNumbers.forEach(statNumber => {
+        const target = parseInt(statNumber.getAttribute('data-count'));
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        
+        let current = 0;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          statNumber.textContent = Math.floor(current) + (statNumber.textContent.includes('%') ? '%' : '+');
+        }, 16);
+      });
+    }
+    
+    // Trigger counter animation when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+    
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
+    
+    // Add hover effect to stat items
+    document.querySelectorAll('.stat-item').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body>
+</html>
