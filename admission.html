@@ -550,91 +550,216 @@
       margin-bottom: 1.5rem;
     }
     
-    /* Application Process */
-    .process-section {
+    /* NEW: Interactive Journey Map Design */
+    .journey-section {
       padding: 6rem 0;
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       position: relative;
+      overflow: hidden;
     }
     
-    .process-timeline {
-      max-width: 1000px;
+    .journey-container {
+      max-width: 1200px;
       margin: 0 auto;
       position: relative;
     }
     
-    .process-timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 8px;
-      height: 100%;
-      background: linear-gradient(180deg, var(--cbc-blue), var(--cbc-green), var(--cbc-orange), var(--cbc-purple));
-      border-radius: 4px;
-      box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
-    }
-    
-    .process-step {
+    /* Journey Path - Custom SVG-like design */
+    .journey-path {
       position: relative;
-      margin-bottom: 4rem;
-      width: 45%;
+      height: 600px;
+      margin: 0 auto;
+      overflow: visible;
     }
     
-    .process-step:nth-child(odd) {
-      margin-left: 0;
-      margin-right: auto;
+    /* Main Path Line with Gradient */
+    .path-line {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      width: 90%;
+      height: 8px;
+      background: linear-gradient(90deg, 
+        var(--cbc-blue) 0%, 
+        var(--cbc-green) 25%, 
+        var(--cbc-orange) 50%, 
+        var(--cbc-purple) 75%, 
+        #8b5cf6 100%);
+      border-radius: 4px;
+      transform: translateY(-50%);
+      z-index: 1;
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
     }
     
-    .process-step:nth-child(even) {
-      margin-left: auto;
-      margin-right: 0;
+    /* Path Dots with Animation */
+    .path-dot {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: white;
+      border: 6px solid var(--cbc-blue);
+      border-radius: 50%;
+      z-index: 2;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--cbc-blue);
+      font-size: 0.9rem;
     }
     
-    .step-content {
+    .path-dot:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 12px rgba(37, 99, 235, 0.2);
+      border-color: var(--cbc-green);
+    }
+    
+    .path-dot.active {
+      transform: scale(1.3);
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      border-color: white;
+      color: white;
+      box-shadow: 0 0 0 15px rgba(37, 99, 235, 0.3), 0 10px 30px rgba(37, 99, 235, 0.4);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+      70% { box-shadow: 0 0 0 20px rgba(37, 99, 235, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+    }
+    
+    /* Journey Cards - Floating around the path */
+    .journey-card {
+      position: absolute;
+      width: 320px;
       background: white;
       border-radius: 25px;
       padding: 2.5rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-      position: relative;
-      transition: all 0.4s ease;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 10;
+      pointer-events: none;
       border: 2px solid rgba(37, 99, 235, 0.1);
     }
     
-    .step-content:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    .journey-card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
     }
     
-    .step-number {
-      position: absolute;
-      top: -25px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
-      border-radius: 50%;
+    /* Position each card uniquely around its dot */
+    .journey-card-1 {
+      top: -80px;
+      left: 0%;
+    }
+    
+    .journey-card-2 {
+      top: -150px;
+      left: 25%;
+    }
+    
+    .journey-card-3 {
+      top: -80px;
+      left: 50%;
+    }
+    
+    .journey-card-4 {
+      top: -150px;
+      left: 75%;
+    }
+    
+    .journey-card-5 {
+      top: -80px;
+      left: 90%;
+      transform: translateX(-100%);
+    }
+    
+    .journey-card-1.active {
+      animation: floatCard1 8s infinite ease-in-out;
+    }
+    
+    .journey-card-2.active {
+      animation: floatCard2 8s infinite ease-in-out;
+    }
+    
+    .journey-card-3.active {
+      animation: floatCard3 8s infinite ease-in-out;
+    }
+    
+    .journey-card-4.active {
+      animation: floatCard4 8s infinite ease-in-out;
+    }
+    
+    .journey-card-5.active {
+      animation: floatCard5 8s infinite ease-in-out;
+    }
+    
+    @keyframes floatCard1 {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+    }
+    
+    @keyframes floatCard2 {
+      0%, 100% { transform: translateY(0) rotate(2deg); }
+      50% { transform: translateY(-20px) rotate(-2deg); }
+    }
+    
+    @keyframes floatCard3 {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-18px) rotate(1deg); }
+    }
+    
+    @keyframes floatCard4 {
+      0%, 100% { transform: translateY(0) rotate(1deg); }
+      50% { transform: translateY(-22px) rotate(-1deg); }
+    }
+    
+    @keyframes floatCard5 {
+      0%, 100% { transform: translateY(0) rotate(-2deg) translateX(-100%); }
+      50% { transform: translateY(-15px) rotate(2deg) translateX(-100%); }
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .step-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.5rem;
-      font-weight: 900;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-      z-index: 2;
-    }
-    
-    .process-step:nth-child(odd) .step-number {
-      right: -30px;
-    }
-    
-    .process-step:nth-child(even) .step-number {
-      left: -30px;
-    }
-    
-    .step-content h3 {
       font-size: 1.8rem;
-      margin-bottom: 1rem;
+      transform: rotate(-5deg);
+      flex-shrink: 0;
+    }
+    
+    .step-title h4 {
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
       color: var(--dark);
+    }
+    
+    .step-title p {
+      color: var(--cbc-blue);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     
     .step-content p {
@@ -642,38 +767,199 @@
       margin-bottom: 1.5rem;
     }
     
-    .step-details {
+    .step-features {
+      list-style: none;
       background: rgba(37, 99, 235, 0.05);
       border-radius: 15px;
       padding: 1.5rem;
-      margin-top: 1.5rem;
     }
     
-    .step-details h4 {
-      font-size: 1.2rem;
+    .step-features li {
       margin-bottom: 0.8rem;
-      color: var(--cbc-blue);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .step-details ul {
-      list-style: none;
-    }
-    
-    .step-details li {
-      margin-bottom: 0.5rem;
       display: flex;
       align-items: flex-start;
-      gap: 0.5rem;
+      gap: 0.8rem;
       color: #64748b;
     }
     
-    .step-details li i {
+    .step-features i {
       color: var(--cbc-green);
-      margin-top: 0.3rem;
+      margin-top: 0.2rem;
       flex-shrink: 0;
+    }
+    
+    /* Journey Progress Bar */
+    .journey-progress {
+      position: relative;
+      width: 90%;
+      height: 12px;
+      background: rgba(37, 99, 235, 0.1);
+      border-radius: 6px;
+      margin: 4rem auto 0;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 6px;
+      transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+    }
+    
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 1rem auto 0;
+    }
+    
+    .progress-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+    
+    .progress-label.active {
+      color: var(--cbc-blue);
+      background: rgba(37, 99, 235, 0.1);
+    }
+    
+    /* NEW: Steps Counter */
+    .step-counter {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .counter-text {
+      font-size: 1.1rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+    
+    .counter-numbers {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--cbc-blue);
+    }
+    
+    .current-step {
+      font-size: 3rem;
+      color: var(--cbc-green);
+      line-height: 1;
+    }
+    
+    .total-steps {
+      opacity: 0.5;
+    }
+    
+    /* NEW: Step Indicators */
+    .step-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+    
+    .step-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .step-indicator.active {
+      background: var(--cbc-blue);
+      transform: scale(1.3);
+    }
+    
+    /* NEW: Interactive Path Arrows */
+    .path-arrow {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cbc-blue);
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.3s ease;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .path-arrow:hover {
+      background: var(--cbc-blue);
+      color: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .arrow-prev {
+      left: 2%;
+    }
+    
+    .arrow-next {
+      right: 2%;
+    }
+    
+    /* Journey Controls */
+    .journey-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .journey-btn {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+    
+    .journey-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+    }
+    
+    .journey-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .journey-btn.secondary {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--cbc-blue);
     }
     
     /* Requirements Section */
@@ -1421,25 +1707,118 @@
       font-size: 1.5rem;
     }
     
+    /* Enhanced Journey Map Responsive Fixes */
+    @media (max-width: 1300px) {
+      .journey-path {
+        height: 650px;
+      }
+      
+      .journey-card {
+        width: 280px;
+        padding: 2rem;
+      }
+      
+      .journey-card-5 {
+        left: 90% !important;
+        transform: translateX(-100%) !important;
+      }
+      
+      .path-dot[data-step="5"] {
+        left: 95% !important;
+      }
+    }
+    
+    @media (max-width: 1100px) {
+      .journey-path {
+        height: 700px;
+      }
+      
+      .journey-card-2,
+      .journey-card-4 {
+        top: -180px;
+      }
+      
+      .journey-card-1,
+      .journey-card-3,
+      .journey-card-5 {
+        top: -40px;
+      }
+      
+      .journey-card-5 {
+        left: 85% !important;
+      }
+      
+      .path-dot[data-step="5"] {
+        left: 92% !important;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .journey-section {
+        padding: 4rem 0;
+      }
+      
+      .journey-container {
+        padding: 0 1rem;
+      }
+      
+      .journey-path {
+        height: auto;
+        display: none;
+      }
+      
+      .journey-card-1,
+      .journey-card-2,
+      .journey-card-3,
+      .journey-card-4,
+      .journey-card-5 {
+        position: static !important;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 2rem auto;
+        display: none;
+        animation: none !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+      }
+      
+      .journey-card.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0) !important;
+      }
+      
+      .journey-cards-mobile {
+        display: block !important;
+      }
+      
+      .path-arrow {
+        display: none;
+      }
+      
+      .journey-progress {
+        width: 100%;
+        margin: 3rem auto 1rem;
+      }
+      
+      .progress-labels {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      
+      .progress-label {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+    
     /* Mobile Responsiveness */
     @media (max-width: 1024px) {
       .page-title {
         font-size: 3.5rem;
-      }
-      
-      .process-timeline::before {
-        left: 30px;
-      }
-      
-      .process-step {
-        width: calc(100% - 80px);
-        margin-left: 80px;
-      }
-      
-      .process-step:nth-child(odd) .step-number,
-      .process-step:nth-child(even) .step-number {
-        left: -40px;
-        right: auto;
       }
       
       .cta-content h3 {
@@ -1500,6 +1879,39 @@
         width: 100%;
         max-width: 300px;
       }
+      
+      .shape-1,
+      .shape-2,
+      .shape-3 {
+        display: none;
+      }
+      
+      .requirements-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .requirement-tab {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .requirement-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .dates-calendar {
+        grid-template-columns: 1fr;
+      }
+      
+      .fees-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .payment-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
     
     @media (max-width: 480px) {
@@ -1534,6 +1946,69 @@
       .fees-card {
         padding: 2rem;
       }
+      
+      .journey-card {
+        padding: 1.5rem;
+      }
+      
+      .step-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+      
+      .journey-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .journey-controls {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .journey-btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .social-grid {
+        justify-content: center;
+      }
+    }
+    
+    /* Prevent horizontal scrolling */
+    body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+    
+    /* Ensure container doesn't overflow */
+    .container {
+      overflow: hidden;
+    }
+    
+    /* Add smooth transitions for journey cards */
+    .journey-card {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    /* Fix for the journey progress bar labels */
+    .progress-labels {
+      position: relative;
+      z-index: 10;
     }
   </style>
 </head>
@@ -1569,7 +2044,7 @@
       <a href="index.html" class="nav-item">Home</a>
       <a href="about.html" class="nav-item">About</a>
       <a href="programs.html" class="nav-item">Programs</a>
-      <a href="admission.html" class="nav-item">Admission</a>
+      <a href="admission.html" class="nav-item">Admissions</a>
       <a href="#fees" class="nav-item">Fees</a>
       <a href="#apply" class="nav-cta">
         <i class="fas fa-paper-plane"></i>
@@ -1601,9 +2076,9 @@
         <i class="fas fa-graduation-cap"></i>
         <span>Programs</span>
       </a>
-      <a href="admission.html" class="mobile-nav-link">
+      <a href="admissions.html" class="mobile-nav-link">
         <i class="fas fa-list-ol"></i>
-        <span>Admission </span>
+        <span>Admissions</span>
       </a>
       <a href="#requirements" class="mobile-nav-link">
         <i class="fas fa-file-alt"></i>
@@ -1680,100 +2155,291 @@
     </div>
   </section>
 
-  <!-- Application Process -->
-  <section class="process-section" id="process">
+  <!-- NEW: Interactive Journey Section -->
+  <section class="journey-section" id="journey">
     <div class="container">
       <div class="section-title">
-        <h2>Admission Process</h2>
-        <p>A simple 5-step journey to joining our learning community</p>
+        <h2>Your Admissions Journey</h2>
+        <p>An interactive guide through our 5-step admission process</p>
       </div>
       
-      <div class="process-timeline">
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">1</div>
-            <h3>Initial Inquiry</h3>
-            <p>Begin by submitting an online inquiry form or contacting our admissions office. We'll provide detailed information about our programs, fees, and availability.</p>
-            
-            <div class="step-details">
-              <h4><i class="fas fa-info-circle"></i> What to Expect</h4>
-              <ul>
-                <li><i class="fas fa-check"></i> School prospectus and fee structure</li>
-                <li><i class="fas fa-check"></i> Information about CBC implementation</li>
-                <li><i class="fas fa-check"></i> Available class slots and waiting lists</li>
+      <div class="step-counter">
+        <div class="counter-text">Currently viewing step</div>
+        <div class="counter-numbers">
+          <span class="current-step" id="currentStep">1</span>
+          <span class="separator">/</span>
+          <span class="total-steps">5</span>
+        </div>
+      </div>
+      
+      <div class="journey-container">
+        <!-- Progress Bar -->
+        <div class="journey-progress">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <!-- Path Arrows -->
+        <div class="path-arrow arrow-prev" id="prevStep">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="path-arrow arrow-next" id="nextStep">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        
+        <!-- Desktop Journey Path -->
+        <div class="journey-path">
+          <div class="path-line"></div>
+          
+          <!-- Path Dots -->
+          <div class="path-dot active" data-step="1" style="left: 0%; top: 50%;">1</div>
+          <div class="path-dot" data-step="2" style="left: 25%; top: 50%;">2</div>
+          <div class="path-dot" data-step="3" style="left: 50%; top: 50%;">3</div>
+          <div class="path-dot" data-step="4" style="left: 75%; top: 50%;">4</div>
+          <div class="path-dot" data-step="5" style="left: 100%; top: 50%; transform: translateX(-100%);">5</div>
+          
+          <!-- Journey Cards -->
+          <div class="journey-card journey-card-1 active" data-step="1">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <div class="step-title">
+                <h4>Initial Inquiry</h4>
+                <p><i class="far fa-clock"></i> 1-2 days</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Begin by exploring our programs and submitting an online inquiry. We'll provide all the information you need to make an informed decision.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Receive school prospectus</li>
+                <li><i class="fas fa-check-circle"></i> Detailed fee structure</li>
+                <li><i class="fas fa-check-circle"></i> CBC implementation guide</li>
+                <li><i class="fas fa-check-circle"></i> Available class slots</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card journey-card-2" data-step="2">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-school"></i>
+              </div>
+              <div class="step-title">
+                <h4>Campus Tour & Assessment</h4>
+                <p><i class="far fa-clock"></i> 1 week</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Experience our learning environment firsthand. For PP2 and above, we conduct a friendly assessment to understand your child's unique learning style.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Personalized campus tour</li>
+                <li><i class="fas fa-check-circle"></i> Meet our teachers</li>
+                <li><i class="fas fa-check-circle"></i> Child-friendly assessment</li>
+                <li><i class="fas fa-check-circle"></i> Q&A with principal</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card journey-card-3" data-step="3">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <div class="step-title">
+                <h4>Application Submission</h4>
+                <p><i class="far fa-clock"></i> 2-3 days</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Complete our online application form and submit required documents. Our admissions team will guide you through every step of the process.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Online application portal</li>
+                <li><i class="fas fa-check-circle"></i> Document checklist</li>
+                <li><i class="fas fa-check-circle"></i> Real-time status updates</li>
+                <li><i class="fas fa-check-circle"></i> Dedicated support</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card journey-card-4" data-step="4">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="step-title">
+                <h4>Family Interview</h4>
+                <p><i class="far fa-clock"></i> 30-45 minutes</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>A friendly conversation with our admissions committee to ensure alignment between our educational philosophy and your family's values.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Meet admissions committee</li>
+                <li><i class="fas fa-check-circle"></i> Discuss educational goals</li>
+                <li><i class="fas fa-check-circle"></i> Review assessment results</li>
+                <li><i class="fas fa-check-circle"></i> Clarify expectations</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card journey-card-5" data-step="5">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="step-title">
+                <h4>Enrollment & Orientation</h4>
+                <p><i class="far fa-clock"></i> 1-2 weeks</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Welcome to the FAITH Junior family! Complete enrollment and join our comprehensive orientation program designed for new students and parents.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Fee payment & clearance</li>
+                <li><i class="fas fa-check-circle"></i> Uniform fitting</li>
+                <li><i class="fas fa-check-circle"></i> CBC parent workshop</li>
+                <li><i class="fas fa-check-circle"></i> Meet & greet with teachers</li>
               </ul>
             </div>
           </div>
         </div>
         
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">2</div>
-            <h3>School Tour & Assessment</h3>
-            <p>Schedule a personalized tour of our campus. For PP2 and above, we conduct a simple, child-friendly assessment to understand your child's learning style.</p>
-            
-            <div class="step-details">
-              <h4><i class="fas fa-clipboard-check"></i> Assessment Focus</h4>
-              <ul>
-                <li><i class="fas fa-check"></i> Social interaction skills (for all ages)</li>
-                <li><i class="fas fa-check"></i> Basic literacy/numeracy readiness (PP2+)</li>
-                <li><i class="fas fa-check"></i> Learning style and interests</li>
+        <!-- Mobile Journey Cards -->
+        <div class="journey-cards-mobile">
+          <div class="journey-card active" data-step="1">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <div class="step-title">
+                <h4>Initial Inquiry</h4>
+                <p><i class="far fa-clock"></i> 1-2 days</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Begin by exploring our programs and submitting an online inquiry. We'll provide all the information you need to make an informed decision.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Receive school prospectus</li>
+                <li><i class="fas fa-check-circle"></i> Detailed fee structure</li>
+                <li><i class="fas fa-check-circle"></i> CBC implementation guide</li>
+                <li><i class="fas fa-check-circle"></i> Available class slots</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card" data-step="2">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-school"></i>
+              </div>
+              <div class="step-title">
+                <h4>Campus Tour & Assessment</h4>
+                <p><i class="far fa-clock"></i> 1 week</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Experience our learning environment firsthand. For PP2 and above, we conduct a friendly assessment to understand your child's unique learning style.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Personalized campus tour</li>
+                <li><i class="fas fa-check-circle"></i> Meet our teachers</li>
+                <li><i class="fas fa-check-circle"></i> Child-friendly assessment</li>
+                <li><i class="fas fa-check-circle"></i> Q&A with principal</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card" data-step="3">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <div class="step-title">
+                <h4>Application Submission</h4>
+                <p><i class="far fa-clock"></i> 2-3 days</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Complete our online application form and submit required documents. Our admissions team will guide you through every step of the process.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Online application portal</li>
+                <li><i class="fas fa-check-circle"></i> Document checklist</li>
+                <li><i class="fas fa-check-circle"></i> Real-time status updates</li>
+                <li><i class="fas fa-check-circle"></i> Dedicated support</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card" data-step="4">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="step-title">
+                <h4>Family Interview</h4>
+                <p><i class="far fa-clock"></i> 30-45 minutes</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>A friendly conversation with our admissions committee to ensure alignment between our educational philosophy and your family's values.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Meet admissions committee</li>
+                <li><i class="fas fa-check-circle"></i> Discuss educational goals</li>
+                <li><i class="fas fa-check-circle"></i> Review assessment results</li>
+                <li><i class="fas fa-check-circle"></i> Clarify expectations</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="journey-card" data-step="5">
+            <div class="step-header">
+              <div class="step-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="step-title">
+                <h4>Enrollment & Orientation</h4>
+                <p><i class="far fa-clock"></i> 1-2 weeks</p>
+              </div>
+            </div>
+            <div class="step-content">
+              <p>Welcome to the FAITH Junior family! Complete enrollment and join our comprehensive orientation program designed for new students and parents.</p>
+              <ul class="step-features">
+                <li><i class="fas fa-check-circle"></i> Fee payment & clearance</li>
+                <li><i class="fas fa-check-circle"></i> Uniform fitting</li>
+                <li><i class="fas fa-check-circle"></i> CBC parent workshop</li>
+                <li><i class="fas fa-check-circle"></i> Meet & greet with teachers</li>
               </ul>
             </div>
           </div>
         </div>
         
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">3</div>
-            <h3>Application Submission</h3>
-            <p>Complete the official application form and submit all required documents. This can be done online through our portal or in person at our admissions office.</p>
-            
-            <div class="step-details">
-              <h4><i class="fas fa-file-upload"></i> Required Documents</h4>
-              <ul>
-                <li><i class="fas fa-check"></i> Birth certificate (copy)</li>
-                <li><i class="fas fa-check"></i> Previous school reports (if applicable)</li>
-                <li><i class="fas fa-check"></i> Immunization records</li>
-                <li><i class="fas fa-check"></i> 4 passport photos</li>
-              </ul>
-            </div>
-          </div>
+        <!-- Progress Labels -->
+        <div class="progress-labels">
+          <div class="progress-label active" data-step="1">Inquiry</div>
+          <div class="progress-label" data-step="2">Tour & Assessment</div>
+          <div class="progress-label" data-step="3">Application</div>
+          <div class="progress-label" data-step="4">Interview</div>
+          <div class="progress-label" data-step="5">Enrollment</div>
         </div>
         
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">4</div>
-            <h3>Admission Interview</h3>
-            <p>Parents and child meet with our admissions committee. This is a friendly conversation to ensure our educational approach aligns with your family's values and expectations.</p>
-            
-            <div class="step-details">
-              <h4><i class="fas fa-comments"></i> Discussion Topics</h4>
-              <ul>
-                <li><i class="fas fa-check"></i> Educational philosophy alignment</li>
-                <li><i class="fas fa-check"></i> Parental involvement expectations</li>
-                <li><i class="fas fa-check"></i> Child's interests and needs</li>
-              </ul>
-            </div>
-          </div>
+        <!-- Step Indicators -->
+        <div class="step-indicators">
+          <div class="step-indicator active" data-step="1"></div>
+          <div class="step-indicator" data-step="2"></div>
+          <div class="step-indicator" data-step="3"></div>
+          <div class="step-indicator" data-step="4"></div>
+          <div class="step-indicator" data-step="5"></div>
         </div>
         
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">5</div>
-            <h3>Enrollment & Orientation</h3>
-            <p>Upon acceptance, complete the enrollment process including fee payment. Attend our comprehensive orientation program for new students and parents.</p>
-            
-            <div class="step-details">
-              <h4><i class="fas fa-school"></i> Orientation Program</h4>
-              <ul>
-                <li><i class="fas fa-check"></i> Meet teachers and classmates</li>
-                <li><i class="fas fa-check"></i> Tour of classrooms and facilities</li>
-                <li><i class="fas fa-check"></i> CBC parent workshop</li>
-                <li><i class="fas fa-check"></i> Uniform fitting and book collection</li>
-              </ul>
-            </div>
-          </div>
+        <!-- Journey Controls -->
+        <div class="journey-controls">
+          <button class="journey-btn secondary" id="restartJourney">
+            <i class="fas fa-redo"></i>
+            Restart Journey
+          </button>
+          <button class="journey-btn" id="startApplication">
+            <i class="fas fa-play-circle"></i>
+            Start Your Application
+          </button>
         </div>
       </div>
     </div>
@@ -2340,7 +3006,7 @@
         <div class="footer-column">
           <h4>Admissions Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="#process"><i class="fas fa-chevron-right"></i> Admission Process</a></li>
+            <li><a href="#journey"><i class="fas fa-chevron-right"></i> Admission Process</a></li>
             <li><a href="#requirements"><i class="fas fa-chevron-right"></i> Requirements</a></li>
             <li><a href="#fees"><i class="fas fa-chevron-right"></i> Fee Structure</a></li>
             <li><a href="#dates"><i class="fas fa-chevron-right"></i> Important Dates</a></li>
@@ -2449,6 +3115,270 @@
       });
     });
     
+    // Journey Navigation Script
+    document.addEventListener('DOMContentLoaded', function() {
+      let currentStep = 1;
+      const totalSteps = 5;
+      
+      // DOM Elements
+      const currentStepEl = document.getElementById('currentStep');
+      const progressFill = document.getElementById('progressFill');
+      const prevBtn = document.getElementById('prevStep');
+      const nextBtn = document.getElementById('nextStep');
+      const restartBtn = document.getElementById('restartJourney');
+      const startAppBtn = document.getElementById('startApplication');
+      
+      // Update display based on current step
+      function updateDisplay() {
+        // Update step counter
+        currentStepEl.textContent = currentStep;
+        
+        // Update progress bar
+        const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        progressFill.style.width = `${progressPercentage}%`;
+        
+        // Update path dots
+        document.querySelectorAll('.path-dot').forEach(dot => {
+          dot.classList.remove('active');
+          if (parseInt(dot.dataset.step) === currentStep) {
+            dot.classList.add('active');
+          }
+        });
+        
+        // Update journey cards
+        document.querySelectorAll('.journey-card').forEach(card => {
+          card.classList.remove('active');
+          if (parseInt(card.dataset.step) === currentStep) {
+            card.classList.add('active');
+          }
+        });
+        
+        // Update progress labels
+        document.querySelectorAll('.progress-label').forEach(label => {
+          label.classList.remove('active');
+          if (parseInt(label.dataset.step) === currentStep) {
+            label.classList.add('active');
+          }
+        });
+        
+        // Update step indicators
+        document.querySelectorAll('.step-indicator').forEach(indicator => {
+          indicator.classList.remove('active');
+          if (parseInt(indicator.dataset.step) === currentStep) {
+            indicator.classList.add('active');
+          }
+        });
+        
+        // Update button states
+        prevBtn.disabled = currentStep === 1;
+        nextBtn.disabled = currentStep === totalSteps;
+        
+        // Add visual feedback for step change
+        const stepChangeEvent = new CustomEvent('stepChanged', { detail: { step: currentStep } });
+        document.dispatchEvent(stepChangeEvent);
+      }
+      
+      // Navigation functions
+      function goToStep(step) {
+        if (step >= 1 && step <= totalSteps) {
+          currentStep = step;
+          updateDisplay();
+          
+          // Add animation class for transition
+          const journeyCards = document.querySelectorAll('.journey-card');
+          journeyCards.forEach(card => {
+            card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          });
+          
+          // Scroll to top of section on mobile
+          if (window.innerWidth <= 900) {
+            const activeCard = document.querySelector(`.journey-card[data-step="${currentStep}"]`);
+            if (activeCard) {
+              setTimeout(() => {
+                activeCard.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'nearest'
+                });
+              }, 100);
+            }
+          }
+        }
+      }
+      
+      function nextStep() {
+        if (currentStep < totalSteps) {
+          goToStep(currentStep + 1);
+        }
+      }
+      
+      function prevStep() {
+        if (currentStep > 1) {
+          goToStep(currentStep - 1);
+        }
+      }
+      
+      // Event Listeners
+      prevBtn.addEventListener('click', prevStep);
+      nextBtn.addEventListener('click', nextStep);
+      
+      restartBtn.addEventListener('click', () => {
+        goToStep(1);
+        // Add celebration animation
+        restartBtn.innerHTML = '<i class="fas fa-check"></i> Journey Restarted!';
+        setTimeout(() => {
+          restartBtn.innerHTML = '<i class="fas fa-redo"></i> Restart Journey';
+        }, 2000);
+      });
+      
+      startAppBtn.addEventListener('click', () => {
+        // Scroll to application form
+        document.getElementById('apply').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Highlight the form briefly
+        const formSection = document.querySelector('.application-section');
+        formSection.style.boxShadow = '0 0 0 5px rgba(37, 99, 235, 0.3)';
+        setTimeout(() => {
+          formSection.style.boxShadow = 'none';
+        }, 1500);
+      });
+      
+      // Click on path dots
+      document.querySelectorAll('.path-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          const step = parseInt(dot.dataset.step);
+          goToStep(step);
+        });
+      });
+      
+      // Click on progress labels
+      document.querySelectorAll('.progress-label').forEach(label => {
+        label.addEventListener('click', () => {
+          const step = parseInt(label.dataset.step);
+          goToStep(step);
+        });
+      });
+      
+      // Click on step indicators
+      document.querySelectorAll('.step-indicator').forEach(indicator => {
+        indicator.addEventListener('click', () => {
+          const step = parseInt(indicator.dataset.step);
+          goToStep(step);
+        });
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevStep();
+        if (e.key === 'ArrowRight') nextStep();
+        if (e.key === 'Home') goToStep(1);
+        if (e.key === 'End') goToStep(totalSteps);
+      });
+      
+      // Touch swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      const journeySection = document.querySelector('.journey-section');
+      
+      journeySection.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+      
+      journeySection.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+      
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        
+        if (touchEndX < touchStartX - swipeThreshold) {
+          // Swipe left - next step
+          nextStep();
+        }
+        
+        if (touchEndX > touchStartX + swipeThreshold) {
+          // Swipe right - previous step
+          prevStep();
+        }
+      }
+      
+      // Auto-advance feature (optional, can be disabled)
+      let autoAdvanceInterval;
+      
+      function startAutoAdvance() {
+        autoAdvanceInterval = setInterval(() => {
+          if (currentStep < totalSteps) {
+            nextStep();
+          } else {
+            clearInterval(autoAdvanceInterval);
+          }
+        }, 8000); // Advance every 8 seconds
+      }
+      
+      function stopAutoAdvance() {
+        clearInterval(autoAdvanceInterval);
+      }
+      
+      // Start auto-advance on page load
+      startAutoAdvance();
+      
+      // Stop auto-advance on user interaction
+      document.querySelector('.journey-section').addEventListener('mouseenter', stopAutoAdvance);
+      document.querySelector('.journey-section').addEventListener('touchstart', stopAutoAdvance);
+      
+      // Resume auto-advance when user leaves the section
+      document.querySelector('.journey-section').addEventListener('mouseleave', () => {
+        // Only restart if not at the last step
+        if (currentStep < totalSteps) {
+          startAutoAdvance();
+        }
+      });
+      
+      // Initialize display
+      updateDisplay();
+      
+      // Add entrance animation for desktop cards
+      setTimeout(() => {
+        document.querySelectorAll('.journey-card').forEach(card => {
+          card.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        });
+      }, 500);
+      
+      // Celebration when reaching the final step
+      document.addEventListener('stepChanged', (e) => {
+        if (e.detail.step === totalSteps) {
+          // Add celebration effects
+          const finalCard = document.querySelector('.journey-card[data-step="5"]');
+          finalCard.style.animation = 'none';
+          setTimeout(() => {
+            finalCard.style.animation = 'floatCard5 8s infinite ease-in-out';
+            finalCard.style.boxShadow = '0 0 50px rgba(37, 99, 235, 0.5), 0 30px 100px rgba(0, 0, 0, 0.2)';
+          }, 100);
+          
+          // Update start application button
+          startAppBtn.innerHTML = '<i class="fas fa-rocket"></i> Complete Your Application!';
+          startAppBtn.style.background = 'linear-gradient(135deg, var(--cbc-green), var(--cbc-blue))';
+          
+          // Show confetti effect (simple CSS version)
+          const confetti = document.createElement('div');
+          confetti.style.position = 'absolute';
+          confetti.style.top = '0';
+          confetti.style.left = '0';
+          confetti.style.width = '100%';
+          confetti.style.height = '100%';
+          confetti.style.pointerEvents = 'none';
+          confetti.style.zIndex = '1';
+          confetti.style.background = 'radial-gradient(circle at 50% 50%, transparent 30%, rgba(37, 99, 235, 0.1) 70%)';
+          confetti.style.animation = 'fadeOut 2s forwards';
+          document.querySelector('.journey-container').appendChild(confetti);
+        }
+      });
+    });
+    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -2553,64 +3483,6 @@
       }, 3000);
     });
     
-    // Animate cards on scroll
-    const cards = document.querySelectorAll('.overview-card, .requirement-card, .fee-item, .payment-method, .date-card, .step-content');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-    
-    cards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(30px)';
-      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-      observer.observe(card);
-    });
-    
-    // Animate process steps with delay
-    const processSteps = document.querySelectorAll('.process-step');
-    
-    const processObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-          }, index * 200);
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-    
-    processSteps.forEach(step => {
-      step.style.opacity = '0';
-      step.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-      processObserver.observe(step);
-    });
-    
-    // Date card hover effect
-    document.querySelectorAll('.date-card').forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        if (!this.classList.contains('past')) {
-          this.style.transform = 'translateY(-10px)';
-        }
-      });
-      
-      card.addEventListener('mouseleave', function() {
-        if (!this.classList.contains('past')) {
-          this.style.transform = 'translateY(0)';
-        }
-      });
-    });
-    
     // Auto-fill date fields with reasonable defaults for demo
     document.getElementById('childDOB').value = '2019-06-15'; // For PP1 demo
     
@@ -2630,6 +3502,42 @@
       if (dob) {
         document.getElementById('childDOB').value = dob;
       }
+    });
+    
+    // Animate cards on scroll
+    const cards = document.querySelectorAll('.overview-card, .requirement-card, .fee-item, .payment-method, .date-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      observer.observe(card);
+    });
+    
+    // Date card hover effect
+    document.querySelectorAll('.date-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        if (!this.classList.contains('past')) {
+          this.style.transform = 'translateY(-10px)';
+        }
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        if (!this.classList.contains('past')) {
+          this.style.transform = 'translateY(0)';
+        }
+      });
     });
   </script>
 </body>
