@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Programs | FAITH Junior Academy - CBC Education</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --secondary: #f59e0b;
+      --tertiary: #10b981;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --accent: #8b5cf6;
+      --cbc-blue: #2563eb;
+      --cbc-green: #059669;
+      --cbc-orange: #ea580c;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Abstract Background Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--primary);
+      top: -300px;
+      right: -200px;
+      animation: float 40s infinite ease-in-out;
+    }
+    
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      bottom: -200px;
+      left: -150px;
+      animation: float 35s infinite ease-in-out reverse;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--tertiary);
+      top: 40%;
+      right: 20%;
+      animation: float 30s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(20px) rotate(240deg); }
+    }
+    
+    /* Header - Breaking Traditional Layout */
+    header {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 40px rgba(30, 64, 175, 0.15);
+      border: 2px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    header.scrolled {
+      top: 1rem;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      z-index: 1001;
+    }
+    
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transform: rotate(-5deg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+    
+    .logo-text h1 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.2rem;
+    }
+    
+    .logo-text p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--dark);
+      opacity: 0.7;
+    }
+    
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    
+    .nav-item {
+      position: relative;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      border-radius: 3px;
+    }
+    
+    .nav-item:hover {
+      color: var(--primary);
+    }
+    
+    .nav-item:hover::before {
+      width: 100%;
+    }
+    
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0.5rem;
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100vh;
+      background: white;
+      z-index: 1000;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .mobile-nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 2px solid transparent;
+    }
+    
+    .mobile-nav-link:hover {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(139, 92, 246, 0.05));
+      border-color: rgba(30, 64, 175, 0.1);
+      transform: translateX(-5px);
+    }
+    
+    .mobile-nav-link i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      width: 24px;
+    }
+    
+    .mobile-nav-cta {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 1.2rem 2rem;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(30, 64, 175, 0.3);
+    }
+    
+    .mobile-nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+    }
+    
+    /* Page Header */
+    .page-header {
+      min-height: 70vh;
+      padding: 12rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+    }
+    
+    .page-header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    
+    .cbc-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      animation: bounce 2s infinite;
+      box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+      position: relative;
+    }
+    
+    .cbc-badge::after {
+      content: 'KICD APPROVED';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--cbc-orange);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .page-title {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .page-title span {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .page-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+      z-index: -1;
+      border-radius: 10px;
+    }
+    
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+    
+    /* CBC Overview Section */
+    .cbc-overview {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 6px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 3px;
+    }
+    
+    .section-title p {
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cbc-explanation {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(245, 158, 11, 0.05));
+      border-radius: 25px;
+      padding: 3rem;
+      margin-bottom: 4rem;
+      border-left: 8px solid var(--cbc-blue);
+    }
+    
+    .cbc-explanation h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--cbc-blue);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .cbc-explanation h3 i {
+      color: var(--cbc-orange);
+    }
+    
+    .cbc-explanation p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #475569;
+    }
+    
+    /* CBC Pillars Section */
+    .cbc-pillars {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+    
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      perspective: 1000px;
+    }
+    
+    .pillar-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      transform-style: preserve-3d;
+    }
+    
+    .pillar-card:hover {
+      transform: translateY(-15px) rotateX(5deg);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+    }
+    
+    .pillar-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      transform: rotate(-5deg);
+      transition: transform 0.3s ease;
+    }
+    
+    .pillar-card:hover .pillar-icon {
+      transform: rotate(0deg);
+    }
+    
+    .pillar-card:nth-child(1) .pillar-icon {
+      background: linear-gradient(135deg, var(--cbc-blue), #60a5fa);
+    }
+    
+    .pillar-card:nth-child(2) .pillar-icon {
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+    }
+    
+    .pillar-card:nth-child(3) .pillar-icon {
+      background: linear-gradient(135deg, var(--cbc-orange), #fb923c);
+    }
+    
+    .pillar-card:nth-child(4) .pillar-icon {
+      background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    }
+    
+    .pillar-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .pillar-card p {
+      color: #64748b;
+      font-size: 1rem;
+    }
+    
+    /* Grade Levels Section */
+    .grade-levels {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .grade-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .grade-tab {
+      padding: 1rem 2rem;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .grade-tab:hover {
+      border-color: var(--cbc-blue);
+      color: var(--cbc-blue);
+    }
+    
+    .grade-tab.active {
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+    
+    .grade-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .grade-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .grade-header {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(5, 150, 105, 0.1));
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .grade-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+    
+    .grade-info h3 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--cbc-blue);
+    }
+    
+    .grade-info p {
+      font-size: 1.2rem;
+      color: #475569;
+    }
+    
+    .learning-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .area-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    
+    .area-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      border-color: var(--cbc-blue);
+    }
+    
+    .area-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .area-card h4 i {
+      color: var(--cbc-orange);
+    }
+    
+    .area-card ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    
+    .area-card li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      color: #64748b;
+    }
+    
+    .area-card li i {
+      color: var(--cbc-green);
+      margin-top: 0.3rem;
+      flex-shrink: 0;
+    }
+    
+    /* Parental Involvement Section */
+    .parental-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+    
+    .parental-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .parental-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      text-align: center;
+      border-top: 5px solid var(--cbc-orange);
+    }
+    
+    .parental-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+    }
+    
+    .parental-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--cbc-orange), #fb923c);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .parental-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .parental-card p {
+      color: #64748b;
+    }
+    
+    /* Assessment Section */
+    .assessment-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .assessment-timeline {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .assessment-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 3px;
+    }
+    
+    .assessment-item {
+      position: relative;
+      margin-bottom: 4rem;
+      width: 45%;
+    }
+    
+    .assessment-item:nth-child(odd) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+    
+    .assessment-item:nth-child(even) {
+      margin-left: auto;
+      margin-right: 0;
+    }
+    
+    .assessment-content {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      border: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .assessment-content h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--cbc-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .assessment-content p {
+      color: #64748b;
+    }
+    
+    .assessment-grade {
+      position: absolute;
+      top: -20px;
+      background: linear-gradient(135deg, var(--cbc-green), var(--cbc-blue));
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
+    }
+    
+    .assessment-item:nth-child(odd) .assessment-grade {
+      right: -80px;
+    }
+    
+    .assessment-item:nth-child(even) .assessment-grade {
+      left: -80px;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-content {
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 30px;
+      padding: 5rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(37, 99, 235, 0.3);
+    }
+    
+    .cta-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
+      animation: rotate 40s infinite linear;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .cta-content h3 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .cta-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      position: relative;
+    }
+    
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      color: var(--cbc-blue);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo .logo-icon {
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+    }
+    
+    .footer-column h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+      border-radius: 3px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--secondary);
+      transform: translateY(-5px) rotate(5deg);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+    
+    /* Success Message */
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 400px;
+      transform: translateX(120%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .success-message.show {
+      transform: translateX(0);
+    }
+    
+    .success-message i {
+      font-size: 1.5rem;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .page-title {
+        font-size: 3.5rem;
+      }
+      
+      .assessment-timeline::before {
+        left: 30px;
+      }
+      
+      .assessment-item {
+        width: calc(100% - 80px);
+        margin-left: 80px;
+      }
+      
+      .assessment-item:nth-child(odd) .assessment-grade,
+      .assessment-item:nth-child(even) .assessment-grade {
+        left: -80px;
+        right: auto;
+      }
+      
+      .cta-content h3 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        top: 1rem;
+        width: 95%;
+        padding: 1rem;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .page-header {
+        padding-top: 8rem;
+        min-height: 60vh;
+      }
+      
+      .page-title {
+        font-size: 2.8rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+      
+      .cta-content {
+        padding: 3rem 2rem;
+      }
+      
+      .cta-content h3 {
+        font-size: 2rem;
+      }
+      
+      .grade-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+      }
+      
+      .grade-tabs {
+        justify-content: center;
+      }
+      
+      .grade-tab {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .assessment-item {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .page-title {
+        font-size: 2.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .mobile-nav {
+        width: 280px;
+      }
+      
+      .cbc-explanation,
+      .pillar-card,
+      .area-card,
+      .parental-card {
+        padding: 1.5rem;
+      }
+      
+      .grade-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .grade-tab {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  
+  <!-- Success Message -->
+  <div class="success-message" id="successMessage">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Thank You!</h4>
+      <p style="opacity: 0.9; font-size: 0.9rem;">Your inquiry has been received successfully.</p>
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header id="header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="logo-text">
+        <h1>FAITH Junior Academy</h1>
+        <p>EDUCATION REDEFINED</p>
+      </div>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="program.html" class="nav-item">Programs</a>
+      <a href="#levels" class="nav-item">Grade Levels</a>
+      <a href="#parental" class="nav-item">Parental Role</a>
+      <a href="index.html#inquiry" class="nav-cta">
+        <i class="fas fa-paper-plane"></i>
+        Enroll Now
+      </a>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+  
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="about.html" class="mobile-nav-link">
+        <i class="fas fa-info-circle"></i>
+        <span>About Us</span>
+      </a>
+      <a href="program.html" class="mobile-nav-link">
+        <i class="fas fa-book-open"></i>
+        <span>CBC Overview</span>
+      </a>
+      <a href="#levels" class="mobile-nav-link">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Grade Levels</span>
+      </a>
+      <a href="#parental" class="mobile-nav-link">
+        <i class="fas fa-users"></i>
+        <span>Parental Role</span>
+      </a>
+      <a href="#assessment" class="mobile-nav-link">
+        <i class="fas fa-chart-line"></i>
+        <span>Assessment</span>
+      </a>
+    </div>
+    
+    <a href="index.html#inquiry" class="mobile-nav-cta">
+      <i class="fas fa-paper-plane"></i>
+      Enroll Now
+    </a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div class="cbc-badge">
+          <i class="fas fa-certificate"></i> COMPETENCY-BASED CURRICULUM
+        </div>
+        
+        <h1 class="page-title">
+          <span>CBC Programs</span> at FAITH Junior Academy
+        </h1>
+        
+        <p class="page-subtitle">
+          Kenya's Competency-Based Curriculum reimagined through innovative teaching, hands-on learning, and holistic development. We prepare learners for the demands of the 21st century with skills, values, and knowledge that matter.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CBC Overview Section -->
+  <section class="cbc-overview" id="overview">
+    <div class="container">
+      <div class="section-title">
+        <h2>Understanding the CBC Approach</h2>
+        <p>Moving beyond memorization to meaningful competency development</p>
+      </div>
+      
+      <div class="cbc-explanation">
+        <h3><i class="fas fa-lightbulb"></i> What is Competency-Based Curriculum?</h3>
+        <p>The Competency-Based Curriculum (CBC) is Kenya's innovative educational framework designed to nurture every child's potential through a flexible, learner-centered approach. Unlike traditional systems that prioritize exam performance, CBC focuses on developing practical skills, knowledge, and values that learners can apply in real-life situations.</p>
+        <p>At FAITH Junior Academy, we've embraced CBC not just as a curriculum but as a philosophy. We go beyond the basic requirements to create learning experiences that are engaging, relevant, and transformative.</p>
+      </div>
+      
+      <div class="section-title" style="margin-top: 4rem;">
+        <h2>The 7 Core Competencies</h2>
+        <p>Building the foundation for lifelong learning and success</p>
+      </div>
+      
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h4>Communication & Collaboration</h4>
+          <p>Developing effective communication skills in English, Kiswahili, and Kenyan Sign Language, along with teamwork abilities for productive collaboration.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h4>Critical Thinking & Problem Solving</h4>
+          <p>Nurturing analytical skills, creativity, and innovation to tackle complex challenges and make informed decisions in various contexts.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h4>Imagination & Creativity</h4>
+          <p>Encouraging original thinking, artistic expression, and innovative approaches to learning and problem-solving across all subjects.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <h4>Citizenship</h4>
+          <p>Developing responsible, ethical citizens who understand their rights, responsibilities, and role in building a just, cohesive society.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h4>Digital Literacy</h4>
+          <p>Building proficiency in using digital tools responsibly, creatively, and effectively for learning, communication, and productivity.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h4>Learning to Learn</h4>
+          <p>Developing self-awareness, metacognitive skills, and resilience to become independent, self-directed lifelong learners.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h4>Self-Efficacy</h4>
+          <p>Building confidence, perseverance, and a growth mindset to set and achieve personal and academic goals.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h4>Integrity & Values</h4>
+          <p>Cultivating strong moral principles, empathy, respect, and responsibility in personal conduct and community interactions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grade Levels Section -->
+  <section class="grade-levels" id="levels">
+    <div class="container">
+      <div class="section-title">
+        <h2>CBC Grade Levels at FAITH</h2>
+        <p>Age-appropriate learning pathways designed for holistic development</p>
+      </div>
+      
+      <div class="grade-tabs">
+        <div class="grade-tab active" data-grade="pp1">
+          <i class="fas fa-seedling"></i>
+          Pre-Primary 1 (Age 4)
+        </div>
+        <div class="grade-tab" data-grade="pp2">
+          <i class="fas fa-leaf"></i>
+          Pre-Primary 2 (Age 5)
+        </div>
+        <div class="grade-tab" data-grade="grade1">
+          <i class="fas fa-tree"></i>
+          Grade 1 (Age 6)
+        </div>
+        <div class="grade-tab" data-grade="grade2">
+          <i class="fas fa-tree"></i>
+          Grade 2 (Age 7)
+        </div>
+        <div class="grade-tab" data-grade="grade3">
+          <i class="fas fa-tree"></i>
+          Grade 3 (Age 8)
+        </div>
+      </div>
+      
+      <!-- Pre-Primary 1 Content -->
+      <div class="grade-content active" id="pp1-content">
+        <div class="grade-header">
+          <div class="grade-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <div class="grade-info">
+            <h3>Pre-Primary 1 (Age 4)</h3>
+            <p>Foundational stage focusing on play-based learning, social skills, and basic literacy/numeracy readiness.</p>
+          </div>
+        </div>
+        
+        <div class="learning-areas">
+          <div class="area-card">
+            <h4><i class="fas fa-language"></i> Language Activities</h4>
+            <p>Introduction to English and Kiswahili through songs, stories, and conversations.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Listening and speaking skills</li>
+              <li><i class="fas fa-check"></i> Basic vocabulary development</li>
+              <li><i class="fas fa-check"></i> Storytelling and dramatic play</li>
+              <li><i class="fas fa-check"></i> Pre-writing activities</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-calculator"></i> Mathematical Activities</h4>
+            <p>Developing early numeracy concepts through play and exploration.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Sorting and classifying objects</li>
+              <li><i class="fas fa-check"></i> Basic counting 1-20</li>
+              <li><i class="fas fa-check"></i> Simple patterns and sequences</li>
+              <li><i class="fas fa-check"></i> Shape and space awareness</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-palette"></i> Creative Activities</h4>
+            <p>Exploring various art forms and developing fine motor skills.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Drawing, painting, and collage</li>
+              <li><i class="fas fa-check"></i> Music and movement</li>
+              <li><i class="fas fa-check"></i> Role play and drama</li>
+              <li><i class="fas fa-check"></i> Construction with blocks</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-hands-helping"></i> Social & Life Skills</h4>
+            <p>Developing independence, cooperation, and self-awareness.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Personal hygiene routines</li>
+              <li><i class="fas fa-check"></i> Sharing and taking turns</li>
+              <li><i class="fas fa-check"></i> Expressing feelings appropriately</li>
+              <li><i class="fas fa-check"></i> Basic safety awareness</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pre-Primary 2 Content -->
+      <div class="grade-content" id="pp2-content">
+        <div class="grade-header">
+          <div class="grade-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div class="grade-info">
+            <h3>Pre-Primary 2 (Age 5)</h3>
+            <p>Building on foundational skills with more structured learning activities and school readiness.</p>
+          </div>
+        </div>
+        
+        <div class="learning-areas">
+          <div class="area-card">
+            <h4><i class="fas fa-language"></i> Language & Literacy</h4>
+            <p>Developing early reading and writing readiness in English and Kiswahili.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Phonemic awareness activities</li>
+              <li><i class="fas fa-check"></i> Letter recognition and sounds</li>
+              <li><i class="fas fa-check"></i> Simple sentence formation</li>
+              <li><i class="fas fa-check"></i> Listening comprehension</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-shapes"></i> Mathematics & Environment</h4>
+            <p>Exploring numbers, measurements, and the natural world.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Number operations 1-50</li>
+              <li><i class="fas fa-check"></i> Basic addition and subtraction</li>
+              <li><i class="fas fa-check"></i> Measurement concepts</li>
+              <li><i class="fas fa-check"></i> Exploring plants and animals</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-music"></i> Creative & Physical</h4>
+            <p>Developing artistic expression and physical coordination.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Rhythm and musical patterns</li>
+              <li><i class="fas fa-check"></i> Creative storytelling</li>
+              <li><i class="fas fa-check"></i> Gross motor skill development</li>
+              <li><i class="fas fa-check"></i> Team games and activities</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-users"></i> Social & Moral Development</h4>
+            <p>Cultivating positive relationships and ethical awareness.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Conflict resolution skills</li>
+              <li><i class="fas fa-check"></i> Understanding community roles</li>
+              <li><i class="fas fa-check"></i> Basic digital literacy introduction</li>
+              <li><i class="fas fa-check"></i> Cultural appreciation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Grade 1 Content -->
+      <div class="grade-content" id="grade1-content">
+        <div class="grade-header">
+          <div class="grade-icon">
+            <i class="fas fa-tree"></i>
+          </div>
+          <div class="grade-info">
+            <h3>Grade 1 (Age 6)</h3>
+            <p>Transition to lower primary with structured literacy, numeracy, and integrated learning areas.</p>
+          </div>
+        </div>
+        
+        <div class="learning-areas">
+          <div class="area-card">
+            <h4><i class="fas fa-book-reader"></i> Literacy Activities</h4>
+            <p>Developing reading fluency and writing skills in English and Kiswahili.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Basic reading comprehension</li>
+              <li><i class="fas fa-check"></i> Creative writing sentences</li>
+              <li><i class="fas fa-check"></i> Grammar and punctuation basics</li>
+              <li><i class="fas fa-check"></i> Oral presentation skills</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-calculator"></i> Mathematics</h4>
+            <p>Building strong numeracy foundations and problem-solving skills.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Number operations 1-100</li>
+              <li><i class="fas fa-check"></i> Place value understanding</li>
+              <li><i class="fas fa-check"></i> Basic geometry concepts</li>
+              <li><i class="fas fa-check"></i> Data collection and simple graphs</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-globe-africa"></i> Environmental Activities</h4>
+            <p>Exploring the natural and social environment through inquiry.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Living things and their needs</li>
+              <li><i class="fas fa-check"></i> Weather and seasons</li>
+              <li><i class="fas fa-check"></i> Family and community studies</li>
+              <li><i class="fas fa-check"></i> Basic health and nutrition</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-paint-brush"></i> Creative Arts</h4>
+            <p>Developing artistic skills and aesthetic appreciation.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Drawing and painting techniques</li>
+              <li><i class="fas fa-check"></i> Music notation and singing</li>
+              <li><i class="fas fa-check"></i> Simple crafts and construction</li>
+              <li><i class="fas fa-check"></i> Movement and dance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Grade 2 Content -->
+      <div class="grade-content" id="grade2-content">
+        <div class="grade-header">
+          <div class="grade-icon">
+            <i class="fas fa-tree"></i>
+          </div>
+          <div class="grade-info">
+            <h3>Grade 2 (Age 7)</h3>
+            <p>Expanding knowledge and skills with more complex concepts and integrated projects.</p>
+          </div>
+        </div>
+        
+        <div class="learning-areas">
+          <div class="area-card">
+            <h4><i class="fas fa-book-open"></i> Literacy & Communication</h4>
+            <p>Advancing reading, writing, and oral communication abilities.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Reading with fluency and expression</li>
+              <li><i class="fas fa-check"></i> Paragraph writing and composition</li>
+              <li><i class="fas fa-check"></i> Listening and responding skills</li>
+              <li><i class="fas fa-check"></i> Basic research and presentation</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-calculator"></i> Mathematical Concepts</h4>
+            <p>Developing computational fluency and mathematical reasoning.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Multiplication and division basics</li>
+              <li><i class="fas fa-check"></i> Fractions and measurements</li>
+              <li><i class="fas fa-check"></i> Money and time concepts</li>
+              <li><i class="fas fa-check"></i> Problem-solving strategies</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-seedling"></i> Science & Technology</h4>
+            <p>Exploring scientific concepts and basic technology applications.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Simple science experiments</li>
+              <li><i class="fas fa-check"></i> Materials and their properties</li>
+              <li><i class="fas fa-check"></i> Basic computer skills</li>
+              <li><i class="fas fa-check"></i> Environmental conservation</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-history"></i> Social Studies</h4>
+            <p>Understanding community, culture, and responsible citizenship.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Kenyan communities and cultures</li>
+              <li><i class="fas fa-check"></i> Basic rights and responsibilities</li>
+              <li><i class="fas fa-check"></i> Map reading and directions</li>
+              <li><i class="fas fa-check"></i> Economic activities in Kenya</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Grade 3 Content -->
+      <div class="grade-content" id="grade3-content">
+        <div class="grade-header">
+          <div class="grade-icon">
+            <i class="fas fa-tree"></i>
+          </div>
+          <div class="grade-info">
+            <h3>Grade 3 (Age 8)</h3>
+            <p>Consolidating learning with increased complexity and preparation for upper primary.</p>
+          </div>
+        </div>
+        
+        <div class="learning-areas">
+          <div class="area-card">
+            <h4><i class="fas fa-language"></i> Language Mastery</h4>
+            <p>Developing advanced literacy skills and communication competence.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Reading comprehension strategies</li>
+              <li><i class="fas fa-check"></i> Creative and functional writing</li>
+              <li><i class="fas fa-check"></i> Grammar and vocabulary expansion</li>
+              <li><i class="fas fa-check"></i> Debate and public speaking</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-calculator"></i> Mathematical Application</h4>
+            <p>Applying mathematical concepts to real-world situations.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Advanced operations with larger numbers</li>
+              <li><i class="fas fa-check"></i> Geometry and spatial reasoning</li>
+              <li><i class="fas fa-check"></i> Data analysis and interpretation</li>
+              <li><i class="fas fa-check"></i> Mathematical investigations</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-flask"></i> Integrated Science</h4>
+            <p>Exploring physical, biological, and environmental sciences.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Human body and health</li>
+              <li><i class="fas fa-check"></i> Forces and energy</li>
+              <li><i class="fas fa-check"></i> Ecosystems and interdependence</li>
+              <li><i class="fas fa-check"></i> Simple machines and technology</li>
+            </ul>
+          </div>
+          
+          <div class="area-card">
+            <h4><i class="fas fa-landmark"></i> Social & Citizenship Education</h4>
+            <p>Developing awareness of society, governance, and global connections.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Kenyan government structure</li>
+              <li><i class="fas fa-check"></i> Historical figures and events</li>
+              <li><i class="fas fa-check"></i> Economic systems and trade</li>
+              <li><i class="fas fa-check"></i> Digital citizenship and safety</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parental Involvement Section -->
+  <section class="parental-section" id="parental">
+    <div class="container">
+      <div class="section-title">
+        <h2>The Parental Role in CBC</h2>
+        <p>Partnership between home and school for optimal learner development</p>
+      </div>
+      
+      <div class="parental-grid">
+        <div class="parental-card">
+          <div class="parental-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h4>Learning Environment at Home</h4>
+          <p>Creating a supportive space for homework, projects, and skill practice. We provide parents with guidance on setting up effective learning corners and routines.</p>
+        </div>
+        
+        <div class="parental-card">
+          <div class="parental-icon">
+            <i class="fas fa-tasks"></i>
+          </div>
+          <h4>Supporting Projects & Assignments</h4>
+          <p>Guiding learners through CBC projects without doing the work for them. We conduct regular parent workshops on effective support strategies.</p>
+        </div>
+        
+        <div class="parental-card">
+          <div class="parental-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h4>Regular Communication</h4>
+          <p>Staying informed through our parent portal, regular meetings, and progress reports. We value parental feedback and insights about learner development.</p>
+        </div>
+        
+        <div class="parental-card">
+          <div class="parental-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h4>Skill Reinforcement</h4>
+          <p>Identifying and nurturing your child's talents through extracurricular activities and real-life skill application at home and in the community.</p>
+        </div>
+        
+        <div class="parental-card">
+          <div class="parental-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h4>Progress Monitoring</h4>
+          <p>Understanding CBC assessment methods and tracking your child's development across competencies, not just academic scores.</p>
+        </div>
+        
+        <div class="parental-card">
+          <div class="parental-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4>Values & Character Building</h4>
+          <p>Partnering with us to reinforce core values, social skills, and emotional intelligence through consistent messaging and modeling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Assessment Section -->
+  <section class="assessment-section" id="assessment">
+    <div class="container">
+      <div class="section-title">
+        <h2>CBC Assessment Framework</h2>
+        <p>Continuous, competency-based evaluation that tracks holistic development</p>
+      </div>
+      
+      <div class="assessment-timeline">
+        <div class="assessment-item">
+          <div class="assessment-content">
+            <h4><i class="fas fa-clipboard-check"></i> Formative Assessment</h4>
+            <p>Ongoing evaluation through observations, discussions, and learning activities. Teachers provide immediate feedback to guide learning progression and identify support needs.</p>
+          </div>
+          <div class="assessment-grade">PP1 - Grade 6</div>
+        </div>
+        
+        <div class="assessment-item">
+          <div class="assessment-content">
+            <h4><i class="fas fa-project-diagram"></i> Projects & Portfolios</h4>
+            <p>Learners compile evidence of their learning through projects, artwork, writing samples, and multimedia presentations that demonstrate competency development over time.</p>
+          </div>
+          <div class="assessment-grade">PP2 - Grade 6</div>
+        </div>
+        
+        <div class="assessment-item">
+          <div class="assessment-content">
+            <h4><i class="fas fa-users"></i> Peer & Self-Assessment</h4>
+            <p>Learners develop metacognitive skills by evaluating their own work and providing constructive feedback to peers, fostering responsibility and critical thinking.</p>
+          </div>
+          <div class="assessment-grade">Grade 1 - Grade 6</div>
+        </div>
+        
+        <div class="assessment-item">
+          <div class="assessment-content">
+            <h4><i class="fas fa-chart-pie"></i> Summative Assessment</h4>
+            <p>End-of-term evaluations that measure competency achievement across learning areas, providing comprehensive profiles of learner development.</p>
+          </div>
+          <div class="assessment-grade">PP2 - Grade 6</div>
+        </div>
+        
+        <div class="assessment-item">
+          <div class="assessment-content">
+            <h4><i class="fas fa-file-alt"></i> School-Based Assessment</h4>
+            <p>Classroom assessments approved by KICD that contribute to the final learner profile, focusing on practical application of knowledge and skills.</p>
+          </div>
+          <div class="assessment-grade">Grade 4 - Grade 6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h3>Begin Your Child's CBC Journey</h3>
+        <p>Join our community of innovative learners and experience how FAITH Junior Academy is implementing CBC with excellence, creativity, and care.</p>
+        <a href="index.html#inquiry" class="cta-btn">
+          <i class="fas fa-calendar-check"></i>
+          Schedule a School Tour
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 style="color: white; margin-top: 1rem;">FAITH Junior Academy</h1>
+          </div>
+          <p style="color: rgba(255,255,255,0.8); margin-top: 1.5rem;">
+            Implementing CBC with innovation, excellence, and care since 2015. KICD Approved CBC Center.
+          </p>
+          
+          <div class="social-grid">
+            <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>CBC Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#overview"><i class="fas fa-chevron-right"></i> CBC Overview</a></li>
+            <li><a href="#levels"><i class="fas fa-chevron-right"></i> Grade Levels</a></li>
+            <li><a href="#parental"><i class="fas fa-chevron-right"></i> Parental Role</a></li>
+            <li><a href="#assessment"><i class="fas fa-chevron-right"></i> Assessment</a></li>
+            <li><a href="index.html#inquiry"><i class="fas fa-chevron-right"></i> Enrollment Process</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Learning Areas</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Language Activities</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Mathematical Activities</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Environmental Activities</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Creative Activities</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Religious Education</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact CBC Office</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, Nairobi</a></li>
+            <li><a href="tel:+254712345678"><i class="fas fa-phone"></i> +254 712 345 678</a></li>
+            <li><a href="mailto:cbc@faithjunior.ac.ke"><i class="fas fa-envelope"></i> cbc@faithjunior.ac.ke</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> CBC Office Hours: 7:30 AM - 4:30 PM</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2024 FAITH Junior Academy. All rights reserved. | KICD Approved CBC Implementation Center</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    
+    function openMobileMenu() {
+      mobileNav.classList.add('active');
+      mobileNavOverlay.classList.add('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.style.overflow = 'auto';
+    }
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      if (mobileNav.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+    
+    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Grade level tabs functionality
+    const gradeTabs = document.querySelectorAll('.grade-tab');
+    const gradeContents = document.querySelectorAll('.grade-content');
+    
+    gradeTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const grade = this.getAttribute('data-grade');
+        
+        // Update active tab
+        gradeTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Show corresponding content
+        gradeContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.id === `${grade}-content`) {
+            content.classList.add('active');
+          }
+        });
+        
+        // Close mobile menu if open
+        if (mobileNav.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || targetId.includes('index.html')) return;
+        
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          // Close mobile menu if open
+          if (mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+          }
+          
+          // Scroll to target
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Animate cards on scroll
+    const cards = document.querySelectorAll('.pillar-card, .area-card, .parental-card, .assessment-content');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      observer.observe(card);
+    });
+    
+    // Animate assessment items with delay
+    const assessmentItems = document.querySelectorAll('.assessment-item');
+    
+    const assessmentObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }, index * 200);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    assessmentItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      assessmentObserver.observe(item);
+    });
+    
+    // Add hover effect to cards
+    document.querySelectorAll('.pillar-card, .area-card, .parental-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.zIndex = '10';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.zIndex = '1';
+      });
+    });
+    
+    // Auto-rotate grade tabs on mobile for demonstration
+    if (window.innerWidth < 768) {
+      let currentTab = 0;
+      const rotateTabs = () => {
+        gradeTabs.forEach(tab => tab.classList.remove('active'));
+        gradeContents.forEach(content => content.classList.remove('active'));
+        
+        gradeTabs[currentTab].classList.add('active');
+        gradeContents[currentTab].classList.add('active');
+        
+        currentTab = (currentTab + 1) % gradeTabs.length;
+      };
+      
+      // Only auto-rotate if page is idle for 10 seconds
+      let idleTimer;
+      function resetIdleTimer() {
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          // Start rotating every 5 seconds
+          const rotationInterval = setInterval(rotateTabs, 5000);
+          
+          // Stop rotation on user interaction
+          const stopRotation = () => {
+            clearInterval(rotationInterval);
+            document.removeEventListener('scroll', stopRotation);
+            document.removeEventListener('click', stopRotation);
+            document.removeEventListener('touchstart', stopRotation);
+          };
+          
+          document.addEventListener('scroll', stopRotation);
+          document.addEventListener('click', stopRotation);
+          document.addEventListener('touchstart', stopRotation);
+        }, 10000);
+      }
+      
+      document.addEventListener('scroll', resetIdleTimer);
+      document.addEventListener('click', resetIdleTimer);
+      document.addEventListener('touchstart', resetIdleTimer);
+      resetIdleTimer();
+    }
+  </script>
+</body>
+</html>
