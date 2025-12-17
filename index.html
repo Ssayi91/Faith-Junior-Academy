@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FAITH Junior Academy | Bold Education</title>
+  <title>FAITH Junior Academy | Excellence in Education</title>
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
   
   <style>
     :root {
@@ -20,10 +19,6 @@
       --dark: #0f172a;
       --light: #f8fafc;
       --accent: #8b5cf6;
-      
-      /* Animation variables */
-      --float-speed: 20s;
-      --bounce-speed: 0.5s;
     }
 
     * { 
@@ -64,6 +59,7 @@
       border-radius: 50%;
       opacity: 0.1;
       z-index: -1;
+      pointer-events: none;
     }
     
     .shape-1 {
@@ -134,6 +130,7 @@
       align-items: center;
       gap: 1rem;
       text-decoration: none;
+      z-index: 1001;
     }
     
     .logo-icon {
@@ -189,7 +186,8 @@
       opacity: 0.7;
     }
     
-    nav {
+    /* Desktop Navigation */
+    .desktop-nav {
       display: flex;
       gap: 2.5rem;
       align-items: center;
@@ -245,6 +243,7 @@
       box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
     }
     
+    /* Mobile Menu Button */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -252,9 +251,104 @@
       font-size: 1.5rem;
       color: var(--primary);
       cursor: pointer;
+      z-index: 1001;
+      padding: 0.5rem;
     }
     
-    /* Hero Section - Asymmetric Layout */
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100vh;
+      background: white;
+      z-index: 1000;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .mobile-nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 2px solid transparent;
+    }
+    
+    .mobile-nav-link:hover {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(139, 92, 246, 0.05));
+      border-color: rgba(30, 64, 175, 0.1);
+      transform: translateX(-5px);
+    }
+    
+    .mobile-nav-link i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      width: 24px;
+    }
+    
+    .mobile-nav-cta {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 1.2rem 2rem;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(30, 64, 175, 0.3);
+    }
+    
+    .mobile-nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+    }
+    
+    /* Hero Section */
     .hero {
       min-height: 100vh;
       padding: 8rem 0 4rem;
@@ -362,7 +456,7 @@
       opacity: 0.7;
     }
     
-    /* Hero Inquiry Card - Floating Design */
+    /* Inquiry Card */
     .inquiry-card {
       background: white;
       border-radius: 25px;
@@ -500,7 +594,7 @@
       box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
     }
     
-    /* Values Grid - Hexagonal Design */
+    /* Values Section */
     .values-section {
       padding: 6rem 0;
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -604,7 +698,7 @@
       font-size: 1rem;
     }
     
-    /* Programs Showcase - Asymmetric Cards */
+    /* Programs Section */
     .programs-section {
       padding: 6rem 0;
       position: relative;
@@ -712,7 +806,7 @@
       gap: 1rem;
     }
     
-    /* Admissions Banner - Curved Design */
+    /* Admissions Banner */
     .admissions-banner {
       padding: 5rem 0;
       position: relative;
@@ -783,7 +877,7 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     }
     
-    /* Footer - Geometric Design */
+    /* Footer */
     footer {
       background: var(--dark);
       color: white;
@@ -877,6 +971,33 @@
       font-size: 0.9rem;
     }
     
+    /* Success Message */
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--tertiary), #34d399);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 400px;
+      transform: translateX(120%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .success-message.show {
+      transform: translateX(0);
+    }
+    
+    .success-message i {
+      font-size: 1.5rem;
+    }
+    
     /* Mobile Responsiveness */
     @media (max-width: 1024px) {
       .hero-content {
@@ -900,26 +1021,8 @@
         padding: 1rem;
       }
       
-      nav {
-        position: fixed;
-        top: 5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        background: white;
-        flex-direction: column;
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-      }
-      
-      nav.active {
-        opacity: 1;
-        visibility: visible;
+      .desktop-nav {
+        display: none;
       }
       
       .mobile-menu-btn {
@@ -950,6 +1053,11 @@
       .banner-content h3 {
         font-size: 2rem;
       }
+      
+      .program-card:nth-child(odd),
+      .program-card:nth-child(even) {
+        transform: rotate(0deg);
+      }
     }
     
     @media (max-width: 480px) {
@@ -973,6 +1081,10 @@
       .section-title h2 {
         font-size: 2rem;
       }
+      
+      .mobile-nav {
+        width: 280px;
+      }
     }
   </style>
 </head>
@@ -982,9 +1094,18 @@
   <div class="shape shape-2"></div>
   <div class="shape shape-3"></div>
   
+  <!-- Success Message -->
+  <div class="success-message" id="successMessage">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Application Submitted!</h4>
+      <p style="opacity: 0.9; font-size: 0.9rem;">We'll contact you within 24 hours.</p>
+    </div>
+  </div>
+  
   <!-- Header -->
   <header id="header">
-    <a href="#" class="logo">
+    <a href="#home" class="logo">
       <div class="logo-icon">
         <i class="fas fa-graduation-cap"></i>
       </div>
@@ -994,7 +1115,8 @@
       </div>
     </a>
     
-    <nav id="nav">
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
       <a href="#home" class="nav-item">Home</a>
       <a href="#values" class="nav-item">Values</a>
       <a href="#programs" class="nav-item">Programs</a>
@@ -1006,10 +1128,45 @@
       </a>
     </nav>
     
+    <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" id="mobileMenuBtn">
       <i class="fas fa-bars"></i>
     </button>
   </header>
+  
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-links">
+      <a href="#home" class="mobile-nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#values" class="mobile-nav-link">
+        <i class="fas fa-heart"></i>
+        <span>Our Values</span>
+      </a>
+      <a href="#programs" class="mobile-nav-link">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Programs</span>
+      </a>
+      <a href="#admissions" class="mobile-nav-link">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Admissions</span>
+      </a>
+      <a href="#contact" class="mobile-nav-link">
+        <i class="fas fa-phone"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+    
+    <a href="#inquiry" class="mobile-nav-cta">
+      <i class="fas fa-paper-plane"></i>
+      Apply Now
+    </a>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero" id="home">
@@ -1075,7 +1232,7 @@
             <label for="grade">Child's Grade Level</label>
           </div>
           
-          <button class="submit-btn">
+          <button class="submit-btn" id="submitBtn">
             <i class="fas fa-paper-plane"></i>
             Submit Application
           </button>
@@ -1168,7 +1325,7 @@
               <li><i class="fas fa-check-circle"></i> Emotional intelligence focus</li>
             </ul>
             
-            <a href="#" class="program-link">
+            <a href="#inquiry" class="program-link">
               Explore Program
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -1190,7 +1347,7 @@
               <li><i class="fas fa-check-circle"></i> Community service learning</li>
             </ul>
             
-            <a href="#" class="program-link">
+            <a href="#inquiry" class="program-link">
               Explore Program
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -1212,7 +1369,7 @@
               <li><i class="fas fa-check-circle"></i> Competitive athletics</li>
             </ul>
             
-            <a href="#" class="program-link">
+            <a href="#inquiry" class="program-link">
               Explore Program
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -1293,8 +1450,8 @@
           <h4>Contact Info</h4>
           <ul class="footer-links">
             <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive</a></li>
-            <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a></li>
-            <li><a href="mailto:admissions@faithjunior.edu"><i class="fas fa-envelope"></i> admissions@faithjunior.edu</a></li>
+            <li><a href="tel:+254712345678"><i class="fas fa-phone"></i> +254 712 345 678</a></li>
+            <li><a href="mailto:admissions@faithjunior.ac.ke"><i class="fas fa-envelope"></i> admissions@faithjunior.ac.ke</a></li>
             <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</a></li>
           </ul>
         </div>
@@ -1317,52 +1474,53 @@
       }
     });
     
-    // Mobile menu toggle
+    // Mobile menu functionality
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const nav = document.getElementById('nav');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    
+    function openMobileMenu() {
+      mobileNav.classList.add('active');
+      mobileNavOverlay.classList.add('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.style.overflow = 'auto';
+    }
     
     mobileMenuBtn.addEventListener('click', function() {
-      nav.classList.toggle('active');
-      mobileMenuBtn.innerHTML = nav.classList.contains('active') 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
+      if (mobileNav.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+    
+    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
     });
     
     // Form submission
-    document.querySelector('.submit-btn').addEventListener('click', function() {
+    document.getElementById('submitBtn').addEventListener('click', function() {
       const name = document.getElementById('parentName').value;
       const phone = document.getElementById('phone').value;
       const grade = document.getElementById('grade').value;
       
       if (name && phone && grade) {
-        // Create a floating success message
-        const successMsg = document.createElement('div');
-        successMsg.innerHTML = `
-          <div style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #10b981, #34d399);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            animation: slideIn 0.5s ease;
-            max-width: 400px;
-          ">
-            <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
-            <div>
-              <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Application Submitted!</h4>
-              <p style="opacity: 0.9; font-size: 0.9rem;">Thank you ${name}! We'll contact you within 24 hours.</p>
-            </div>
-          </div>
-        `;
+        // Show success message
+        const successMessage = document.getElementById('successMessage');
+        successMessage.querySelector('h4').innerHTML = 'Application Submitted!';
+        successMessage.querySelector('p').innerHTML = `Thank you ${name}! We'll contact you within 24 hours.`;
         
-        document.body.appendChild(successMsg);
+        successMessage.classList.add('show');
         
         // Reset form
         document.getElementById('parentName').value = '';
@@ -1371,40 +1529,29 @@
         
         // Remove success message after 5 seconds
         setTimeout(() => {
-          successMsg.style.animation = 'slideOut 0.5s ease';
-          setTimeout(() => {
-            successMsg.remove();
-          }, 500);
+          successMessage.classList.remove('show');
         }, 5000);
       } else {
         alert('Please fill in all fields before submitting.');
       }
     });
     
-    // Add CSS for success message animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-      }
-      @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        if (this.getAttribute('href') === '#') return;
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
         
         e.preventDefault();
-        const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
+          // Close mobile menu if open
+          if (mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+          }
+          
+          // Scroll to target
           window.scrollTo({
             top: targetElement.offsetTop - 100,
             behavior: 'smooth'
@@ -1413,7 +1560,7 @@
       });
     });
     
-    // Rotating program cards on scroll
+    // Animate program cards on scroll
     const programCards = document.querySelectorAll('.program-card');
     
     const observer = new IntersectionObserver((entries) => {
@@ -1424,13 +1571,33 @@
         }
       });
     }, {
-      threshold: 0.2
+      threshold: 0.1
     });
     
     programCards.forEach(card => {
       card.style.opacity = '0';
       card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
       observer.observe(card);
+    });
+    
+    // Animate value cards on scroll
+    const valueCards = document.querySelectorAll('.value-card');
+    
+    const valueObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) rotateX(0deg)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    valueCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px) rotateX(10deg)';
+      valueObserver.observe(card);
     });
   </script>
 </body>
