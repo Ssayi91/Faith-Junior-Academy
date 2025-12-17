@@ -1,1179 +1,1437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faith Junior Academy | Excellence in Education</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #1e40af;
-            --secondary: #f59e0b;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --accent: #10b981;
-            --gray: #64748b;
-            --border: 1px solid #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dark);
-            background: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        h1 { font-size: 3.5rem; }
-        h2 { font-size: 2.5rem; }
-        h3 { font-size: 2rem; }
-        h4 { font-size: 1.5rem; }
-
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            text-decoration: none;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #1e3a8a;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary);
-            color: var(--dark);
-        }
-
-        .btn-secondary:hover {
-            background-color: #d97706;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* Header - Fixed and Clean */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: var(--border);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            box-shadow: var(--shadow);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .logo-text h1 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.2rem;
-        }
-
-        .logo-text p {
-            font-size: 0.7rem;
-            color: var(--gray);
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Desktop Navigation */
-        .desktop-nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.95rem;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            z-index: 2000;
-            padding: 2rem;
-            transition: right 0.3s ease;
-            box-shadow: var(--shadow-lg);
-            overflow-y: auto;
-        }
-
-        .mobile-nav.active {
-            right: 0;
-        }
-
-        .mobile-nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: var(--border);
-        }
-
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .mobile-nav-link {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            padding: 0.8rem 0;
-            border-bottom: var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .mobile-nav-link i {
-            color: var(--primary);
-            width: 20px;
-        }
-
-        .mobile-nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 8rem;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, transparent 100%);
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .hero-text h1 span {
-            color: var(--primary);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        .hero-features {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border: 2px solid var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        /* Inquiry Form */
-        .inquiry-card {
-            background: white;
-            border: var(--border);
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .inquiry-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: var(--border);
-        }
-
-        .inquiry-header i {
-            color: var(--primary);
-            font-size: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 1rem;
-            border: var(--border);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-        }
-
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 1rem;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--secondary);
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border: var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .feature-icon-large {
-            width: 70px;
-            height: 70px;
-            background-color: var(--light);
-            border: 2px solid var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-size: 1.8rem;
-        }
-
-        /* Programs Section */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .program-card {
-            border: var(--border);
-            overflow: hidden;
-        }
-
-        .program-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .program-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(30, 64, 175, 0.9), transparent);
-            color: white;
-        }
-
-        .program-content {
-            padding: 2rem;
-        }
-
-        .program-features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .program-features li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--gray);
-        }
-
-        .program-features i {
-            color: var(--accent);
-        }
-
-        /* Facilities Section */
-        .facilities {
-            background-color: var(--light);
-        }
-
-        .facilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .facility-card {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .facility-icon {
-            width: 80px;
-            height: 80px;
-            background-color: white;
-            border: 2px solid var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--primary);
-            font-size: 2rem;
-        }
-
-        /* Admissions Banner */
-        .admissions-banner {
-            background: linear-gradient(135deg, var(--primary), #1e3a8a);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-
-        .admissions-banner h3 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .admissions-banner p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.25rem; }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.75rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding-top: 6rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.25rem;
-            }
-            
-            .hero-features {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-            
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.75rem; }
-            
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .inquiry-card {
-                padding: 1.5rem;
-            }
-            
-            .mobile-nav {
-                width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAITH Junior Academy | Bold Education</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --secondary: #f59e0b;
+      --tertiary: #10b981;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --accent: #8b5cf6;
+      
+      /* Animation variables */
+      --float-speed: 20s;
+      --bounce-speed: 0.5s;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Abstract Background Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+    
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--primary);
+      top: -300px;
+      right: -200px;
+      animation: float 40s infinite ease-in-out;
+    }
+    
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      bottom: -200px;
+      left: -150px;
+      animation: float 35s infinite ease-in-out reverse;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--tertiary);
+      top: 40%;
+      right: 20%;
+      animation: float 30s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(20px) rotate(240deg); }
+    }
+    
+    /* Header - Breaking Traditional Layout */
+    header {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 40px rgba(30, 64, 175, 0.15);
+      border: 2px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    header.scrolled {
+      top: 1rem;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transform: rotate(-5deg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+    
+    .logo-text h1 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.2rem;
+    }
+    
+    .logo-text p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--dark);
+      opacity: 0.7;
+    }
+    
+    nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    
+    .nav-item {
+      position: relative;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      border-radius: 3px;
+    }
+    
+    .nav-item:hover {
+      color: var(--primary);
+    }
+    
+    .nav-item:hover::before {
+      width: 100%;
+    }
+    
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    
+    /* Hero Section - Asymmetric Layout */
+    .hero {
+      min-height: 100vh;
+      padding: 8rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      z-index: -2;
+    }
+    
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .hero-text {
+      position: relative;
+    }
+    
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--secondary), #fbbf24);
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      animation: bounce 2s infinite;
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .hero-title {
+      font-size: 4.5rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .hero-title span {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .hero-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
+      z-index: -1;
+      border-radius: 10px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #64748b;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      font-weight: 500;
+    }
+    
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      opacity: 0.7;
+    }
+    
+    /* Hero Inquiry Card - Floating Design */
+    .inquiry-card {
+      background: white;
+      border-radius: 25px;
+      padding: 3rem;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
+    }
+    
+    .inquiry-card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+    }
+    
+    .inquiry-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--tertiary));
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .card-header h3 {
+      font-size: 1.8rem;
+      color: var(--dark);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+    
+    .form-group label {
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      padding: 0 0.5rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group select:focus + label,
+    .form-group select:not([value=""]):valid + label {
+      top: 0;
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 1.3rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+    }
+    
+    /* Values Grid - Hexagonal Design */
+    .values-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 3px;
+    }
+    
+    .section-title p {
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      perspective: 1000px;
+    }
+    
+    .value-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transform-style: preserve-3d;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-15px) rotateX(5deg);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
+    .value-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      transform: rotate(-5deg);
+      transition: transform 0.3s ease;
+    }
+    
+    .value-card:hover .value-icon {
+      transform: rotate(0deg);
+    }
+    
+    .value-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .value-card p {
+      color: #64748b;
+      font-size: 1rem;
+    }
+    
+    /* Programs Showcase - Asymmetric Cards */
+    .programs-section {
+      padding: 6rem 0;
+      position: relative;
+    }
+    
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .program-card {
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    
+    .program-card:nth-child(odd) {
+      transform: rotate(-1deg);
+    }
+    
+    .program-card:nth-child(even) {
+      transform: rotate(1deg);
+    }
+    
+    .program-card:hover {
+      transform: rotate(0deg) translateY(-20px);
+    }
+    
+    .program-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .program-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+    }
+    
+    .program-label {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      background: linear-gradient(135deg, var(--secondary), #fbbf24);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      z-index: 1;
+    }
+    
+    .program-content {
+      padding: 2.5rem;
+      background: white;
+      position: relative;
+    }
+    
+    .program-content h4 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .program-features {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    
+    .program-features li {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #64748b;
+    }
+    
+    .program-features i {
+      color: var(--tertiary);
+      font-size: 1.2rem;
+    }
+    
+    .program-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .program-link:hover {
+      gap: 1rem;
+    }
+    
+    /* Admissions Banner - Curved Design */
+    .admissions-banner {
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .banner-content {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 30px;
+      padding: 5rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(30, 64, 175, 0.3);
+    }
+    
+    .banner-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
+      animation: rotate 40s infinite linear;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .banner-content h3 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .banner-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      position: relative;
+    }
+    
+    .banner-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      color: var(--primary);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .banner-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Footer - Geometric Design */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo .logo-icon {
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+    }
+    
+    .footer-column h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+      border-radius: 3px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--secondary);
+      transform: translateY(-5px) rotate(5deg);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .hero-title {
+        font-size: 3.5rem;
+      }
+      
+      .banner-content h3 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        top: 1rem;
+        width: 95%;
+        padding: 1rem;
+      }
+      
+      nav {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+      
+      nav.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .hero {
+        padding-top: 6rem;
+      }
+      
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero-stats {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+      
+      .banner-content {
+        padding: 3rem 2rem;
+      }
+      
+      .banner-content h3 {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .inquiry-card {
+        padding: 2rem;
+      }
+      
+      .value-card,
+      .program-card {
+        padding: 2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <div class="header-container">
-                <a href="#" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>Faith Junior Academy</h1>
-                        <p>Excellence in Education</p>
-                    </div>
-                </a>
-                
-                <!-- Desktop Navigation -->
-                <nav class="desktop-nav">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#programs" class="nav-link">Programs</a>
-                    <a href="#facilities" class="nav-link">Facilities</a>
-                    <a href="#admissions" class="nav-link">Admissions</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <a href="#inquiry" class="btn btn-secondary">
-                        <i class="fas fa-user-graduate"></i>
-                        Apply Now
-                    </a>
-                </nav>
-                
-                <!-- Mobile Menu Button -->
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+  <!-- Background Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  
+  <!-- Header -->
+  <header id="header">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="logo-text">
+        <h1>FAITH Junior Academy</h1>
+        <p>EDUCATION REDEFINED</p>
+      </div>
+    </a>
+    
+    <nav id="nav">
+      <a href="#home" class="nav-item">Home</a>
+      <a href="#values" class="nav-item">Values</a>
+      <a href="#programs" class="nav-item">Programs</a>
+      <a href="#admissions" class="nav-item">Admissions</a>
+      <a href="#contact" class="nav-item">Contact</a>
+      <a href="#inquiry" class="nav-cta">
+        <i class="fas fa-paper-plane"></i>
+        Apply Now
+      </a>
+    </nav>
+    
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
 
-    <!-- Mobile Navigation Overlay -->
-    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="logo-text">
-                    <h1 style="font-size: 1.2rem;">Faith Junior</h1>
-                </div>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <i class="fas fa-star"></i> EXCELLENCE IN EDUCATION
+          </div>
+          
+          <h1 class="hero-title">
+            Where <span>Curiosity</span> Meets<br>
+            <span>Creativity</span> & Character
+          </h1>
+          
+          <p class="hero-subtitle">
+            We're redefining education through innovative learning, strong values, and a commitment to nurturing each child's unique potential in a dynamic, future-focused environment.
+          </p>
+          
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-number">98%</div>
+              <div class="stat-label">Student Success</div>
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuClose">
-                <i class="fas fa-times"></i>
-            </button>
+            <div class="stat">
+              <div class="stat-number">15:1</div>
+              <div class="stat-label">Student-Teacher Ratio</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">100+</div>
+              <div class="stat-label">Enrichment Programs</div>
+            </div>
+          </div>
         </div>
         
-        <div class="mobile-nav-links">
-            <a href="#home" class="mobile-nav-link">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="#about" class="mobile-nav-link">
-                <i class="fas fa-info-circle"></i>
-                <span>About Us</span>
-            </a>
-            <a href="#programs" class="mobile-nav-link">
-                <i class="fas fa-book-open"></i>
-                <span>Programs</span>
-            </a>
-            <a href="#facilities" class="mobile-nav-link">
-                <i class="fas fa-building"></i>
-                <span>Facilities</span>
-            </a>
-            <a href="#admissions" class="mobile-nav-link">
-                <i class="fas fa-user-graduate"></i>
-                <span>Admissions</span>
-            </a>
-            <a href="#contact" class="mobile-nav-link">
-                <i class="fas fa-phone"></i>
-                <span>Contact</span>
-            </a>
-            <a href="#inquiry" class="btn" style="margin-top: 1rem;">
-                <i class="fas fa-paper-plane"></i>
-                Apply Now
-            </a>
+        <div class="inquiry-card" id="inquiry">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Start Your Journey</h3>
+          </div>
+          
+          <div class="form-group">
+            <input type="text" id="parentName" placeholder=" " required>
+            <label for="parentName">Parent / Guardian Name</label>
+          </div>
+          
+          <div class="form-group">
+            <input type="tel" id="phone" placeholder=" " required>
+            <label for="phone">Phone Number</label>
+          </div>
+          
+          <div class="form-group">
+            <select id="grade" required>
+              <option value="" selected disabled> </option>
+              <option value="playgroup">Playgroup (Age 2-3)</option>
+              <option value="pp1">PP1 (Age 3-4)</option>
+              <option value="pp2">PP2 (Age 4-5)</option>
+              <option value="grade1">Grade 1+ (Age 6+)</option>
+            </select>
+            <label for="grade">Child's Grade Level</label>
+          </div>
+          
+          <button class="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            Submit Application
+          </button>
         </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Shaping Future <span>Leaders</span></h1>
-                    <p class="hero-subtitle">At Faith Junior Academy, we provide a holistic education that combines academic excellence with character development, preparing students for success in the 21st century.</p>
-                    
-                    <div class="hero-buttons">
-                        <a href="#inquiry" class="btn">
-                            <i class="fas fa-calendar-alt"></i>
-                            Schedule a Visit
-                        </a>
-                        <a href="#programs" class="btn btn-outline">
-                            <i class="fas fa-graduation-cap"></i>
-                            View Programs
-                        </a>
-                    </div>
-                    
-                    <div class="hero-features">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <div>
-                                <h4>Academic Excellence</h4>
-                                <p>Proven track record of outstanding results</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div>
-                                <h4>Qualified Teachers</h4>
-                                <p>Certified and experienced educators</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="inquiry-card" id="inquiry">
-                    <div class="inquiry-header">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>Admission Inquiry</h3>
-                    </div>
-                    
-                    <form id="admissionForm">
-                        <div class="form-group">
-                            <label for="parentName">Parent/Guardian Name</label>
-                            <input type="text" id="parentName" class="form-control" placeholder="Enter full name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="Enter phone number" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="grade">Grade Level</label>
-                            <select id="grade" class="form-control" required>
-                                <option value="">Select Grade</option>
-                                <option value="pp1">PP1 (Pre-Primary 1)</option>
-                                <option value="pp2">PP2 (Pre-Primary 2)</option>
-                                <option value="grade1">Grade 1</option>
-                                <option value="grade2">Grade 2</option>
-                                <option value="grade3">Grade 3</option>
-                                <option value="grade4">Grade 4</option>
-                                <option value="grade5">Grade 5</option>
-                                <option value="grade6">Grade 6</option>
-                            </select>
-                        </div>
-                        
-                        <button type="submit" class="btn" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i>
-                            Submit Application
-                        </button>
-                    </form>
-                </div>
-            </div>
+  <!-- Values Section -->
+  <section class="values-section" id="values">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Core Values</h2>
+        <p>The foundation of everything we do at FAITH Junior Academy</p>
+      </div>
+      
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4>Compassion First</h4>
+          <p>We cultivate empathy and kindness as the foundation for all learning and interaction, creating a supportive community where every child feels valued.</p>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Why Choose Faith Junior</h2>
-                <p>Discover what sets us apart in providing quality education</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon-large">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h4>Quality Education</h4>
-                    <p>Comprehensive curriculum designed to meet international standards while maintaining local relevance.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon-large">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h4>Holistic Development</h4>
-                    <p>Focus on academic, social, emotional, and physical development of every child.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon-large">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h4>Safe Environment</h4>
-                    <p>Secure campus with modern safety measures and nurturing atmosphere.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programs Section -->
-    <section id="programs" style="background-color: var(--light);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Programs</h2>
-                <p>Comprehensive education from early years to primary level</p>
-            </div>
-            
-            <div class="programs-grid">
-                <div class="program-card">
-                    <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
-                        <div class="program-overlay">
-                            <h3>Early Years</h3>
-                        </div>
-                    </div>
-                    <div class="program-content">
-                        <h4>Pre-Primary (PP1 & PP2)</h4>
-                        <p>Foundation stage focusing on literacy, numeracy, and social skills through play-based learning.</p>
-                        
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Age 3-5 years</li>
-                            <li><i class="fas fa-check"></i> Play-based curriculum</li>
-                            <li><i class="fas fa-check"></i> Social development</li>
-                            <li><i class="fas fa-check"></i> Basic literacy & numeracy</li>
-                        </ul>
-                        
-                        <a href="#inquiry" class="btn btn-outline">
-                            Learn More
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="program-card">
-                    <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
-                        <div class="program-overlay">
-                            <h3>Lower Primary</h3>
-                        </div>
-                    </div>
-                    <div class="program-content">
-                        <h4>Grades 1-3</h4>
-                        <p>Building strong foundation in core subjects with emphasis on reading, writing, and mathematics.</p>
-                        
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Core subject mastery</li>
-                            <li><i class="fas fa-check"></i> Language development</li>
-                            <li><i class="fas fa-check"></i> Creative arts</li>
-                            <li><i class="fas fa-check"></i> Physical education</li>
-                        </ul>
-                        
-                        <a href="#inquiry" class="btn btn-outline">
-                            Learn More
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="program-card">
-                    <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
-                        <div class="program-overlay">
-                            <h3>Upper Primary</h3>
-                        </div>
-                    </div>
-                    <div class="program-content">
-                        <h4>Grades 4-6</h4>
-                        <p>Advanced curriculum with focus on critical thinking, problem-solving, and preparation for secondary education.</p>
-                        
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Advanced mathematics</li>
-                            <li><i class="fas fa-check"></i> Science & technology</li>
-                            <li><i class="fas fa-check"></i> Social studies</li>
-                            <li><i class="fas fa-check"></i> Exam preparation</li>
-                        </ul>
-                        
-                        <a href="#inquiry" class="btn btn-outline">
-                            Learn More
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Facilities Section -->
-    <section class="facilities" id="facilities">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Facilities</h2>
-                <p>Modern learning environment designed for optimal education</p>
-            </div>
-            
-            <div class="facilities-grid">
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h4>Science Lab</h4>
-                    <p>Well-equipped laboratory for hands-on experiments and STEM education.</p>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h4>Computer Lab</h4>
-                    <p>Modern computer lab with internet access for digital literacy training.</p>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h4>Library</h4>
-                    <p>Comprehensive library with extensive collection of educational resources.</p>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
-                    <h4>Sports Field</h4>
-                    <p>Spacious playground and sports facilities for physical development.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Admissions Banner -->
-    <section class="admissions-banner" id="admissions">
-        <div class="container">
-            <h3>2024 Admissions Now Open</h3>
-            <p>Limited spaces available for all grade levels. Secure your child's place in our next academic year.</p>
-            
-            <div class="admissions-actions">
-                <a href="#inquiry" class="btn" style="background-color: var(--secondary); color: var(--dark); margin-right: 1rem;">
-                    <i class="fas fa-file-signature"></i>
-                    Apply Now
-                </a>
-                <a href="#contact" class="btn btn-outline" style="border-color: white; color: white;">
-                    <i class="fas fa-calendar"></i>
-                    Schedule Tour
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <div class="logo" style="margin-bottom: 1.5rem;">
-                        <div class="logo-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="logo-text">
-                            <h1 style="color: white; font-size: 1.2rem;">Faith Junior Academy</h1>
-                            <p style="color: rgba(255, 255, 255, 0.7);">Quality Education Since 2010</p>
-                        </div>
-                    </div>
-                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;">
-                        Providing quality education that develops competent, creative, and responsible learners.
-                    </p>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#programs"><i class="fas fa-chevron-right"></i> Programs</a></li>
-                        <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Facilities</a></li>
-                        <li><a href="#admissions"><i class="fas fa-chevron-right"></i> Admissions</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>Contact Info</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Education Road</a></li>
-                        <li><a href="tel:+254712345678"><i class="fas fa-phone"></i> +254 712 345 678</a></li>
-                        <li><a href="mailto:info@faithjunior.ac.ke"><i class="fas fa-envelope"></i> info@faithjunior.ac.ke</a></li>
-                        <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 7:30 AM - 5:00 PM</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 FAITH Junior Academy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
         
-        // Mobile menu functionality - FIXED
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        const mobileNav = document.getElementById('mobileNav');
-        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h4>Innovative Thinking</h4>
+          <p>We challenge traditional learning methods and encourage creative problem-solving, preparing students for a rapidly changing world.</p>
+        </div>
         
-        function openMobileMenu() {
-            mobileNav.classList.add('active');
-            mobileNavOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h4>Collaborative Spirit</h4>
+          <p>We believe in the power of teamwork and community, teaching students to work together effectively while respecting diverse perspectives.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h4>Integrity Always</h4>
+          <p>Honesty, accountability, and ethical behavior form the bedrock of our educational philosophy and community standards.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <h4>Global Perspective</h4>
+          <p>We connect local learning to global challenges, developing students who understand their role in an interconnected world.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h4>Sustainable Growth</h4>
+          <p>We focus on holistic development that balances academic achievement with emotional, social, and physical wellbeing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="programs-section" id="programs">
+    <div class="container">
+      <div class="section-title">
+        <h2>Innovative Programs</h2>
+        <p>Designed to ignite passion and develop essential 21st century skills</p>
+      </div>
+      
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
+            <div class="program-label">Ages 2-5</div>
+          </div>
+          <div class="program-content">
+            <h4>Discovery Lab</h4>
+            <p>Play-based exploration that builds cognitive, social, and emotional foundations through sensory experiences and creative expression.</p>
+            
+            <ul class="program-features">
+              <li><i class="fas fa-check-circle"></i> Montessori-inspired learning</li>
+              <li><i class="fas fa-check-circle"></i> Language immersion options</li>
+              <li><i class="fas fa-check-circle"></i> Nature-based curriculum</li>
+              <li><i class="fas fa-check-circle"></i> Emotional intelligence focus</li>
+            </ul>
+            
+            <a href="#" class="program-link">
+              Explore Program
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="program-card">
+          <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1601582589917-7e4cbe6f1c99?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
+            <div class="program-label">Grades 1-6</div>
+          </div>
+          <div class="program-content">
+            <h4>Innovators Academy</h4>
+            <p>Project-based learning that connects traditional subjects with real-world challenges, developing critical thinking and collaboration.</p>
+            
+            <ul class="program-features">
+              <li><i class="fas fa-check-circle"></i> STEM integration across subjects</li>
+              <li><i class="fas fa-check-circle"></i> Entrepreneurship projects</li>
+              <li><i class="fas fa-check-circle"></i> Digital literacy & coding</li>
+              <li><i class="fas fa-check-circle"></i> Community service learning</li>
+            </ul>
+            
+            <a href="#" class="program-link">
+              Explore Program
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="program-card">
+          <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1596495577886-d920f1fb7238?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
+            <div class="program-label">All Ages</div>
+          </div>
+          <div class="program-content">
+            <h4>Creative Studios</h4>
+            <p>Specialized programs in arts, technology, and athletics that allow students to discover and develop their unique talents.</p>
+            
+            <ul class="program-features">
+              <li><i class="fas fa-check-circle"></i> Digital media & design</li>
+              <li><i class="fas fa-check-circle"></i> Robotics & engineering</li>
+              <li><i class="fas fa-check-circle"></i> Performing arts theater</li>
+              <li><i class="fas fa-check-circle"></i> Competitive athletics</li>
+            </ul>
+            
+            <a href="#" class="program-link">
+              Explore Program
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admissions Banner -->
+  <section class="admissions-banner" id="admissions">
+    <div class="container">
+      <div class="banner-content">
+        <h3>Limited Spots Available</h3>
+        <p>Join our community of innovative learners and forward-thinking educators. Applications for the 2024 academic year are now being accepted.</p>
+        <a href="#inquiry" class="banner-btn">
+          <i class="fas fa-calendar-check"></i>
+          Schedule a Personalized Tour
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 style="color: white; margin-top: 1rem;">FAITH Junior Academy</h1>
+          </div>
+          <p style="color: rgba(255,255,255,0.8); margin-top: 1.5rem;">
+            Redefining education through innovation, compassion, and excellence since 2015.
+          </p>
+          
+          <div class="social-grid">
+            <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#values"><i class="fas fa-chevron-right"></i> Our Values</a></li>
+            <li><a href="#programs"><i class="fas fa-chevron-right"></i> Programs</a></li>
+            <li><a href="#admissions"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Programs</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Discovery Lab (Ages 2-5)</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Innovators Academy (Grades 1-6)</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Creative Studios</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Summer Programs</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> After-School Enrichment</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive</a></li>
+            <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a></li>
+            <li><a href="mailto:admissions@faithjunior.edu"><i class="fas fa-envelope"></i> admissions@faithjunior.edu</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2024 FAITH Junior Academy. All rights reserved. | Education Reimagined</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const nav = document.getElementById('nav');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      nav.classList.toggle('active');
+      mobileMenuBtn.innerHTML = nav.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Form submission
+    document.querySelector('.submit-btn').addEventListener('click', function() {
+      const name = document.getElementById('parentName').value;
+      const phone = document.getElementById('phone').value;
+      const grade = document.getElementById('grade').value;
+      
+      if (name && phone && grade) {
+        // Create a floating success message
+        const successMsg = document.createElement('div');
+        successMsg.innerHTML = `
+          <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideIn 0.5s ease;
+            max-width: 400px;
+          ">
+            <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+            <div>
+              <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Application Submitted!</h4>
+              <p style="opacity: 0.9; font-size: 0.9rem;">Thank you ${name}! We'll contact you within 24 hours.</p>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(successMsg);
+        
+        // Reset form
+        document.getElementById('parentName').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('grade').selectedIndex = 0;
+        
+        // Remove success message after 5 seconds
+        setTimeout(() => {
+          successMsg.style.animation = 'slideOut 0.5s ease';
+          setTimeout(() => {
+            successMsg.remove();
+          }, 500);
+        }, 5000);
+      } else {
+        alert('Please fill in all fields before submitting.');
+      }
+    });
+    
+    // Add CSS for success message animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (this.getAttribute('href') === '#') return;
+        
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
         }
-        
-        function closeMobileMenu() {
-            mobileNav.classList.remove('active');
-            mobileNavOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
+      });
+    });
+    
+    // Rotating program cards on scroll
+    const programCards = document.querySelectorAll('.program-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'rotate(0deg) translateY(0)';
         }
-        
-        mobileMenuBtn.addEventListener('click', openMobileMenu);
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
-        mobileNavOverlay.addEventListener('click', closeMobileMenu);
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-        
-        // Form submission
-        document.getElementById('admissionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('parentName').value;
-            const phone = document.getElementById('phone').value;
-            const grade = document.getElementById('grade').value;
-            
-            if (name && phone && grade) {
-                // Show success message
-                alert(`Thank you ${name}! Your application for ${grade} has been received. We will contact you at ${phone} within 24 hours.`);
-                
-                // Reset form
-                document.getElementById('admissionForm').reset();
-            } else {
-                alert('Please fill in all required fields.');
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Close mobile menu if open
-                    closeMobileMenu();
-                    
-                    // Scroll to target
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+      });
+    }, {
+      threshold: 0.2
+    });
+    
+    programCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      observer.observe(card);
+    });
+  </script>
 </body>
 </html>
