@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & FAQs | FAITH Junior Academy - CBC Education</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Leaflet CSS for Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --secondary: #f59e0b;
+      --tertiary: #10b981;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --accent: #8b5cf6;
+      --cbc-blue: #2563eb;
+      --cbc-green: #059669;
+      --cbc-orange: #ea580c;
+      --cbc-purple: #7c3aed;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Abstract Background Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--primary);
+      top: -300px;
+      right: -200px;
+      animation: float 40s infinite ease-in-out;
+    }
+    
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      bottom: -200px;
+      left: -150px;
+      animation: float 35s infinite ease-in-out reverse;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--tertiary);
+      top: 40%;
+      right: 20%;
+      animation: float 30s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(20px) rotate(240deg); }
+    }
+    
+    /* Header - Breaking Traditional Layout */
+    header {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 40px rgba(30, 64, 175, 0.15);
+      border: 2px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    header.scrolled {
+      top: 1rem;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      z-index: 1001;
+    }
+    
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transform: rotate(-5deg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+    
+    .logo-text h1 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.2rem;
+    }
+    
+    .logo-text p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--dark);
+      opacity: 0.7;
+    }
+    
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    
+    .nav-item {
+      position: relative;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      border-radius: 3px;
+    }
+    
+    .nav-item:hover {
+      color: var(--primary);
+    }
+    
+    .nav-item:hover::before {
+      width: 100%;
+    }
+    
+    .nav-cta {
+      background: linear-gradient(135deg, var(--cbc-green), var(--cbc-blue));
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.4);
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0.5rem;
+    }
+    
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100vh;
+      background: white;
+      z-index: 1000;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    
+    .mobile-nav.active {
+      right: 0;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .mobile-nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 2px solid transparent;
+    }
+    
+    .mobile-nav-link:hover {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(139, 92, 246, 0.05));
+      border-color: rgba(30, 64, 175, 0.1);
+      transform: translateX(-5px);
+    }
+    
+    .mobile-nav-link i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      width: 24px;
+    }
+    
+    .mobile-nav-cta {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--cbc-green), var(--cbc-blue));
+      color: white;
+      padding: 1.2rem 2rem;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(5, 150, 105, 0.3);
+    }
+    
+    .mobile-nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(5, 150, 105, 0.4);
+    }
+    
+    /* Page Header */
+    .page-header {
+      min-height: 50vh;
+      padding: 10rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+    }
+    
+    .page-header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    
+    .contact-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--cbc-orange), #fb923c);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      animation: bounce 2s infinite;
+      box-shadow: 0 5px 15px rgba(234, 88, 12, 0.3);
+      position: relative;
+    }
+    
+    .contact-badge::after {
+      content: 'WE\'RE HERE FOR YOU';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--cbc-green);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .page-title {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .page-title span {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .page-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+      z-index: -1;
+      border-radius: 10px;
+    }
+    
+    .page-subtitle {
+      font-size: 1.3rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+    
+    /* Contact Grid Section */
+    .contact-grid-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 6px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+      border-radius: 3px;
+    }
+    
+    .section-title p {
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 6rem;
+    }
+    
+    /* Contact Information Cards */
+    .contact-info-card {
+      background: white;
+      border-radius: 25px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(37, 99, 235, 0.1);
+      height: fit-content;
+    }
+    
+    .contact-info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--cbc-blue), var(--cbc-green));
+    }
+    
+    .contact-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .contact-card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transform: rotate(-5deg);
+    }
+    
+    .contact-card-header h3 {
+      font-size: 2rem;
+      color: var(--dark);
+    }
+    
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .contact-item:hover {
+      background: rgba(37, 99, 235, 0.05);
+      border-color: rgba(37, 99, 235, 0.1);
+      transform: translateY(-5px);
+    }
+    
+    .contact-item-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-item-content h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .contact-item-content p {
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+    
+    .contact-item-content a {
+      color: var(--cbc-blue);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item-content a:hover {
+      color: var(--cbc-purple);
+      text-decoration: underline;
+    }
+    
+    .opening-hours {
+      margin-top: 1rem;
+      padding: 1.5rem;
+      background: rgba(245, 158, 11, 0.05);
+      border-radius: 15px;
+      border-left: 4px solid var(--cbc-orange);
+    }
+    
+    .opening-hours h5 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .opening-hours ul {
+      list-style: none;
+    }
+    
+    .opening-hours li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      color: #64748b;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+    }
+    
+    .opening-hours li:last-child {
+      border-bottom: none;
+    }
+    
+    /* Contact Form */
+    .contact-form-container {
+      background: white;
+      border-radius: 25px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .contact-form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--cbc-green), var(--cbc-orange));
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .form-header h3 {
+      font-size: 2.2rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    
+    .form-header p {
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .form-label i {
+      color: var(--cbc-blue);
+    }
+    
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--cbc-blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+    }
+    
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* Interactive FAQ Section */
+    .faq-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+    
+    .faq-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* FAQ Tabs */
+    .faq-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    }
+    
+    .faq-tab {
+      padding: 1.2rem 2.5rem;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex: 1;
+      min-width: 200px;
+      justify-content: center;
+    }
+    
+    .faq-tab:hover {
+      border-color: var(--cbc-blue);
+      color: var(--cbc-blue);
+    }
+    
+    .faq-tab.active {
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-purple));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+    
+    /* FAQ Content */
+    .faq-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .faq-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .faq-item {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      border-color: var(--cbc-blue);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+    }
+    
+    .faq-question {
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: white;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    
+    .faq-question h4 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .faq-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    
+    .faq-toggle {
+      width: 40px;
+      height: 40px;
+      background: rgba(37, 99, 235, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cbc-blue);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+      background: var(--cbc-blue);
+      color: white;
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: white;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 1000px;
+    }
+    
+    .faq-answer-content {
+      padding: 2rem;
+      padding-top: 0;
+    }
+    
+    .faq-answer-content p {
+      color: #64748b;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .faq-answer-content ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    
+    .faq-answer-content li {
+      color: #64748b;
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .faq-answer-content li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--cbc-green);
+      font-size: 1.5rem;
+    }
+    
+    .faq-note {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(245, 158, 11, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid var(--cbc-orange);
+    }
+    
+    .faq-note p {
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 0;
+    }
+    
+    /* Location Map Section */
+    .location-section {
+      padding: 6rem 0;
+      background: white;
+      position: relative;
+    }
+    
+    .location-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .location-info {
+      background: white;
+      border-radius: 25px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .location-info::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--cbc-orange), var(--cbc-purple));
+    }
+    
+    .location-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .location-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--cbc-orange), #fb923c);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      transform: rotate(-5deg);
+    }
+    
+    .location-header h3 {
+      font-size: 2.2rem;
+      color: var(--dark);
+    }
+    
+    .location-details p {
+      color: #64748b;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+    
+    .location-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .location-feature {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(37, 99, 235, 0.05);
+      border-radius: 12px;
+    }
+    
+    .location-feature i {
+      color: var(--cbc-blue);
+      font-size: 1.3rem;
+      width: 24px;
+    }
+    
+    .location-feature span {
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .directions-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(135deg, var(--cbc-green), var(--cbc-blue));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+    }
+    
+    .directions-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(5, 150, 105, 0.4);
+    }
+    
+    /* Map Container */
+    .map-container {
+      height: 500px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      border: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Social Links Section */
+    .social-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, var(--cbc-blue), var(--cbc-green));
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .social-container h3 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .social-container p {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .social-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .social-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-10px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .social-icon {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cbc-blue);
+      font-size: 2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-card:hover .social-icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    .social-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .social-card p {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 0;
+    }
+    
+    .social-card a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-card a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+    
+    .social-cta {
+      margin-top: 3rem;
+    }
+    
+    .social-cta p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .social-link {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: white;
+      color: var(--cbc-blue);
+      transform: translateY(-5px) rotate(5deg);
+    }
+    
+    /* Success Message */
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--cbc-green), #34d399);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 400px;
+      transform: translateX(120%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .success-message.show {
+      transform: translateX(0);
+    }
+    
+    .success-message i {
+      font-size: 1.5rem;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo .logo-icon {
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+    }
+    
+    .footer-column h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+      border-radius: 3px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .page-title {
+        font-size: 3.5rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.8rem;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .location-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .faq-tab {
+        min-width: 150px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        top: 1rem;
+        width: 95%;
+        padding: 1rem;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .page-header {
+        padding-top: 8rem;
+        min-height: 40vh;
+      }
+      
+      .page-title {
+        font-size: 2.8rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info-card,
+      .contact-form-container,
+      .location-info {
+        padding: 2rem;
+      }
+      
+      .faq-tabs {
+        flex-direction: column;
+      }
+      
+      .faq-tab {
+        min-width: 100%;
+      }
+      
+      .location-features {
+        grid-template-columns: 1fr;
+      }
+      
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .shape-1,
+      .shape-2,
+      .shape-3 {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .page-title {
+        font-size: 2.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .mobile-nav {
+        width: 280px;
+      }
+      
+      .contact-card-header h3,
+      .location-header h3 {
+        font-size: 1.8rem;
+      }
+      
+      .contact-card-icon,
+      .location-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+      
+      .social-container h3 {
+        font-size: 2.2rem;
+      }
+      
+      .contact-item {
+        padding: 1rem;
+      }
+      
+      .faq-question {
+        padding: 1.5rem;
+      }
+      
+      .faq-question h4 {
+        font-size: 1.1rem;
+      }
+      
+      .map-container {
+        height: 350px;
+      }
+    }
+    
+    /* Prevent horizontal scrolling */
+    body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  
+  <!-- Success Message -->
+  <div class="success-message" id="successMessage">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Message Sent!</h4>
+      <p style="opacity: 0.9; font-size: 0.9rem;">We'll respond within 24 hours.</p>
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header id="header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="logo-text">
+        <h1>FAITH Junior Academy</h1>
+        <p>EDUCATION REDEFINED</p>
+      </div>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="programs.html" class="nav-item">Programs</a>
+      <a href="admission.html" class="nav-item">Admissions</a>
+      <a href="contact.html" class="nav-item">Contact</a>
+      <a href="admission.html" class="nav-cta">
+        <i class="fas fa-paper-plane"></i>
+        Apply Now
+      </a>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+  
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="about.html" class="mobile-nav-link">
+        <i class="fas fa-info-circle"></i>
+        <span>About Us</span>
+      </a>
+      <a href="program.html" class="mobile-nav-link">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Programs</span>
+      </a>
+      <a href="admission.html" class="mobile-nav-link">
+        <i class="fas fa-door-open"></i>
+        <span>Admissions</span>
+      </a>
+      <a href="admission.html" class="mobile-nav-link">
+        <i class="fas fa-list-ol"></i>
+        <span>Admission Process</span>
+      </a>
+      <a href="contact.html" class="mobile-nav-link">
+        <i class="fas fa-address-book"></i>
+        <span>Contact Us</span>
+      </a>
+      <a href="#faq" class="mobile-nav-link">
+        <i class="fas fa-question-circle"></i>
+        <span>FAQs</span>
+      </a>
+    </div>
+    
+    <a href="admissions.html" class="mobile-nav-cta">
+      <i class="fas fa-paper-plane"></i>
+      Apply Now
+    </a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div class="contact-badge">
+          <i class="fas fa-comments"></i> GET IN TOUCH
+        </div>
+        
+        <h1 class="page-title">
+          We're Here to <span>Help & Support</span> You
+        </h1>
+        
+        <p class="page-subtitle">
+          Have questions about our CBC programs, admissions process, or anything else? Our team is ready to assist you with personalized guidance and support.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Grid Section -->
+  <section class="contact-grid-section" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Information</h2>
+        <p>Multiple ways to reach our admissions and support team</p>
+      </div>
+      
+      <div class="contact-grid">
+        <!-- Contact Information Card -->
+        <div class="contact-info-card">
+          <div class="contact-card-header">
+            <div class="contact-card-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3>Get in Touch</h3>
+          </div>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Our Campus</h4>
+                <p>123 Innovation Drive, Westlands<br>Nairobi, Kenya</p>
+                <a href="#location">View on map →</a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Call Us</h4>
+                <p>Admissions: <a href="tel:+254712345678">+254 712 345 678</a><br>
+                   Main Office: <a href="tel:+254733987654">+254 733 987 654</a></p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Email Us</h4>
+                <p>Admissions: <a href="mailto:admissions@faithjunior.ac.ke">admissions@faithjunior.ac.ke</a><br>
+                   General: <a href="mailto:info@faithjunior.ac.ke">info@faithjunior.ac.ke</a></p>
+              </div>
+            </div>
+            
+            <div class="opening-hours">
+              <h5><i class="fas fa-clock"></i> Office Hours</h5>
+              <ul>
+                <li><span>Monday - Friday</span> <span>8:00 AM - 5:00 PM</span></li>
+                <li><span>Saturday</span> <span>9:00 AM - 1:00 PM</span></li>
+                <li><span>Sunday</span> <span>Closed</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-container">
+          <div class="form-header">
+            <h3>Send us a Message</h3>
+            <p>Fill out the form below and we'll get back to you promptly</p>
+          </div>
+          
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fullName">
+                  <i class="fas fa-user"></i> Full Name
+                </label>
+                <input type="text" id="fullName" class="form-input" placeholder="Your full name" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">
+                  <i class="fas fa-envelope"></i> Email Address
+                </label>
+                <input type="email" id="contactEmail" class="form-input" placeholder="Your email address" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="phoneNumber">
+                  <i class="fas fa-phone"></i> Phone Number
+                </label>
+                <input type="tel" id="phoneNumber" class="form-input" placeholder="0712 345 678" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="inquiryType">
+                  <i class="fas fa-question-circle"></i> Inquiry Type
+                </label>
+                <select id="inquiryType" class="form-select" required>
+                  <option value="">Select inquiry type</option>
+                  <option value="admissions">Admissions & Enrollment</option>
+                  <option value="programs">CBC Programs</option>
+                  <option value="fees">Fees & Payment</option>
+                  <option value="tour">Campus Tour Request</option>
+                  <option value="general">General Information</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="childGrade">
+                <i class="fas fa-child"></i> Child's Grade (if applicable)
+              </label>
+              <select id="childGrade" class="form-select">
+                <option value="">Select grade (optional)</option>
+                <option value="pp1">Pre-Primary 1 (Age 4)</option>
+                <option value="pp2">Pre-Primary 2 (Age 5)</option>
+                <option value="grade1">Grade 1 (Age 6)</option>
+                <option value="grade2">Grade 2 (Age 7)</option>
+                <option value="grade3">Grade 3 (Age 8)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="message">
+                <i class="fas fa-comment-dots"></i> Your Message
+              </label>
+              <textarea id="message" class="form-textarea" placeholder="Please provide details about your inquiry..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+              <div class="form-check" style="display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem;">
+                <input type="checkbox" id="newsletterOptIn" checked>
+                <label for="newsletterOptIn" style="color: #64748b; font-size: 0.9rem;">
+                  I would like to receive updates about school events, CBC workshops, and educational resources.
+                </label>
+              </div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitContact">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about our school and CBC programs</p>
+      </div>
+      
+      <div class="faq-container">
+        <!-- FAQ Tabs -->
+        <div class="faq-tabs">
+          <div class="faq-tab active" data-faq="general">
+            <i class="fas fa-question-circle"></i>
+            General FAQs
+          </div>
+          <div class="faq-tab" data-faq="admissions">
+            <i class="fas fa-door-open"></i>
+            Admissions
+          </div>
+          <div class="faq-tab" data-faq="cbc">
+            <i class="fas fa-graduation-cap"></i>
+            CBC Programs
+          </div>
+          <div class="faq-tab" data-faq="fees">
+            <i class="fas fa-money-bill-wave"></i>
+            Fees & Payment
+          </div>
+          <div class="faq-tab" data-faq="school">
+            <i class="fas fa-school"></i>
+            School Life
+          </div>
+        </div>
+        
+        <!-- General FAQs Content -->
+        <div class="faq-content active" id="general-content">
+          <div class="faq-grid">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">1</span> What is FAITH Junior Academy's educational philosophy?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>FAITH Junior Academy is built on the philosophy of holistic education that nurtures every child's unique potential. We focus on:</p>
+                  <ul>
+                    <li>Developing all 7 CBC core competencies alongside academic excellence</li>
+                    <li>Creating a nurturing environment that fosters curiosity and creativity</li>
+                    <li>Building strong character and values alongside academic skills</li>
+                    <li>Partnering with parents to ensure consistent support for each child</li>
+                    <li>Preparing learners for future challenges through innovative teaching methods</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">2</span> What makes FAITH Junior Academy different from other schools?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Our unique approach combines several key elements:</p>
+                  <ul>
+                    <li><strong>Authentic CBC Implementation:</strong> We go beyond the basic curriculum to truly develop all competencies through project-based learning</li>
+                    <li><strong>Innovative Learning Spaces:</strong> Purpose-built classrooms and facilities designed for 21st century learning</li>
+                    <li><strong>Technology Integration:</strong> Strategic use of educational technology to enhance learning without replacing human interaction</li>
+                    <li><strong>Parent Partnership Program:</strong> Regular workshops and communication to keep parents actively involved</li>
+                    <li><strong>Individualized Attention:</strong> Small class sizes with a maximum of 20 students per class</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">3</span> What are your school hours and calendar?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Our school operates on a term system following the Kenyan academic calendar:</p>
+                  <ul>
+                    <li><strong>School Hours:</strong> 8:00 AM to 3:30 PM (Monday to Friday)</li>
+                    <li><strong>Extended Care:</strong> Available until 5:30 PM for working parents</li>
+                    <li><strong>Academic Year:</strong> Three terms (January-April, May-August, September-December)</li>
+                    <li><strong>Holidays:</strong> We observe all national holidays and have mid-term breaks</li>
+                  </ul>
+                  <div class="faq-note">
+                    <p><strong>Note:</strong> Detailed academic calendars are provided to parents at the beginning of each term.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">4</span> Do you provide transportation services?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Yes, we offer safe and reliable transportation services:</p>
+                  <ul>
+                    <li>Modern, well-maintained buses with seat belts</li>
+                    <li>Trained drivers and dedicated bus monitors</li>
+                    <li>Coverage of major routes in Nairobi and surrounding areas</li>
+                    <li>GPS tracking available for parents to monitor bus locations</li>
+                    <li>Flexible transportation options (full-time or part-time)</li>
+                  </ul>
+                  <p>Transportation fees are separate from tuition and vary based on distance. Contact our transportation department for route availability and pricing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Admissions FAQs Content -->
+        <div class="faq-content" id="admissions-content">
+          <div class="faq-grid">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">1</span> What is the admissions process and timeline?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Our admissions process follows 5 clear steps:</p>
+                  <ul>
+                    <li><strong>Step 1 - Initial Inquiry:</strong> Submit inquiry form or call admissions (1-2 days)</li>
+                    <li><strong>Step 2 - Campus Tour & Assessment:</strong> Visit campus, meet teachers, assessment for PP2+ (1 week)</li>
+                    <li><strong>Step 3 - Application Submission:</strong> Complete online application with required documents (2-3 days)</li>
+                    <li><strong>Step 4 - Family Interview:</strong> Meeting with admissions committee (30-45 minutes)</li>
+                    <li><strong>Step 5 - Enrollment:</strong> Complete fee payment and orientation (1-2 weeks)</li>
+                  </ul>
+                  <p>We accept applications year-round but recommend applying early as spaces fill quickly.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">2</span> What documents are required for admission?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Required documents include:</p>
+                  <ul>
+                    <li>Completed application form</li>
+                    <li>Copy of child's birth certificate</li>
+                    <li>Copy of child's immunization card</li>
+                    <li>4 recent passport-sized photographs</li>
+                    <li>Copies of parents' national IDs</li>
+                    <li>Previous school reports (if applicable)</li>
+                    <li>Transfer letter (for Grade 1-3 applicants)</li>
+                  </ul>
+                  <div class="faq-note">
+                    <p><strong>Note:</strong> Additional documents may be required for specific circumstances. Our admissions team will provide a complete checklist.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">3</span> Do you accept mid-year transfers?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Yes, we accept mid-year transfers based on availability:</p>
+                  <ul>
+                    <li>We assess the child's current level and provide necessary bridging support</li>
+                    <li>Transfers from both CBC and 8-4-4 systems are welcome</li>
+                    <li>A placement assessment helps us determine the appropriate class</li>
+                    <li>We offer orientation support to help children adjust to our system</li>
+                  </ul>
+                  <p>Contact our admissions office to check availability and schedule an assessment for your child.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">4</span> Is there an entrance exam or assessment?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>We conduct child-friendly assessments rather than traditional exams:</p>
+                  <ul>
+                    <li><strong>PP1:</strong> No formal assessment - we observe social and emotional readiness</li>
+                    <li><strong>PP2 & Above:</strong> Friendly assessment focusing on cognitive, social, and emotional development</li>
+                    <li><strong>Purpose:</strong> To understand your child's learning style, not to exclude</li>
+                    <li><strong>Format:</strong> Play-based activities, observation, and simple tasks</li>
+                  </ul>
+                  <p>The assessment helps us understand how best to support your child's learning journey with us.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- CBC Programs FAQs Content -->
+        <div class="faq-content" id="cbc-content">
+          <div class="faq-grid">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">1</span> What are the 7 CBC core competencies and how do you develop them?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>The 7 CBC core competencies are:</p>
+                  <ul>
+                    <li><strong>Communication & Collaboration:</strong> Through group projects and presentations</li>
+                    <li><strong>Critical Thinking & Problem Solving:</strong> Via inquiry-based learning challenges</li>
+                    <li><strong>Imagination & Creativity:</strong> Through arts, design, and innovation projects</li>
+                    <li><strong>Citizenship:</strong> Community service and leadership opportunities</li>
+                    <li><strong>Learning to Learn:</strong> Metacognition and self-assessment techniques</li>
+                    <li><strong>Self-efficacy:</strong> Goal-setting and personal achievement tracking</li>
+                    <li><strong>Digital Literacy:</strong> Purposeful technology integration in learning</li>
+                  </ul>
+                  <p>We develop these through project-based learning, real-world applications, and integrated curriculum design.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">2</span> How do you assess students under CBC?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Our assessment approach is continuous and multi-dimensional:</p>
+                  <ul>
+                    <li><strong>Formative Assessment:</strong> Ongoing observation and feedback during learning</li>
+                    <li><strong>Performance Tasks:</strong> Real-world projects demonstrating competency application</li>
+                    <li><strong>Portfolio Assessment:</strong> Collection of student work showing growth over time</li>
+                    <li><strong>Self & Peer Assessment:</strong> Students learn to evaluate their own and peers' work</li>
+                    <li><strong>Parent Conferences:</strong> Regular meetings to discuss holistic development</li>
+                  </ul>
+                  <p>We provide detailed progress reports that go beyond grades to show competency development.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">3</span> What enrichment programs do you offer alongside CBC?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Our enrichment programs complement the CBC curriculum:</p>
+                  <ul>
+                    <li><strong>Sports & Physical Education:</strong> Swimming, gymnastics, soccer, basketball</li>
+                    <li><strong>Creative Arts:</strong> Music, drama, visual arts, dance</li>
+                    <li><strong>STEM Club:</strong> Robotics, coding, science experiments</li>
+                    <li><strong>Language Clubs:</strong> French, Swahili, sign language</li>
+                    <li><strong>Environmental Club:</strong> Gardening, sustainability projects</li>
+                    <li><strong>Leadership Program:</strong> Student council, peer mentoring</li>
+                  </ul>
+                  <p>These programs are included in our fees and scheduled during the school day or as after-school activities.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fees & Payment FAQs Content -->
+        <div class="faq-content" id="fees-content">
+          <div class="faq-grid">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">1</span> What is included in the school fees?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Our comprehensive fees include:</p>
+                  <ul>
+                    <li>All CBC textbooks, workbooks, and learning materials</li>
+                    <li>Specialized CBC assessment tools and portfolio materials</li>
+                    <li>Technology access and educational software licenses</li>
+                    <li>All enrichment programs (sports, arts, clubs)</li>
+                    <li>Basic stationery and art supplies</li>
+                    <li>School events and educational trips</li>
+                    <li>Medical insurance for school accidents</li>
+                    <li>Parent workshops and CBC training sessions</li>
+                  </ul>
+                  <p>Additional costs: Uniforms, transportation, optional after-school care, and specific optional trips.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">2</span> Do you offer scholarships or financial aid?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>Yes, we offer limited scholarships and financial aid:</p>
+                  <ul>
+                    <li><strong>Merit Scholarships:</strong> For exceptional academic or talent-based achievement</li>
+                    <li><strong>Need-Based Aid:</strong> For families demonstrating financial need</li>
+                    <li><strong>Sibling Discount:</strong> 10% discount for second child, 15% for third and subsequent children</li>
+                    <li><strong>Early Payment Discount:</strong> 5% discount for full-year fee payment in advance</li>
+                  </ul>
+                  <div class="faq-note">
+                    <p><strong>Note:</strong> Scholarship applications are reviewed by a committee and awarded based on available funds. Contact our admissions office for application details and deadlines.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">3</span> What payment plans are available?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>We offer flexible payment options:</p>
+                  <ul>
+                    <li><strong>Annual Payment:</strong> Pay full year in advance (5% discount)</li>
+                    <li><strong>Termly Payment:</strong> Pay each term before it begins (standard option)</li>
+                    <li><strong>Monthly Installments:</strong> Spread payments over 10 months (administrative fee applies)</li>
+                    <li><strong>Bank Financing:</strong> Partnership with select banks for education loans</li>
+                  </ul>
+                  <p>All payment plans must be approved by our finance department. Contact us to discuss the best option for your family.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- School Life FAQs Content -->
+        <div class="faq-content" id="school-content">
+          <div class="faq-grid">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">1</span> What is the teacher-to-student ratio?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>We maintain excellent teacher-to-student ratios:</p>
+                  <ul>
+                    <li><strong>Pre-Primary Classes:</strong> 1:10 ratio (1 teacher + 1 assistant for every 20 students)</li>
+                    <li><strong>Grade 1-3 Classes:</strong> 1:15 ratio maximum</li>
+                    <li><strong>Specialist Teachers:</strong> Additional teachers for languages, arts, PE, and technology</li>
+                    <li><strong>Support Staff:</strong> Learning support assistants available for additional help</li>
+                  </ul>
+                  <p>Small class sizes ensure personalized attention and optimal learning conditions for every child.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">2</span> How do you handle discipline and behavior management?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>We use positive discipline approaches aligned with CBC values:</p>
+                  <ul>
+                    <li><strong>Restorative Practices:</strong> Focusing on repairing harm and restoring relationships</li>
+                    <li><strong>Positive Behavior Support:</strong> Recognizing and reinforcing good behavior</li>
+                    <li><strong>Social-Emotional Learning:</strong> Teaching self-regulation and conflict resolution skills</li>
+                    <li><strong>Clear Expectations:</strong> Age-appropriate rules developed with student input</li>
+                    <li><strong>Parent Partnership:</strong> Working together to support consistent behavior expectations</li>
+                  </ul>
+                  <p>Our approach focuses on teaching appropriate behavior rather than punishment.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <div class="faq-question">
+                <h4><span class="faq-icon">3</span> How do you communicate with parents about student progress?</h4>
+                <div class="faq-toggle">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  <p>We maintain open, regular communication through:</p>
+                  <ul>
+                    <li><strong>Parent Portal:</strong> Online access to assignments, grades, and announcements</li>
+                    <li><strong>Weekly Updates:</strong> Email newsletters with class activities and upcoming events</li>
+                    <li><strong>Termly Reports:</strong> Detailed progress reports on academic and competency development</li>
+                    <li><strong>Parent-Teacher Conferences:</strong> Scheduled meetings each term</li>
+                    <li><strong>Open Door Policy:</strong> Parents can schedule meetings with teachers as needed</li>
+                    <li><strong>School Events:</strong> Performances, exhibitions, and open days</li>
+                  </ul>
+                  <p>We believe strong parent-school partnership is essential for student success.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Map Section -->
+  <section class="location-section" id="location">
+    <div class="container">
+      <div class="section-title">
+        <h2>Visit Our Campus</h2>
+        <p>Experience our learning environment firsthand</p>
+      </div>
+      
+      <div class="location-container">
+        <div class="location-grid">
+          <div class="location-info">
+            <div class="location-header">
+              <div class="location-icon">
+                <i class="fas fa-map-marked-alt"></i>
+              </div>
+              <h3>Our Location</h3>
+            </div>
+            
+            <div class="location-details">
+              <p>Our campus is conveniently located in the heart of Nairobi's educational district, offering a safe, stimulating environment for young learners. The facility is purpose-built for CBC implementation with modern classrooms, specialized learning spaces, and extensive outdoor areas.</p>
+              
+              <div class="location-features">
+                <div class="location-feature">
+                  <i class="fas fa-parking"></i>
+                  <span>Ample Parking</span>
+                </div>
+                <div class="location-feature">
+                  <i class="fas fa-tree"></i>
+                  <span>Green Spaces</span>
+                </div>
+                <div class="location-feature">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Secure Campus</span>
+                </div>
+                <div class="location-feature">
+                  <i class="fas fa-wheelchair"></i>
+                  <span>Accessible</span>
+                </div>
+              </div>
+              
+              <a href="https://maps.google.com/?q=123+Innovation+Drive,+Westlands,+Nairobi" target="_blank" class="directions-btn">
+                <i class="fas fa-directions"></i>
+                Get Directions
+              </a>
+            </div>
+          </div>
+          
+          <!-- Map Container -->
+          <div class="map-container">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Links Section -->
+  <section class="social-section">
+    <div class="container">
+      <div class="social-container">
+        <h3>Stay Connected With Us</h3>
+        <p>Follow us on social media for updates, events, and educational insights</p>
+        
+        <div class="social-grid">
+          <div class="social-card">
+            <div class="social-icon" style="color: #E4405F;">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <h4>Instagram</h4>
+            <p>Daily updates from our classrooms and events</p>
+            <a href="#" target="_blank">
+              @faithjunioracademy
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+          
+          <div class="social-card">
+            <div class="social-icon" style="color: #1877F2;">
+              <i class="fab fa-facebook-f"></i>
+            </div>
+            <h4>Facebook</h4>
+            <p>Event announcements and parent community</p>
+            <a href="#" target="_blank">
+              /faithjunioracademy
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+          
+          <div class="social-card">
+            <div class="social-icon" style="color: #25D366;">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <h4>WhatsApp</h4>
+            <p>Quick inquiries and announcements</p>
+            <a href="https://wa.me/254712345678" target="_blank">
+              +254 712 345 678
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+          
+          <div class="social-card">
+            <div class="social-icon" style="color: #FF0000;">
+              <i class="fab fa-youtube"></i>
+            </div>
+            <h4>YouTube</h4>
+            <p>Educational content and school highlights</p>
+            <a href="#" target="_blank">
+              FAITH Junior Academy
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="social-cta">
+          <p>Subscribe to our newsletter for monthly updates on CBC developments and parenting resources</p>
+          
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 style="color: white; margin-top: 1rem;">FAITH Junior Academy</h1>
+          </div>
+          <p style="color: rgba(255,255,255,0.8); margin-top: 1.5rem;">
+            KICD Approved CBC Implementation Center. Admissions Open for 2024/2025.
+          </p>
+          
+          <div class="social-grid" style="grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.5rem;">
+            <a href="#" class="social-icon" style="background: rgba(255, 255, 255, 0.1);">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" style="background: rgba(255, 255, 255, 0.1);">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" style="background: rgba(255, 255, 255, 0.1);">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon" style="background: rgba(255, 255, 255, 0.1);">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Our School</a></li>
+            <li><a href="programs.html"><i class="fas fa-chevron-right"></i> CBC Programs</a></li>
+            <li><a href="admissions.html"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+            <li><a href="admissions.html#requirements"><i class="fas fa-chevron-right"></i> Admission Requirements</a></li>
+            <li><a href="admissions.html#fees"><i class="fas fa-chevron-right"></i> Fee Structure</a></li>
+            <li><a href="admissions.html#dates"><i class="fas fa-chevron-right"></i> Academic Calendar</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> CBC Parent Guide</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, Nairobi</a></li>
+            <li><a href="tel:+254712345678"><i class="fas fa-phone"></i> +254 712 345 678</a></li>
+            <li><a href="tel:+254733987654"><i class="fas fa-phone"></i> +254 733 987 654</a></li>
+            <li><a href="mailto:admissions@faithjunior.ac.ke"><i class="fas fa-envelope"></i> admissions@faithjunior.ac.ke</a></li>
+            <li><a href="mailto:info@faithjunior.ac.ke"><i class="fas fa-envelope"></i> info@faithjunior.ac.ke</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2024 FAITH Junior Academy. All rights reserved. | KICD Approved CBC Implementation Center | Designed with ❤️ for Kenya's Future Leaders</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Leaflet JS for Map -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    
+    function openMobileMenu() {
+      mobileNav.classList.add('active');
+      mobileNavOverlay.classList.add('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.style.overflow = 'auto';
+    }
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      if (mobileNav.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+    
+    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // FAQ Tabs Functionality
+    const faqTabs = document.querySelectorAll('.faq-tab');
+    const faqContents = document.querySelectorAll('.faq-content');
+    
+    faqTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const faqType = this.getAttribute('data-faq');
+        
+        // Update active tab
+        faqTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Show corresponding content
+        faqContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.id === `${faqType}-content`) {
+            content.classList.add('active');
+          }
+        });
+      });
+    });
+    
+    // FAQ Accordion Functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', function() {
+        // Close all other FAQ items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current FAQ item
+        item.classList.toggle('active');
+      });
+    });
+    
+    // Initialize Map
+    function initMap() {
+      // Coordinates for Nairobi, Kenya (approximate location)
+      const nairobiCoords = [-1.286389, 36.817223];
+      
+      // Create map
+      const map = L.map('map').setView(nairobiCoords, 14);
+      
+      // Add OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      
+      // Add custom marker
+      const schoolIcon = L.divIcon({
+        html: '<div style="background: linear-gradient(135deg, #2563eb, #7c3aed); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; border: 3px solid white; box-shadow: 0 0 20px rgba(0,0,0,0.3);"><i class="fas fa-graduation-cap"></i></div>',
+        className: 'custom-div-icon',
+        iconSize: [40, 40],
+        iconAnchor: [20, 40]
+      });
+      
+      // Add marker to map
+      const marker = L.marker(nairobiCoords, { icon: schoolIcon }).addTo(map);
+      
+      // Add popup to marker
+      marker.bindPopup(`
+        <div style="padding: 10px;">
+          <h3 style="margin: 0 0 10px 0; color: #2563eb;">FAITH Junior Academy</h3>
+          <p style="margin: 0 0 5px 0;"><strong>Address:</strong> 123 Innovation Drive, Westlands</p>
+          <p style="margin: 0 0 5px 0;"><strong>City:</strong> Nairobi, Kenya</p>
+          <p style="margin: 0 0 10px 0;"><strong>Phone:</strong> +254 712 345 678</p>
+          <a href="https://maps.google.com/?q=123+Innovation+Drive,+Westlands,+Nairobi" target="_blank" style="background: #2563eb; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; display: inline-block;">Get Directions</a>
+        </div>
+      `).openPopup();
+      
+      // Add circle around marker
+      L.circle(nairobiCoords, {
+        color: '#2563eb',
+        fillColor: '#2563eb',
+        fillOpacity: 0.1,
+        radius: 500
+      }).addTo(map);
+    }
+    
+    // Initialize map when page loads
+    document.addEventListener('DOMContentLoaded', initMap);
+    
+    // Contact Form Submission
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitContact');
+    
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const fullName = document.getElementById('fullName').value;
+      const contactEmail = document.getElementById('contactEmail').value;
+      const phoneNumber = document.getElementById('phoneNumber').value;
+      const inquiryType = document.getElementById('inquiryType').value;
+      
+      if (fullName && contactEmail && phoneNumber && inquiryType) {
+        // Disable submit button
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Message...';
+        
+        // Simulate form processing
+        setTimeout(() => {
+          // Show success message
+          const successMessage = document.getElementById('successMessage');
+          successMessage.querySelector('h4').innerHTML = 'Message Sent Successfully!';
+          successMessage.querySelector('p').innerHTML = `Thank you ${fullName}! Our team will contact you within 24 hours regarding your ${document.querySelector('#inquiryType option:checked').textContent} inquiry.`;
+          
+          successMessage.classList.add('show');
+          
+          // Reset form
+          contactForm.reset();
+          
+          // Re-enable submit button
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+          
+          // Remove success message after 5 seconds
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 5000);
+        }, 2000);
+      } else {
+        alert('Please fill in all required fields before submitting.');
+      }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || targetId.includes('index.html')) return;
+        
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          // Close mobile menu if open
+          if (mobileNav.classList.contains('active')) {
+            closeMobileMenu();
+          }
+          
+          // Scroll to target
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Animate FAQ items on scroll
+    const faqObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    // Apply animation to FAQ items
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px)';
+      item.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      faqObserver.observe(item);
+    });
+    
+    // Apply animation to contact cards
+    const contactCards = document.querySelectorAll('.contact-info-card, .contact-form-container, .location-info');
+    contactCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      faqObserver.observe(card);
+    });
+    
+    // Apply animation to social cards
+    const socialCards = document.querySelectorAll('.social-card');
+    socialCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      faqObserver.observe(card);
+    });
+    
+    // Auto-open first FAQ item in each section
+    setTimeout(() => {
+      document.querySelectorAll('.faq-content.active .faq-item:first-child').forEach(item => {
+        item.classList.add('active');
+      });
+    }, 1000);
+    
+    // Set current year in footer
+    document.addEventListener('DOMContentLoaded', function() {
+      const yearSpan = document.querySelector('.footer-bottom p');
+      if (yearSpan) {
+        yearSpan.innerHTML = yearSpan.innerHTML.replace('2024', new Date().getFullYear());
+      }
+    });
+  </script>
+</body>
+</html>
