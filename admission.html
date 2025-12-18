@@ -207,7 +207,7 @@
       transition: all 0.3s ease;
     }
     
-    .nav-item::before {
+    <!-- .nav-item::before {
       content: '';
       position: absolute;
       bottom: 0;
@@ -217,15 +217,20 @@
       background: linear-gradient(90deg, var(--primary), var(--secondary));
       transition: width 0.3s ease;
       border-radius: 3px;
-    }
+    } -->
     
-    .nav-item:hover {
+    <!-- .nav-item:hover {
       color: var(--primary);
-    }
+    } -->
     
-    .nav-item:hover::before {
+    <!-- .nav-item:hover::before {
       width: 100%;
-    }
+    } -->
+    .nav-item.active {
+        background: var(--accent);
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+}
     
     .nav-cta {
       background: linear-gradient(135deg, var(--cbc-green), var(--cbc-blue));
@@ -2044,7 +2049,8 @@
       <a href="index.html" class="nav-item">Home</a>
       <a href="about.html" class="nav-item">About</a>
       <a href="program.html" class="nav-item">Program</a>
-      <a href="admission.html" class="nav-item">Contact</a>
+      <a href="admission.html" class="nav-item active">Admissions</a>
+      <a href="contact.html" class="nav-item">Contact</a>
       <a href="admission.html" class="nav-cta">
         <i class="fas fa-paper-plane"></i>
         Apply Now
@@ -2075,7 +2081,7 @@
         <i class="fas fa-graduation-cap"></i>
         <span>Programs</span>
       </a>
-      <a href="admissions.html" class="mobile-nav-link">
+      <a href="admission.html" class="mobile-nav-link">
         <i class="fas fa-list-ol"></i>
         <span>Admissions</span>
       </a>

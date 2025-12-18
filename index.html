@@ -4,13 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAITH Junior Academy | Excellence in Education</title>
-  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <style>
     :root {
       --primary: #1e40af;
@@ -20,39 +17,46 @@
       --light: #f8fafc;
       --accent: #8b5cf6;
     }
-
     * { 
       margin: 0; 
       padding: 0; 
       box-sizing: border-box;
     }
-    
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
+      font-size: 16px;
     }
-    
     body { 
       font-family: 'Montserrat', sans-serif;
       color: var(--dark);
       background: #ffffff;
-      line-height: 1.7;
+      line-height: 1.6;
       overflow-x: hidden;
     }
-    
+    /* 🟢 Scroll Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      z-index: 9999;
+      transition: width 0.1s ease;
+      border-radius: 0 2px 2px 0;
+    }
     h1, h2, h3, h4 {
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -0.5px;
     }
-    
     .container {
       width: 100%;
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 2rem;
     }
-    
     /* Abstract Background Shapes */
     .shape {
       position: absolute;
@@ -61,7 +65,6 @@
       z-index: -1;
       pointer-events: none;
     }
-    
     .shape-1 {
       width: 600px;
       height: 600px;
@@ -70,7 +73,6 @@
       right: -200px;
       animation: float 40s infinite ease-in-out;
     }
-    
     .shape-2 {
       width: 400px;
       height: 400px;
@@ -79,7 +81,6 @@
       left: -150px;
       animation: float 35s infinite ease-in-out reverse;
     }
-    
     .shape-3 {
       width: 300px;
       height: 300px;
@@ -88,26 +89,32 @@
       right: 20%;
       animation: float 30s infinite ease-in-out;
     }
-    
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       33% { transform: translateY(-30px) rotate(120deg); }
       66% { transform: translateY(20px) rotate(240deg); }
     }
-    
-    /* Header - Breaking Traditional Layout */
+
+    /* 🔧 Fix: Hide shapes on mobile to prevent overflow */
+    @media (max-width: 768px) {
+      .shape {
+        display: none;
+      }
+    }
+
+    /* Header */
     header {
       position: fixed;
-      top: 2rem;
+      top: 1.25rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
+      width: 94%;
       max-width: 1200px;
       z-index: 1000;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
       border-radius: 20px;
-      padding: 1.2rem 2.5rem;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -115,39 +122,35 @@
       border: 2px solid rgba(30, 64, 175, 0.1);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    
     header.scrolled {
-      top: 1rem;
+      top: 0;
       width: 100%;
       max-width: 100%;
       border-radius: 0;
       border-left: none;
       border-right: none;
     }
-    
     .logo {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.8rem;
       text-decoration: none;
       z-index: 1001;
     }
-    
     .logo-icon {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 18px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       transform: rotate(-5deg);
       position: relative;
       overflow: hidden;
     }
-    
     .logo-icon::after {
       content: '';
       position: absolute;
@@ -155,54 +158,43 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-      );
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
       transform: rotate(45deg);
       animation: shine 3s infinite;
     }
-    
     @keyframes shine {
       0% { left: -50%; }
       100% { left: 150%; }
     }
-    
     .logo-text h1 {
-      font-size: 1.8rem;
+      font-size: clamp(1.3rem, 5vw, 1.8rem);
       background: linear-gradient(135deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 0.2rem;
     }
-    
     .logo-text p {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       font-weight: 600;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       color: var(--dark);
       opacity: 0.7;
     }
-    
     /* Desktop Navigation */
     .desktop-nav {
       display: flex;
-      gap: 2.5rem;
+      gap: 1.8rem;
       align-items: center;
     }
-    
     .nav-item {
       position: relative;
       text-decoration: none;
       color: var(--dark);
       font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.5rem 0;
+      font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+      padding: 0.4rem 0;
       transition: all 0.3s ease;
     }
-    
     .nav-item::before {
       content: '';
       position: absolute;
@@ -214,47 +206,41 @@
       transition: width 0.3s ease;
       border-radius: 3px;
     }
-    
     .nav-item:hover {
       color: var(--primary);
     }
-    
     .nav-item:hover::before {
       width: 100%;
     }
-    
     .nav-cta {
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
-      padding: 0.8rem 1.8rem;
+      padding: 0.7rem 1.5rem;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: clamp(0.75rem, 2.2vw, 0.9rem);
       display: flex;
       align-items: center;
       gap: 0.5rem;
       transition: all 0.3s ease;
       box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
     }
-    
     .nav-cta:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
     }
-    
     /* Mobile Menu Button */
     .mobile-menu-btn {
       display: none;
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--primary);
       cursor: pointer;
       z-index: 1001;
-      padding: 0.5rem;
+      padding: 0.4rem;
     }
-    
     /* Mobile Navigation Overlay */
     .mobile-nav-overlay {
       position: fixed;
@@ -269,68 +255,60 @@
       visibility: hidden;
       transition: all 0.3s ease;
     }
-    
     .mobile-nav-overlay.active {
       opacity: 1;
       visibility: visible;
     }
-    
     /* Mobile Navigation */
     .mobile-nav {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 320px;
+      width: 300px;
       height: 100vh;
       background: white;
       z-index: 1000;
-      padding: 5rem 2rem 2rem;
+      padding: 4.5rem 1.5rem 2rem;
       transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
       overflow-y: auto;
     }
-    
     .mobile-nav.active {
       right: 0;
     }
-    
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.2rem;
     }
-    
     .mobile-nav-link {
       text-decoration: none;
       color: var(--dark);
       font-weight: 600;
-      font-size: 1.1rem;
-      padding: 1rem 1.5rem;
+      font-size: 1.05rem;
+      padding: 1rem 1.2rem;
       border-radius: 12px;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.9rem;
       border: 2px solid transparent;
     }
-    
     .mobile-nav-link:hover {
       background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(139, 92, 246, 0.05));
       border-color: rgba(30, 64, 175, 0.1);
-      transform: translateX(-5px);
+      transform: translateX(-4px);
     }
-    
     .mobile-nav-link i {
       color: var(--primary);
       font-size: 1.2rem;
       width: 24px;
     }
-    
     .mobile-nav-cta {
       margin-top: 2rem;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
-      padding: 1.2rem 2rem;
+      padding: 1.1rem 2rem;
       border-radius: 15px;
       text-decoration: none;
       font-weight: 700;
@@ -342,22 +320,19 @@
       transition: all 0.3s ease;
       box-shadow: 0 5px 20px rgba(30, 64, 175, 0.3);
     }
-    
     .mobile-nav-cta:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
     }
-    
     /* Hero Section */
     .hero {
       min-height: 100vh;
-      padding: 8rem 0 4rem;
+      padding: 7rem 0 3rem;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
     }
-    
     .hero-bg {
       position: absolute;
       top: 0;
@@ -367,112 +342,97 @@
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       z-index: -2;
     }
-    
     .hero-content {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
+      gap: 3rem;
       align-items: center;
     }
-    
     .hero-text {
       position: relative;
     }
-    
     .hero-badge {
       display: inline-block;
       background: linear-gradient(135deg, var(--secondary), #fbbf24);
       color: white;
-      padding: 0.6rem 1.5rem;
+      padding: 0.5rem 1.3rem;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
       animation: bounce 2s infinite;
-      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
     }
-    
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-8px); }
     }
-    
     .hero-title {
-      font-size: 4.5rem;
+      font-size: clamp(2.2rem, 8vw, 4.5rem);
       line-height: 1.1;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       position: relative;
     }
-    
     .hero-title span {
       position: relative;
       display: inline-block;
     }
-    
     .hero-title span::after {
       content: '';
       position: absolute;
-      bottom: 10px;
+      bottom: 8px;
       left: 0;
       width: 100%;
-      height: 15px;
+      height: 12px;
       background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
       z-index: -1;
-      border-radius: 10px;
+      border-radius: 8px;
     }
-    
     .hero-subtitle {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
       color: #64748b;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       max-width: 600px;
       font-weight: 500;
     }
-    
     .hero-stats {
       display: flex;
-      gap: 3rem;
-      margin-top: 3rem;
+      gap: 2rem;
+      margin-top: 2.5rem;
     }
-    
     .stat {
       text-align: center;
     }
-    
     .stat-number {
-      font-size: 3rem;
+      font-size: clamp(2rem, 6vw, 3rem);
       font-weight: 900;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
-    
     .stat-label {
-      font-size: 0.9rem;
+      font-size: clamp(0.75rem, 2.5vw, 0.9rem);
       font-weight: 600;
       color: var(--dark);
       opacity: 0.7;
     }
-    
     /* Inquiry Card */
     .inquiry-card {
       background: white;
-      border-radius: 25px;
-      padding: 3rem;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      border-radius: 22px;
+      padding: clamp(1.5rem, 6vw, 3rem);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(30, 64, 175, 0.1);
-      transform-style: preserve-3d;
       transition: transform 0.4s ease;
+      max-width: 100%; /* 🔧 Ensure no overflow */
     }
-    
     .inquiry-card:hover {
-      transform: translateY(-10px) rotateX(5deg);
+      transform: translateY(-8px);
     }
-    
     .inquiry-card::before {
       content: '';
       position: absolute;
@@ -482,40 +442,35 @@
       height: 8px;
       background: linear-gradient(90deg, var(--primary), var(--secondary), var(--tertiary));
     }
-    
     .card-header {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: 0.9rem;
+      margin-bottom: 1.8rem;
     }
-    
     .card-icon {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 15px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
-    
     .card-header h3 {
-      font-size: 1.8rem;
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
       color: var(--dark);
     }
-    
     .form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.3rem;
       position: relative;
     }
-    
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 1.2rem 1.5rem;
+      padding: 1rem 1.3rem;
       border: 2px solid #e2e8f0;
       border-radius: 12px;
       font-family: 'Montserrat', sans-serif;
@@ -524,46 +479,42 @@
       transition: all 0.3s ease;
       background: white;
     }
-    
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
     }
-    
     .form-group label {
       position: absolute;
-      left: 1.5rem;
+      left: 1.3rem;
       top: 50%;
       transform: translateY(-50%);
       background: white;
-      padding: 0 0.5rem;
-      font-size: 0.9rem;
+      padding: 0 0.4rem;
+      font-size: 0.85rem;
       color: #94a3b8;
       pointer-events: none;
       transition: all 0.3s ease;
     }
-    
     .form-group input:focus + label,
     .form-group input:not(:placeholder-shown) + label,
     .form-group select:focus + label,
     .form-group select:not([value=""]):valid + label {
       top: 0;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--primary);
     }
-    
     .submit-btn {
       width: 100%;
-      padding: 1.3rem;
+      padding: 1.2rem;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
       border: none;
       border-radius: 12px;
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -573,7 +524,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .submit-btn::before {
       content: '';
       position: absolute;
@@ -584,80 +534,69 @@
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: left 0.5s;
     }
-    
     .submit-btn:hover::before {
       left: 100%;
     }
-    
     .submit-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
     }
-    
     /* Values Section */
     .values-section {
-      padding: 6rem 0;
+      padding: clamp(4rem, 12vw, 6rem) 0;
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       position: relative;
       overflow: hidden;
     }
-    
     .section-title {
       text-align: center;
-      margin-bottom: 4rem;
-      position: relative;
+      margin-bottom: 3rem;
     }
-    
     .section-title h2 {
-      font-size: 3.5rem;
+      font-size: clamp(2rem, 6vw, 3.5rem);
       margin-bottom: 1rem;
-      position: relative;
       display: inline-block;
+      background: var(--dark);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    
     .section-title h2::after {
       content: '';
       position: absolute;
       bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
-      height: 6px;
+      width: 80px;
+      height: 5px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
       border-radius: 3px;
     }
-    
     .section-title p {
-      font-size: 1.2rem;
+      font-size: clamp(0.95rem, 3vw, 1.2rem);
       color: #64748b;
       max-width: 700px;
       margin: 0 auto;
     }
-    
     .values-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
       perspective: 1000px;
     }
-    
     .value-card {
       background: white;
       border-radius: 20px;
-      padding: 2.5rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      padding: clamp(1.8rem, 6vw, 2.5rem);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(30, 64, 175, 0.1);
-      transform-style: preserve-3d;
     }
-    
     .value-card:hover {
-      transform: translateY(-15px) rotateX(5deg);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+      transform: translateY(-12px);
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.12);
     }
-    
     .value-card::before {
       content: '';
       position: absolute;
@@ -667,77 +606,59 @@
       height: 5px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
     }
-    
     .value-icon {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 20px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
       transform: rotate(-5deg);
       transition: transform 0.3s ease;
     }
-    
     .value-card:hover .value-icon {
       transform: rotate(0deg);
     }
-    
     .value-card h4 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      margin-bottom: 0.9rem;
       color: var(--dark);
     }
-    
     .value-card p {
       color: #64748b;
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 3vw, 1rem);
     }
-    
     /* Programs Section */
     .programs-section {
-      padding: 6rem 0;
+      padding: clamp(4rem, 12vw, 6rem) 0;
       position: relative;
     }
-    
     .programs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
-    
     .program-card {
-      border-radius: 25px;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
-      transform-style: preserve-3d;
+      opacity: 1;
     }
-    
-    .program-card:nth-child(odd) {
-      transform: rotate(-1deg);
-    }
-    
-    .program-card:nth-child(even) {
-      transform: rotate(1deg);
-    }
-    
     .program-card:hover {
-      transform: rotate(0deg) translateY(-20px);
+      transform: translateY(-15px);
     }
-    
     .program-image {
-      height: 250px;
+      height: 220px;
       background-size: cover;
       background-position: center;
       position: relative;
     }
-    
     .program-image::after {
       content: '';
       position: absolute;
@@ -747,50 +668,43 @@
       height: 100%;
       background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
     }
-    
     .program-label {
       position: absolute;
-      top: 2rem;
-      left: 2rem;
+      top: 1.5rem;
+      left: 1.5rem;
       background: linear-gradient(135deg, var(--secondary), #fbbf24);
       color: white;
-      padding: 0.5rem 1.5rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       z-index: 1;
     }
-    
     .program-content {
-      padding: 2.5rem;
+      padding: clamp(1.8rem, 6vw, 2.5rem);
       background: white;
-      position: relative;
     }
-    
     .program-content h4 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      margin-bottom: 0.9rem;
       color: var(--dark);
     }
-    
     .program-features {
       list-style: none;
-      margin: 1.5rem 0;
+      margin: 1.2rem 0;
     }
-    
     .program-features li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.7rem;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.7rem;
       color: #64748b;
+      font-size: 0.95rem;
     }
-    
     .program-features i {
       color: var(--tertiary);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
-    
     .program-link {
       display: inline-flex;
       align-items: center;
@@ -798,32 +712,28 @@
       color: var(--primary);
       text-decoration: none;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
     }
-    
     .program-link:hover {
-      gap: 1rem;
+      gap: 0.9rem;
     }
-    
     /* Admissions Banner */
     .admissions-banner {
-      padding: 5rem 0;
+      padding: clamp(3rem, 10vw, 5rem) 0;
       position: relative;
       overflow: hidden;
     }
-    
     .banner-content {
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 30px;
-      padding: 5rem;
+      border-radius: 26px;
+      padding: clamp(2.5rem, 8vw, 5rem);
       text-align: center;
       color: white;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(30, 64, 175, 0.3);
+      box-shadow: 0 25px 70px rgba(30, 64, 175, 0.3);
     }
-    
     .banner-content::before {
       content: '';
       position: absolute;
@@ -834,275 +744,219 @@
       background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
       animation: rotate 40s infinite linear;
     }
-    
     @keyframes rotate {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
     .banner-content h3 {
-      font-size: 3.5rem;
+      font-size: clamp(1.8rem, 6vw, 3.5rem);
       margin-bottom: 1rem;
-      position: relative;
     }
-    
     .banner-content p {
-      font-size: 1.3rem;
-      margin-bottom: 2.5rem;
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+      margin-bottom: 2rem;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
       opacity: 0.9;
-      position: relative;
     }
-    
     .banner-btn {
       display: inline-flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.9rem;
       background: white;
       color: var(--primary);
-      padding: 1.2rem 3rem;
+      padding: 1rem 2.5rem;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: clamp(0.95rem, 3.5vw, 1.1rem);
       transition: all 0.3s ease;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
-    
     .banner-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
     }
-    
     /* Footer */
     footer {
       background: var(--dark);
       color: white;
-      padding: 5rem 0 2rem;
+      padding: clamp(3rem, 10vw, 5rem) 0 2rem;
       position: relative;
       overflow: hidden;
     }
-    
     .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-bottom: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.2rem;
+      margin-bottom: 2.5rem;
     }
-    
     .footer-logo .logo-icon {
       background: linear-gradient(135deg, var(--secondary), var(--tertiary));
     }
-    
     .footer-column h4 {
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+      margin-bottom: 1.2rem;
       position: relative;
-      padding-bottom: 0.8rem;
+      padding-bottom: 0.7rem;
     }
-    
     .footer-column h4::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 50px;
+      width: 45px;
       height: 3px;
       background: linear-gradient(90deg, var(--secondary), var(--tertiary));
       border-radius: 3px;
     }
-    
     .footer-links {
       list-style: none;
     }
-    
     .footer-links li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.7rem;
     }
-    
     .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    
     .footer-links a:hover {
       color: var(--secondary);
-      padding-left: 5px;
+      padding-left: 4px;
     }
-    
     .social-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-top: 1.5rem;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
     }
-    
     .social-icon {
-      width: 50px;
-      height: 50px;
+      width: 46px;
+      height: 46px;
       background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-decoration: none;
       transition: all 0.3s ease;
     }
-    
     .social-icon:hover {
       background: var(--secondary);
-      transform: translateY(-5px) rotate(5deg);
+      transform: translateY(-4px) rotate(4deg);
     }
-    
     .footer-bottom {
       text-align: center;
-      padding-top: 2rem;
+      padding-top: 1.8rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 3vw, 0.9rem);
     }
-    
     /* Success Message */
     .success-message {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: 1.2rem;
+      right: 1.2rem;
       background: linear-gradient(135deg, var(--tertiary), #34d399);
       color: white;
-      padding: 1.5rem 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      padding: 1.2rem 1.6rem;
+      border-radius: 14px;
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
       z-index: 10000;
       display: flex;
       align-items: center;
-      gap: 1rem;
-      max-width: 400px;
+      gap: 0.9rem;
+      max-width: 350px;
       transform: translateX(120%);
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    
     .success-message.show {
       transform: translateX(0);
     }
-    
     .success-message i {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
-    
     /* Mobile Responsiveness */
     @media (max-width: 1024px) {
       .hero-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-      
-      .hero-title {
-        font-size: 3.5rem;
-      }
-      
-      .banner-content h3 {
-        font-size: 2.5rem;
+        gap: 2.5rem;
       }
     }
-    
     @media (max-width: 768px) {
       header {
-        top: 1rem;
-        width: 95%;
-        padding: 1rem;
+        top: 0.8rem;
+        width: 96%;
+        padding: 0.9rem 1.2rem;
       }
-      
       .desktop-nav {
         display: none;
       }
-      
       .mobile-menu-btn {
         display: block;
       }
-      
       .hero {
         padding-top: 6rem;
       }
-      
-      .hero-title {
-        font-size: 2.8rem;
-      }
-      
       .hero-stats {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.8rem;
       }
-      
-      .section-title h2 {
-        font-size: 2.5rem;
-      }
-      
       .banner-content {
-        padding: 3rem 2rem;
+        padding: 2.5rem 1.5rem;
       }
-      
-      .banner-content h3 {
-        font-size: 2rem;
+      .program-card,
+      .value-card {
+        transform: none !important;
       }
-      
-      .program-card:nth-child(odd),
-      .program-card:nth-child(even) {
-        transform: rotate(0deg);
-      }
-    }
-    
-    @media (max-width: 480px) {
       .container {
         padding: 0 1.5rem;
       }
-      
-      .hero-title {
-        font-size: 2.2rem;
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.2rem;
       }
-      
       .inquiry-card {
-        padding: 2rem;
+        padding: 1.8rem 1.4rem;
       }
-      
-      .value-card,
-      .program-card {
-        padding: 2rem;
+      .hero-badge {
+        font-size: 0.8rem;
+        padding: 0.45rem 1.1rem;
       }
-      
-      .section-title h2 {
-        font-size: 2rem;
-      }
-      
       .mobile-nav {
         width: 280px;
+        padding-top: 4rem;
+      }
+      #progress-bar {
+        height: 3px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- 🟢 Scroll Progress Bar -->
+  <div id="progress-bar"></div>
   <!-- Background Shapes -->
   <div class="shape shape-1"></div>
   <div class="shape shape-2"></div>
   <div class="shape shape-3"></div>
-  
   <!-- Success Message -->
   <div class="success-message" id="successMessage">
     <i class="fas fa-check-circle"></i>
     <div>
-      <h4 style="margin-bottom: 0.3rem; font-size: 1.1rem;">Application Submitted!</h4>
-      <p style="opacity: 0.9; font-size: 0.9rem;">We'll contact you within 24 hours.</p>
+      <h4 style="margin-bottom: 0.25rem; font-size: 1rem;">Application Submitted!</h4>
+      <p style="opacity: 0.9; font-size: 0.85rem;">We'll contact you within 24 hours.</p>
     </div>
   </div>
-  
   <!-- Header -->
   <header id="header">
     <a href="#home" class="logo">
@@ -1114,7 +968,6 @@
         <p>EDUCATION REDEFINED</p>
       </div>
     </a>
-    
     <!-- Desktop Navigation -->
     <nav class="desktop-nav">
       <a href="index.html" class="nav-item">Home</a>
@@ -1127,16 +980,13 @@
         Apply Now
       </a>
     </nav>
-    
     <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" id="mobileMenuBtn">
       <i class="fas fa-bars"></i>
     </button>
   </header>
-  
   <!-- Mobile Navigation Overlay -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-  
   <!-- Mobile Navigation -->
   <div class="mobile-nav" id="mobileNav">
     <div class="mobile-nav-links">
@@ -1146,7 +996,7 @@
       </a>
       <a href="about.html" class="mobile-nav-link">
         <i class="fas fa-heart"></i>
-        <span>Our Values</span>
+        <span>About</span>
       </a>
       <a href="program.html" class="mobile-nav-link">
         <i class="fas fa-graduation-cap"></i>
@@ -1161,13 +1011,11 @@
         <span>Contact</span>
       </a>
     </div>
-    
     <a href="#inquiry" class="mobile-nav-cta">
       <i class="fas fa-paper-plane"></i>
       Apply Now
     </a>
   </div>
-
   <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-bg"></div>
@@ -1177,16 +1025,13 @@
           <div class="hero-badge">
             <i class="fas fa-star"></i> EXCELLENCE IN EDUCATION
           </div>
-          
           <h1 class="hero-title">
             Where <span>Curiosity</span> Meets<br>
             <span>Creativity</span> & Character
           </h1>
-          
           <p class="hero-subtitle">
             We're redefining education through innovative learning, strong values, and a commitment to nurturing each child's unique potential in a dynamic, future-focused environment.
           </p>
-          
           <div class="hero-stats">
             <div class="stat">
               <div class="stat-number">98%</div>
@@ -1202,7 +1047,6 @@
             </div>
           </div>
         </div>
-        
         <div class="inquiry-card" id="inquiry">
           <div class="card-header">
             <div class="card-icon">
@@ -1210,17 +1054,14 @@
             </div>
             <h3>Start Your Journey</h3>
           </div>
-          
           <div class="form-group">
             <input type="text" id="parentName" placeholder=" " required>
             <label for="parentName">Parent / Guardian Name</label>
           </div>
-          
           <div class="form-group">
             <input type="tel" id="phone" placeholder=" " required>
             <label for="phone">Phone Number</label>
           </div>
-          
           <div class="form-group">
             <select id="grade" required>
               <option value="" selected disabled> </option>
@@ -1231,7 +1072,6 @@
             </select>
             <label for="grade">Child's Grade Level</label>
           </div>
-          
           <button class="submit-btn" id="submitBtn">
             <i class="fas fa-paper-plane"></i>
             Submit Application
@@ -1240,7 +1080,6 @@
       </div>
     </div>
   </section>
-
   <!-- Values Section -->
   <section class="values-section" id="values">
     <div class="container">
@@ -1248,7 +1087,6 @@
         <h2>Our Core Values</h2>
         <p>The foundation of everything we do at FAITH Junior Academy</p>
       </div>
-      
       <div class="values-grid">
         <div class="value-card">
           <div class="value-icon">
@@ -1257,7 +1095,6 @@
           <h4>Compassion First</h4>
           <p>We cultivate empathy and kindness as the foundation for all learning and interaction, creating a supportive community where every child feels valued.</p>
         </div>
-        
         <div class="value-card">
           <div class="value-icon">
             <i class="fas fa-lightbulb"></i>
@@ -1265,7 +1102,6 @@
           <h4>Innovative Thinking</h4>
           <p>We challenge traditional learning methods and encourage creative problem-solving, preparing students for a rapidly changing world.</p>
         </div>
-        
         <div class="value-card">
           <div class="value-icon">
             <i class="fas fa-hands-helping"></i>
@@ -1273,7 +1109,6 @@
           <h4>Collaborative Spirit</h4>
           <p>We believe in the power of teamwork and community, teaching students to work together effectively while respecting diverse perspectives.</p>
         </div>
-        
         <div class="value-card">
           <div class="value-icon">
             <i class="fas fa-shield-alt"></i>
@@ -1281,7 +1116,6 @@
           <h4>Integrity Always</h4>
           <p>Honesty, accountability, and ethical behavior form the bedrock of our educational philosophy and community standards.</p>
         </div>
-        
         <div class="value-card">
           <div class="value-icon">
             <i class="fas fa-globe-americas"></i>
@@ -1289,7 +1123,6 @@
           <h4>Global Perspective</h4>
           <p>We connect local learning to global challenges, developing students who understand their role in an interconnected world.</p>
         </div>
-        
         <div class="value-card">
           <div class="value-icon">
             <i class="fas fa-seedling"></i>
@@ -1300,7 +1133,6 @@
       </div>
     </div>
   </section>
-
   <!-- Programs Section -->
   <section class="programs-section" id="programs">
     <div class="container">
@@ -1308,7 +1140,6 @@
         <h2>Innovative Programs</h2>
         <p>Designed to ignite passion and develop essential 21st century skills</p>
       </div>
-      
       <div class="programs-grid">
         <div class="program-card">
           <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
@@ -1317,21 +1148,18 @@
           <div class="program-content">
             <h4>Discovery Lab</h4>
             <p>Play-based exploration that builds cognitive, social, and emotional foundations through sensory experiences and creative expression.</p>
-            
             <ul class="program-features">
               <li><i class="fas fa-check-circle"></i> Montessori-inspired learning</li>
               <li><i class="fas fa-check-circle"></i> Language immersion options</li>
               <li><i class="fas fa-check-circle"></i> Nature-based curriculum</li>
               <li><i class="fas fa-check-circle"></i> Emotional intelligence focus</li>
             </ul>
-            
             <a href="#inquiry" class="program-link">
               Explore Program
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
         </div>
-        
         <div class="program-card">
           <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1601582589917-7e4cbe6f1c99?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
             <div class="program-label">Grades 1-6</div>
@@ -1339,21 +1167,18 @@
           <div class="program-content">
             <h4>Innovators Academy</h4>
             <p>Project-based learning that connects traditional subjects with real-world challenges, developing critical thinking and collaboration.</p>
-            
             <ul class="program-features">
               <li><i class="fas fa-check-circle"></i> STEM integration across subjects</li>
               <li><i class="fas fa-check-circle"></i> Entrepreneurship projects</li>
               <li><i class="fas fa-check-circle"></i> Digital literacy & coding</li>
               <li><i class="fas fa-check-circle"></i> Community service learning</li>
             </ul>
-            
             <a href="#inquiry" class="program-link">
               Explore Program
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
         </div>
-        
         <div class="program-card">
           <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1596495577886-d920f1fb7238?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')">
             <div class="program-label">All Ages</div>
@@ -1361,14 +1186,12 @@
           <div class="program-content">
             <h4>Creative Studios</h4>
             <p>Specialized programs in arts, technology, and athletics that allow students to discover and develop their unique talents.</p>
-            
             <ul class="program-features">
               <li><i class="fas fa-check-circle"></i> Digital media & design</li>
               <li><i class="fas fa-check-circle"></i> Robotics & engineering</li>
               <li><i class="fas fa-check-circle"></i> Performing arts theater</li>
               <li><i class="fas fa-check-circle"></i> Competitive athletics</li>
             </ul>
-            
             <a href="#inquiry" class="program-link">
               Explore Program
               <i class="fas fa-arrow-right"></i>
@@ -1378,7 +1201,6 @@
       </div>
     </div>
   </section>
-
   <!-- Admissions Banner -->
   <section class="admissions-banner" id="admissions">
     <div class="container">
@@ -1392,7 +1214,6 @@
       </div>
     </div>
   </section>
-
   <!-- Footer -->
   <footer id="contact">
     <div class="container">
@@ -1404,10 +1225,9 @@
             </div>
             <h1 style="color: white; margin-top: 1rem;">FAITH Junior Academy</h1>
           </div>
-          <p style="color: rgba(255,255,255,0.8); margin-top: 1.5rem;">
+          <p style="color: rgba(255,255,255,0.85); margin-top: 1.2rem;">
             Redefining education through innovation, compassion, and excellence since 2015.
           </p>
-          
           <div class="social-grid">
             <a href="#" class="social-icon">
               <i class="fab fa-instagram"></i>
@@ -1423,7 +1243,6 @@
             </a>
           </div>
         </div>
-        
         <div class="footer-column">
           <h4>Quick Links</h4>
           <ul class="footer-links">
@@ -1434,7 +1253,6 @@
             <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
           </ul>
         </div>
-        
         <div class="footer-column">
           <h4>Programs</h4>
           <ul class="footer-links">
@@ -1445,7 +1263,6 @@
             <li><a href="#"><i class="fas fa-chevron-right"></i> After-School Enrichment</a></li>
           </ul>
         </div>
-        
         <div class="footer-column">
           <h4>Contact Info</h4>
           <ul class="footer-links">
@@ -1456,16 +1273,19 @@
           </ul>
         </div>
       </div>
-      
       <div class="footer-bottom">
         <p>© 2024 FAITH Junior Academy. All rights reserved. | Education Reimagined</p>
       </div>
     </div>
   </footer>
-
   <script>
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
+    // 🔵 Scroll Progress Bar Logic
+    window.addEventListener('scroll', function () {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+      // Header scroll effect
       const header = document.getElementById('header');
       if (window.scrollY > 100) {
         header.classList.add('scrolled');
@@ -1473,131 +1293,59 @@
         header.classList.remove('scrolled');
       }
     });
-    
-    // Mobile menu functionality
+    // Mobile menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-    
     function openMobileMenu() {
       mobileNav.classList.add('active');
       mobileNavOverlay.classList.add('active');
       mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
       document.body.style.overflow = 'hidden';
     }
-    
     function closeMobileMenu() {
       mobileNav.classList.remove('active');
       mobileNavOverlay.classList.remove('active');
       mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
       document.body.style.overflow = 'auto';
     }
-    
-    mobileMenuBtn.addEventListener('click', function() {
-      if (mobileNav.classList.contains('active')) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.contains('active') ? closeMobileMenu() : openMobileMenu();
     });
-    
     mobileNavOverlay.addEventListener('click', closeMobileMenu);
-    
-    // Close mobile menu when clicking on a link
     document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
-    
     // Form submission
-    document.getElementById('submitBtn').addEventListener('click', function() {
+    document.getElementById('submitBtn').addEventListener('click', function () {
       const name = document.getElementById('parentName').value;
       const phone = document.getElementById('phone').value;
       const grade = document.getElementById('grade').value;
-      
       if (name && phone && grade) {
-        // Show success message
         const successMessage = document.getElementById('successMessage');
-        successMessage.querySelector('h4').innerHTML = 'Application Submitted!';
+        successMessage.querySelector('h4').textContent = 'Application Submitted!';
         successMessage.querySelector('p').innerHTML = `Thank you ${name}! We'll contact you within 24 hours.`;
-        
         successMessage.classList.add('show');
-        
-        // Reset form
         document.getElementById('parentName').value = '';
         document.getElementById('phone').value = '';
         document.getElementById('grade').selectedIndex = 0;
-        
-        // Remove success message after 5 seconds
-        setTimeout(() => {
-          successMessage.classList.remove('show');
-        }, 5000);
+        setTimeout(() => successMessage.classList.remove('show'), 5000);
       } else {
-        alert('Please fill in all fields before submitting.');
+        alert('Please fill in all fields.');
       }
     });
-    
-    // Smooth scroll for anchor links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
         e.preventDefault();
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          // Close mobile menu if open
-          if (mobileNav.classList.contains('active')) {
-            closeMobileMenu();
-          }
-          
-          // Scroll to target
-          window.scrollTo({
-            top: targetElement.offsetTop - 100,
-            behavior: 'smooth'
-          });
+        const target = document.querySelector(href);
+        if (target) {
+          if (mobileNav.classList.contains('active')) closeMobileMenu();
+          window.scrollTo({ top: target.offsetTop - 90, behavior: 'smooth' });
         }
       });
-    });
-    
-    // Animate program cards on scroll
-    const programCards = document.querySelectorAll('.program-card');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'rotate(0deg) translateY(0)';
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-    
-    programCards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-      observer.observe(card);
-    });
-    
-    // Animate value cards on scroll
-    const valueCards = document.querySelectorAll('.value-card');
-    
-    const valueObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0) rotateX(0deg)';
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-    
-    valueCards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(30px) rotateX(10deg)';
-      valueObserver.observe(card);
     });
   </script>
 </body>
